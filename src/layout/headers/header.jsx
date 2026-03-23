@@ -93,7 +93,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, cls = "" }) => {
             display: "flex",
             alignItems: "center",
             position: "relative",
-            minHeight: "80px",
+            minHeight: "100px",
             overflow: "visible",
           }}
         >
@@ -138,13 +138,36 @@ const Header = ({ header_style, no_top_bar, disable_full_width, cls = "" }) => {
               }
               style={{ position: "absolute" }}
             >
-              <Link href="/">
+              <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
                 <motion.img
-                  src="/assets/images/about/21-01.png"
-                  alt="logo"
-                  style={{ width: "190px", height: "auto", cursor: "pointer" }}
+                  src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg"
+                  alt="SIU - Study in UAE"
+                  style={{ width: "75px", height: "75px", borderRadius: "50%", objectFit: "cover", cursor: "pointer", mixBlendMode: "multiply" }}
                   whileHover={{ scale: 1.05 }}
                 />
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", cursor: "pointer" }}>
+                  <span style={{
+                    fontSize: "24px",
+                    fontWeight: "800",
+                    color: "#1a3a6b",
+                    lineHeight: "1.2",
+                    letterSpacing: "1px",
+                    textTransform: "uppercase",
+                    fontFamily: "'Inter', 'Segoe UI', sans-serif",
+                  }}>
+                    Study in UAE
+                  </span>
+                  <span style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#b2883b",
+                    lineHeight: "1.3",
+                    direction: "rtl",
+                    fontFamily: "'Segoe UI', 'Tahoma', sans-serif",
+                  }}>
+                    الدراسة في الإمارات
+                  </span>
+                </div>
               </Link>
             </motion.div>
 
@@ -163,8 +186,8 @@ const Header = ({ header_style, no_top_bar, disable_full_width, cls = "" }) => {
               style={{
                 position: "absolute",
                 right: "60px",
-                top: "25%",
-                transform: "translateY(-60%)",
+                top: "50%",
+                transform: "translateY(-50%)",
                 overflow: "visible",
               }}
             >
@@ -214,7 +237,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, cls = "" }) => {
 
   /* ⭐ Adjust Body Padding Based on Topbar */
   :global(body) {
-    padding-top: ${no_top_bar ? "80px" : "110px"} !important;
+    padding-top: ${no_top_bar ? "100px" : "130px"} !important;
   }
 
   /* ===============================
