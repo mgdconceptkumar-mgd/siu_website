@@ -12,51 +12,6 @@ const MainMenu = () => {
   ====================================================== */
 
   const routeGroups = {
-    students: [
-      "/blog-details",
-      "/course-style-",
-      "/course-details",
-      "/lithuania",
-      "/finland",
-      "/spain",
-      "/france",
-      "/belgium",
-      "/home-health-coach",
-      "/home-modern-schooling",
-      "/home-language-academy",
-    ],
-
-    universities: [
-      "/gallery-masonry",
-      "/university",
-      "/faculty",
-      "/campus",
-      "/international-partnerships",
-    ],
-
-    schools: [
-      "/event-grid",
-      "/school",
-      "/k12",
-      "/boarding-school",
-      "/school-programs",
-    ],
-
-    corporates: [
-      "/event-list",
-      "/corporates",
-      "/training",
-      "/upskilling",
-      "/workforce",
-    ],
-
-    government: [
-      "/event-details",
-      "/policy",
-      "/public-sector",
-      "/skill-mission",
-    ],
-
     about: [
       "/contact-us",
       "/about-us",
@@ -70,11 +25,6 @@ const MainMenu = () => {
   const isGroupActive = (routes) =>
     routes.some((route) => pathname?.startsWith(route));
 
-  const isStudentActive = isGroupActive(routeGroups.students);
-  const isUniversityActive = isGroupActive(routeGroups.universities);
-  const isSchoolActive = isGroupActive(routeGroups.schools);
-  const isCorporateActive = isGroupActive(routeGroups.corporates);
-  const isGovernmentActive = isGroupActive(routeGroups.government);
   const isAboutActive = isGroupActive(routeGroups.about);
 
   /* ======================================================
@@ -162,11 +112,6 @@ const MainMenu = () => {
               menu.mega_menu || (menu.submenus && menu.submenus.length > 0);
 
             const ecosystemActive =
-              (menu.title === "For Students" && isStudentActive) ||
-              (menu.title === "For Universities" && isUniversityActive) ||
-              (menu.title === "For Schools" && isSchoolActive) ||
-              (menu.title === "For Corporates" && isCorporateActive) ||
-              (menu.title === "For Government" && isGovernmentActive) ||
               (menu.title === "About Us" && isAboutActive);
 
             return (
