@@ -46,7 +46,7 @@ const Features = () => {
             viewport={{ once: true }}
             style={{ 
               fontSize: "4rem", 
-              fontWeight: 900, 
+              fontWeight: 700, 
               color: "#ffffff", 
               marginBottom: "24px",
               letterSpacing: "-2.5px"
@@ -55,16 +55,18 @@ const Features = () => {
             Smarter Admissions
           </motion.h2>
           <p style={{ 
-            fontSize: "1.5rem", 
-            color: "#cbd5e1", 
-            maxWidth: "800px", 
-            margin: "0 auto" 
+            fontSize: "2rem", 
+            fontWeight: 600,
+            color: "#ffffff", 
+            maxWidth: "900px", 
+            margin: "0 auto",
+            letterSpacing: "0.5px"
           }}>
-            Experience a streamlined journey with features designed for efficiency, transparency, and global accessibility.
+            Your Gateway to <span style={{ color: "#d4af37" }}>Study, Work & Grow</span> in UAE
           </p>
         </div>
 
-        <div className="row g-4">
+        <div className="row g-4 justify-content-center">
           {features.map((feature, idx) => (
             <div key={idx} className="col-lg-3 col-md-6">
               <motion.div
@@ -105,7 +107,7 @@ const Features = () => {
                 </div>
                 <h3 style={{ 
                   fontSize: "1.8rem", 
-                  fontWeight: 800, 
+                  fontWeight: 700, 
                   color: "#ffffff", 
                   marginBottom: "20px",
                   lineHeight: 1.2,

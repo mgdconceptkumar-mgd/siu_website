@@ -16,7 +16,7 @@ const HeaderSIU = () => {
   }, []);
 
   const navLinks = [
-    { name: "Download Now", href: "#apply-once" },
+    { name: "DOWNLOAD  APP", href: "#apply-once" },
     { name: "Universities", href: "#universities" },
     { name: "Ecosystem", href: "#ecosystem" },
     { name: "Features", href: "#how-it-works" },
@@ -26,171 +26,174 @@ const HeaderSIU = () => {
     <header
       style={{
         position: "absolute",
-        top: "25px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: "97%",
-        maxWidth: "1500px",
+        top: "10px",
+        left: "0",
+        right: "0",
+        width: "100%",
         zIndex: 1000,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
         pointerEvents: "none"
       }}
     >
-      {/* 🟢 LEFT CORNER LOGO (STATIC & CLEAN) */}
-      <Link href="/" style={{ 
-        display: "flex", 
-        alignItems: "center", 
-        gap: "20px", 
-        textDecoration: "none",
-        pointerEvents: "auto",
-        transition: "transform 0.3s ease",
-        flexShrink: 0
-      }}
-      onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.02)"}
-      onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
-      >
-        <div style={{
-          width: "110px",
-          height: "110px",
+      <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        {/* 🟢 LEFT CORNER LOGO (STATIC & CLEAN) */}
+        <Link href="/" style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-          borderRadius: "50%",
-          flexShrink: 0
-        }}>
-          <img
-            src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg"
-            alt="SIU Logo"
-            style={{ 
-              width: "100%", 
-              height: "100%", 
-              objectFit: "cover",
-              borderRadius: "50%",
-              mixBlendMode: "multiply"
-            }}
-          />
-        </div>
-        
-        {/* Bilingual Text Beside Logo */}
-        <div 
-          style={{ 
-            display: "flex", 
-            flexDirection: "column", 
-            gap: "5px",
-            textAlign: "left"
-          }}
-        >
-          <span style={{ 
-            color: "#fff", 
-            fontWeight: 950, 
-            fontSize: "1.8rem", 
-            letterSpacing: "1.5px",
-            textTransform: "uppercase",
-            textShadow: "0 2px 20px rgba(0,0,0,0.8)",
-            lineHeight: 1
-          }}>
-            Study in UAE
-          </span>
-          <span style={{ 
-            color: "#d4af37", 
-            fontWeight: 800, 
-            fontSize: "1.6rem",
-            direction: "rtl",
-            textShadow: "0 2px 20px rgba(0,0,0,0.8)",
-            lineHeight: 1
-          }}>
-            الدراسة في الإمارات
-          </span>
-        </div>
-      </Link>
-
-
-      {/* 🟢 NAVIGATION PILL (STATIC) */}
-      <nav
-        style={{
-          display: "flex",
-          flexItems: "center",
-          gap: "32px",
-          padding: "16px 32px",
-          background: "rgba(10, 17, 40, 0.75)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderRadius: "100px",
-          border: "1px solid rgba(255, 255, 255, 0.12)",
-          boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
+          gap: "20px",
+          textDecoration: "none",
           pointerEvents: "auto",
-          maxWidth: "max-content",
+          transition: "transform 0.3s ease",
           flexShrink: 0
         }}
-      >
-        {/* DESKTOP NAV */}
-        <div className="d-none d-lg-flex" style={{ gap: "28px", alignItems: "center" }}>
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href}
-              style={{ 
-                color: "rgba(255,255,255,0.7)", 
-                textDecoration: "none", 
-                fontWeight: 600,
-                fontSize: "1.2rem",
-                transition: "all 0.3s ease",
-                letterSpacing: "0.5px"
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.color = "#fff";
-                e.target.style.textShadow = "0 0 10px rgba(255,255,255,0.5)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.color = "rgba(255,255,255,0.7)";
-                e.target.style.textShadow = "none";
-              }}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <Link 
-            href="/apply"
-            style={{
-              padding: "10px 28px",
-              background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-              borderRadius: "50px",
-              color: "#fff",
-              fontWeight: 800,
-              textDecoration: "none",
-              fontSize: "1.1rem",
-              textTransform: "uppercase",
-              letterSpacing: "1px",
-              boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
-              transition: "transform 0.3s ease"
-            }}
-            onMouseEnter={(e) => e.target.style.transform = "translateY(-2px)"}
-            onMouseLeave={(e) => e.target.style.transform = "translateY(0)"}
-          >
-            Download Now
-          </Link>
-        </div>
-
-        {/* MOBILE MENU TOGGLE */}
-        <button 
-          className="d-lg-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          style={{ 
-            background: "none", 
-            border: "none", 
-            color: "#fff", 
-            fontSize: "1.5rem",
-            cursor: "pointer",
+          onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.02)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+        >
+          <div style={{
+            width: "110px",
+            height: "110px",
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+            borderRadius: "50%",
+            flexShrink: 0,
+            background: "rgba(255, 255, 255, 0.05)",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            backdropFilter: "blur(15px)",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05)",
+            padding: "8px"
+          }}>
+            <img
+              src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg"
+              alt="SIU Logo"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "50%",
+                filter: "brightness(1.05) drop-shadow(0 0 10px rgba(255,255,255,0.1))"
+              }}
+            />
+          </div>
+
+          {/* Bilingual Text Beside Logo */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              textAlign: "left"
+            }}
+          >
+            <span style={{
+              color: "#fff",
+              fontWeight: 950,
+              fontSize: "1.8rem",
+              letterSpacing: "1.5px",
+              textTransform: "uppercase",
+              textShadow: "0 2px 20px rgba(0,0,0,0.8)",
+              lineHeight: 1
+            }}>
+              Study in UAE
+            </span>
+            <span style={{
+              color: "#d4af37",
+              fontWeight: 800,
+              fontSize: "1.6rem",
+              direction: "rtl",
+              textShadow: "0 2px 20px rgba(0,0,0,0.8)",
+              lineHeight: 1
+            }}>
+              الدراسة في الإمارات
+            </span>
+          </div>
+        </Link>
+
+
+        {/* 🟢 NAVIGATION PILL (STATIC) */}
+        <nav
+          style={{
+            display: "flex",
+            flexItems: "center",
+            gap: "32px",
+            padding: "16px 32px",
+            background: "rgba(10, 17, 40, 0.75)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderRadius: "100px",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
+            pointerEvents: "auto",
+            maxWidth: "max-content",
+            flexShrink: 0
           }}
         >
-          {isMobileMenuOpen ? "✕" : "☰"}
-        </button>
-      </nav>
+          {/* DESKTOP NAV */}
+          <div className="d-none d-lg-flex" style={{ gap: "28px", alignItems: "center" }}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                style={{
+                  color: "rgba(255,255,255,0.7)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  fontSize: "1.2rem",
+                  transition: "all 0.3s ease",
+                  letterSpacing: "0.5px"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = "#fff";
+                  e.target.style.textShadow = "0 0 10px rgba(255,255,255,0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = "rgba(255,255,255,0.7)";
+                  e.target.style.textShadow = "none";
+                }}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <Link
+              href="/apply"
+              style={{
+                padding: "10px 28px",
+                background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
+                borderRadius: "50px",
+                color: "#fff",
+                fontWeight: 800,
+                textDecoration: "none",
+                fontSize: "1.1rem",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
+                transition: "transform 0.3s ease"
+              }}
+              onMouseEnter={(e) => e.target.style.transform = "translateY(-2px)"}
+              onMouseLeave={(e) => e.target.style.transform = "translateY(0)"}
+            >
+              DOWNLOAD  APP
+            </Link>
+          </div>
+
+          {/* MOBILE MENU TOGGLE */}
+          <button
+            className="d-lg-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "#fff",
+              fontSize: "1.5rem",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center"
+            }}
+          >
+            {isMobileMenuOpen ? "✕" : "☰"}
+          </button>
+        </nav>
+      </div>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
@@ -217,13 +220,13 @@ const HeaderSIU = () => {
             }}
           >
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
+              <Link
+                key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                style={{ 
-                  color: "#fff", 
-                  textDecoration: "none", 
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
                   fontWeight: 600,
                   fontSize: "1.1rem"
                 }}
@@ -231,7 +234,7 @@ const HeaderSIU = () => {
                 {link.name}
               </Link>
             ))}
-            <Link 
+            <Link
               href="/apply"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
@@ -244,7 +247,7 @@ const HeaderSIU = () => {
                 textDecoration: "none"
               }}
             >
-              Download Now
+              DOWNLOAD  APP
             </Link>
           </motion.div>
         )}

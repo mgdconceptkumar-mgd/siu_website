@@ -75,7 +75,7 @@ const Universities = () => {
                   minWidth: "450px"
                 }}
               >
-                {/* LOGO CONTAINER */}
+                {/* LOGO CONTAINER - Reverted to White */}
                 <div style={{ 
                   width: "90px", 
                   height: "90px", 
@@ -131,17 +131,12 @@ const Universities = () => {
           border: "1px solid rgba(255, 255, 255, 0.08)",
           backdropFilter: "blur(40px)"
         }}>
-          <h3 style={{ color: "#ffffff", fontSize: "2.5rem", fontWeight: 900, marginBottom: "32px", letterSpacing: "-1px" }}>
+          <h3 style={{ color: "#ffffff", fontSize: "4.5rem", fontWeight: 700, marginBottom: "40px", letterSpacing: "-3px" }}>
             Strategic Positioning
           </h3>
-          <p style={{ color: "#cbd5e1", fontSize: "1.4rem", lineHeight: 1.6, maxWidth: "1000px", margin: "0 auto", fontWeight: 500 }}>
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "2.2rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>
             “SIU extends this vision globally—bringing international students into a structured, transparent, and scalable ecosystem.”
           </p>
-          <div style={{ marginTop: "48px", display: "flex", justifyContent: "center", gap: "40px", flexWrap: "wrap", opacity: 0.9 }}>
-            <span style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.2rem", letterSpacing: "1px" }}>ONE PLATFORM.</span>
-            <span style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.2rem", letterSpacing: "1px" }}>ALL UAE UNIVERSITIES.</span>
-            <span style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.2rem", letterSpacing: "1px" }}>GLOBAL ACCESS.</span>
-          </div>
         </div>
       </div>
     </section>

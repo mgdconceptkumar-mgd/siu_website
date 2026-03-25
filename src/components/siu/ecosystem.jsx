@@ -56,7 +56,7 @@ const Ecosystem = () => {
           >
             <h2 style={{
               fontSize: "3.8rem",
-              fontWeight: 800,
+              fontWeight: 700,
               color: "#ffffff",
               marginBottom: "20px",
               letterSpacing: "-0.03em",
@@ -111,7 +111,7 @@ const Ecosystem = () => {
                   top: "30px",
                   right: "40px",
                   fontSize: "1rem",
-                  fontWeight: 900,
+                  fontWeight: 700,
                   color: "rgba(255, 255, 255, 0.1)",
                   letterSpacing: "2px",
                   fontFamily: "monospace"
@@ -135,7 +135,7 @@ const Ecosystem = () => {
                   </div>
                   <h3 style={{ 
                     color: "#ffffff", 
-                    fontWeight: 800, 
+                    fontWeight: 700, 
                     fontSize: "1.8rem", 
                     lineHeight: 1.1,
                     letterSpacing: "-0.02em",
@@ -159,7 +159,29 @@ const Ecosystem = () => {
             </div>
           ))}
         </div>
-
+        
+        <div style={{ textAlign: "center", marginTop: "80px" }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            style={{ 
+              display: "inline-block",
+              fontSize: "2.2rem", 
+              fontWeight: 700, 
+              color: "#ffffff", 
+              letterSpacing: "1px", 
+              textTransform: "uppercase",
+              background: "rgba(255, 255, 255, 0.05)",
+              padding: "24px 64px",
+              borderRadius: "100px",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              backdropFilter: "blur(20px)"
+            }}
+          >
+            One Platform. All UAE Universities. <span style={{ color: "#3b82f6" }}>Global Access.</span>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

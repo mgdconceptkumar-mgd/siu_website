@@ -19,15 +19,16 @@ const Closing = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             style={{ 
-              fontSize: "clamp(2rem, 4vw, 3rem)", 
-              fontWeight: 700, 
-              color: "#cbd5e1", 
+              fontSize: "1.8rem", 
+              fontWeight: 950, 
+              color: "rgba(255,255,255,0.7)", 
               marginBottom: "32px",
               lineHeight: 1.2,
-              letterSpacing: "-1px"
+              letterSpacing: "4px",
+              textTransform: "uppercase"
             }}
           >
-            A Unified Vision for the Future.
+            From Admission to Employment – <span style={{ color: "#3b82f6" }}>One Unified Journey</span>
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -36,7 +37,7 @@ const Closing = () => {
             transition={{ duration: 0.8, type: "spring" }}
             style={{ 
               fontSize: "clamp(3.5rem, 8vw, 6.5rem)", 
-              fontWeight: 950, 
+              fontWeight: 700, 
               color: "#fff", 
               lineHeight: 1, 
               marginBottom: "48px",
@@ -44,7 +45,7 @@ const Closing = () => {
             }}
           >
             SIU will unify the world’s <br />
-            <span style={{ color: "#3b82f6" }}>access to UAE.</span>
+            <span style={{ color: "#86a7daff" }}>access to UAE.</span>
           </motion.h2>
 
           <div style={{ display: "flex", gap: "20px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -52,52 +53,6 @@ const Closing = () => {
             <button className="siu-btn-secondary" style={{ padding: "16px 48px", fontSize: "1.1rem" }}>Contact Support</button>
           </div>
 
-          {/* Branding Ticker */}
-          <div style={{ 
-            marginTop: "120px", 
-            borderTop: "1px solid rgba(255,255,255,0.08)", 
-            paddingTop: "60px",
-            overflow: "hidden",
-            position: "relative"
-          }}>
-            <motion.div 
-              animate={{ x: [0, -1000] }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              style={{ 
-                display: "flex", 
-                gap: "50px", 
-                whiteSpace: "nowrap", 
-                alignItems: "center",
-                width: "max-content" 
-              }}
-            >
-              {[1, 2, 3].map((_, repeat) => (
-                <div key={repeat} style={{ display: "flex", gap: "50px", alignItems: "center" }}>
-                  {[
-                    "One Platform. All UAE Universities. Global Access.",
-                    "Your Gateway to Study, Work & Grow in UAE",
-                    "From Admission to Employment – One Unified Journey"
-                  ].map((line, i) => (
-                    <React.Fragment key={i}>
-                      <span style={{ 
-                        color: "#ffffff", 
-                        fontWeight: 700, 
-                        fontSize: "1.2rem", 
-                        textTransform: "uppercase", 
-                        letterSpacing: "2px",
-                        opacity: 0.9,
-                        display: "flex",
-                        alignItems: "center"
-                      }}>
-                        {line}
-                      </span>
-                      <span style={{ color: "#3b82f6", fontSize: "1.5rem", fontWeight: 900 }}>•</span>
-                    </React.Fragment>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-          </div>
         </motion.div>
       </div>
     </section>
