@@ -27,7 +27,7 @@ const Universities = () => {
             viewport={{ once: true }}
             style={{ 
               fontSize: "4.2rem", 
-              fontWeight: 900, 
+              fontWeight: 700, 
               color: "#ffffff", 
               marginBottom: "28px",
               letterSpacing: "-3px"
@@ -131,7 +131,7 @@ const Universities = () => {
           border: "1px solid rgba(255, 255, 255, 0.08)",
           backdropFilter: "blur(40px)"
         }}>
-          <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.5rem", fontWeight: 700, marginBottom: "40px", letterSpacing: "-3px" }}>
+          <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.5rem", fontWeight: 600, marginBottom: "40px", letterSpacing: "-3px" }}>
             Strategic Positioning
           </h3>
           <p className="strategic-quote" style={{ color: "rgba(255,255,255,0.75)", fontSize: "2.2rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>

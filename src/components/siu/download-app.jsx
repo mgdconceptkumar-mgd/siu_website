@@ -21,7 +21,7 @@ const DownloadApp = () => {
                 <span className="download-app-badge" style={{ color: "#3b82f6", fontWeight: 800, fontSize: "1rem", textTransform: "uppercase", letterSpacing: "2px", display: "block", marginBottom: "20px" }}>
                   Seamless Mobility
                 </span>
-                <h2 className="download-app-title" style={{ fontSize: "4.5rem", fontWeight: 950, color: "#ffffff", marginBottom: "24px", lineHeight: 1.1, letterSpacing: "-3px" }}>
+                <h2 className="download-app-title" style={{ fontSize: "4.5rem", fontWeight: 700, color: "#ffffff", marginBottom: "24px", lineHeight: 1.1, letterSpacing: "-3px" }}>
                   SIU in Your Pocket.
                 </h2>
                 <p className="download-app-desc" style={{ fontSize: "1.5rem", color: "#cbd5e1", marginBottom: "48px", lineHeight: 1.6, maxWidth: "600px" }}>
