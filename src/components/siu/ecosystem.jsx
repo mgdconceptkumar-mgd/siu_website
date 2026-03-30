@@ -179,10 +179,61 @@ const Ecosystem = () => {
               backdropFilter: "blur(20px)"
             }}
           >
-            One Platform. All UAE Universities. <span style={{ color: "#3b82f6" }}>Global Access.</span>
+            One Platform. All UAE Universities. <span style={{ color: "#eceff4ff" }}>Global Access.</span>
           </motion.div>
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          #ecosystem {
+            padding: 60px 0 !important;
+          }
+          
+          #ecosystem h2 {
+            font-size: 2.2rem !important;
+          }
+
+          #ecosystem p {
+            font-size: 1.1rem !important;
+          }
+
+          #ecosystem .row {
+            margin-top: 40px !important;
+          }
+
+          #ecosystem .col-md-6 {
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+          }
+
+          #ecosystem [style*="padding: \"40px\""] {
+            padding: 25px !important;
+            border-radius: 20px !important;
+          }
+
+          #ecosystem [style*="fontSize: \"2rem\""] {
+            font-size: 1.5rem !important;
+            width: 50px !important;
+            height: 50px !important;
+          }
+
+          #ecosystem h3 {
+            font-size: 1.4rem !important;
+          }
+
+          #ecosystem [style*="fontSize: \"1.3rem\""] {
+            font-size: 1rem !important;
+          }
+
+          #ecosystem [style*="padding: \"24px 64px\""] {
+            padding: 16px 24px !important;
+            font-size: 1.1rem !important;
+            border-radius: 30px !important;
+            width: 100%;
+            display: block !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

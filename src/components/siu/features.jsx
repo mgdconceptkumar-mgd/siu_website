@@ -128,6 +128,39 @@ const Features = () => {
           ))}
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          #how-it-works {
+            padding: 60px 0 !important;
+          }
+          
+          #how-it-works h2 {
+            font-size: 2.5rem !important;
+            letter-spacing: -1px !important;
+          }
+
+          #how-it-works p[style*="fontSize: \"2rem\""] {
+            font-size: 1.2rem !important;
+          }
+
+          #how-it-works [style*="padding: \"45px\""] {
+            padding: 25px !important;
+            border-radius: 20px !important;
+          }
+
+          #how-it-works [style*="fontSize: \"2rem\""] {
+            font-size: 1.5rem !important;
+          }
+
+          #how-it-works h3 {
+            font-size: 1.4rem !important;
+          }
+
+          #how-it-works [style*="fontSize: \"1.3rem\""] {
+            font-size: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
