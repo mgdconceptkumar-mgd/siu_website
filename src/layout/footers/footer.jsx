@@ -1,5 +1,6 @@
 
 "use client";
+import Image from "next/image";
 import { useRef, useState } from "react";
 
 
@@ -61,7 +62,16 @@ export default function Footer() {
             {/* Top Section: Brand & Social */}
             <div style={styles.topSection}>
               <div style={styles.brandContainer}>
-                 <img src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" alt="SIU Logo" style={styles.logo} />
+                <div style={{ position: "relative", width: "120px", height: "120px", margin: "0 auto 15px auto" }}>
+                   <Image 
+                    src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" 
+                    alt="SIU Logo" 
+                    fill
+                    sizes="120px"
+                    style={{ objectFit: "cover", borderRadius: "50%", mixBlendMode: "multiply" }} 
+                    priority
+                  />
+                </div>
                 <p style={styles.tagline}>Unified Admission Portal</p>
 
                 <div style={styles.socialContainer}>
@@ -592,70 +602,89 @@ export default function Footer() {
       </div>
       <style jsx global>{`
 @media (max-width: 768px) {
+  .app-footer {
+    padding-top: 40px !important;
+    padding-bottom: 20px !important;
+  }
+
+  /* ================= TOP SECTION ================= */
+  .app-footer [style*="topSection"] {
+    margin-bottom: 20px !important;
+  }
+
+  .app-footer [style*="logo"] {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .app-footer [style*="tagline"] {
+    font-size: 14px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .app-footer [style*="socialContainer"] {
+    gap: 10px !important;
+  }
+
+  .app-footer [style*="socialLink"] {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 16px !important;
+  }
 
   /* ================= OFFICE CARDS ================= */
-
   .app-footer .officeGridStatic {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    row-gap: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    padding: 0 15px !important;
   }
 
   .app-footer .officeCard {
     width: 100% !important;
-    min-height: 120px !important;
-    padding: 12px 14px !important;
-    border-radius: 8px !important;
+    min-height: auto !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+  }
+
+  .app-footer .officeTitle {
+    font-size: 15px !important;
   }
 
   /* ================= FOOTER BOTTOM ================= */
-
   .app-footer .bottomSection {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-
-    padding-top: 12px !important;
-    padding-bottom: 180px !important; /* 🔴 VERY IMPORTANT */
-    position: relative;
-    z-index: 1;
+    padding: 30px 15px 120px !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
   }
-
-  /* ================= NAV LINKS (UP) ================= */
 
   .app-footer .bottomSection nav {
     order: 0 !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 20px !important;
     justify-content: center !important;
     flex-wrap: wrap !important;
-    gap: 6px !important;
+    gap: 8px !important;
     text-align: center !important;
   }
 
-  /* ================= COPYRIGHT (DOWN) ================= */
+  .app-footer .navLink, .app-footer .navButton {
+    font-size: 12px !important;
+  }
 
-  .app-footer .bottomSection .copyright {
+  .app-footer .copyright {
     order: 1 !important;
     font-size: 11px !important;
     opacity: 0.8;
-    text-align: center !important;
+    margin-top: 10px !important;
   }
 
-  /* ================= FLOATING BUTTONS (PUSH UP) ================= */
-
-  .floating-whatsapp-container {
-  bottom: 20px !important;
-  z-index: 999 !important;
-  transform: scale(0.85);   /* 🔽 size small */
-}
-
-/* Scroll to top */
-.rn-progress-parent {
-  bottom: 20px !important;
-  z-index: 999 !important;
-  transform: scale(0.85);   /* 🔽 size small */
-}
-
+  /* ================= FLOATING BUTTONS ================= */
+  .floating-whatsapp-container, .rn-progress-parent {
+    bottom: 20px !important;
+    transform: scale(0.8);
+  }
 }
 `}</style>
 
@@ -994,94 +1023,6 @@ const styles = {
   },
 
   /* ---------- MOBILE RESPONSIVE FOOTER ----------- */
-  "@media (max-width: 768px)": {
-    footer: {
-      paddingTop: "16px",
-      paddingBottom: "16px",
-    },
-
-    topSection: {
-      marginBottom: "18px",
-    },
-
-    logoWrapper: {
-      padding: "10px 22px",
-    },
-
-    logo: {
-      width: "130px",
-    },
-
-    tagline: {
-      fontSize: "14px",
-      marginBottom: "10px",
-    },
-
-    socialContainer: {
-      gap: "10px",
-    },
-
-    sectionTitle: {
-      fontSize: "18px",
-      marginBottom: "12px",
-    },
-
-    officeGridStatic: {
-      gridTemplateColumns: "1fr",   // ⬅ 1 column in mobile
-      rowGap: "6px",
-    },
-
-    officeCard: {
-      minHeight: "90px",
-      padding: "6px 8px",
-      gap: "3px",
-    },
-
-    officeTitle: {
-      fontSize: "14px",
-    },
-
-    officeAddress: {
-      fontSize: "12px",
-      lineHeight: "1.35",
-    },
-
-    emailLink: {
-      fontSize: "12px",
-    },
-
-    footerNav: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      gap: "4px",
-      rowGap: "4px",
-    },
-
-    copyright: {
-      fontSize: "11px",
-      marginTop: "10px",
-    },
-
-    privacyWrapper: {
-      padding: "14px",
-    },
-
-    privacyTitle: {
-      fontSize: "14px", // Decreased from 26px
-    },
-
-    h3: {
-      fontSize: "12px", // Decreased from 18px
-    },
-
-    p: {
-      fontSize: "10px", // Decreased to 10px
-      lineHeight: "1.55",
-    },
-  }
-
-
 };
 
 

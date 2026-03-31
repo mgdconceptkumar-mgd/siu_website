@@ -35,7 +35,8 @@ const HeaderSIU = () => {
       }}
     >
       <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        {/* 🟢 LEFT CORNER LOGO (STATIC & CLEAN) */}
+
+        {/* LOGO — LEFT */}
         <Link href="/" style={{
           display: "flex",
           alignItems: "center",
@@ -66,6 +67,8 @@ const HeaderSIU = () => {
             <img
               src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg"
               alt="SIU Logo"
+              loading="eager"
+              fetchPriority="high"
               style={{
                 width: "100%",
                 height: "100%",
@@ -76,15 +79,8 @@ const HeaderSIU = () => {
             />
           </div>
 
-          {/* Bilingual Text Beside Logo */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "5px",
-              textAlign: "left"
-            }}
-          >
+          {/* Bilingual Text */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px", textAlign: "left" }}>
             <span style={{
               color: "#fff",
               fontWeight: 950,
@@ -109,12 +105,11 @@ const HeaderSIU = () => {
           </div>
         </Link>
 
-
-        {/* 🟢 NAVIGATION PILL (STATIC) */}
+        {/* NAV PILL — RIGHT */}
         <nav
           style={{
             display: "flex",
-            flexItems: "center",
+            alignItems: "center",
             gap: "32px",
             padding: "16px 32px",
             background: "rgba(10, 17, 40, 0.75)",
@@ -128,7 +123,7 @@ const HeaderSIU = () => {
             flexShrink: 0
           }}
         >
-          {/* DESKTOP NAV */}
+          {/* Desktop links */}
           <div className="d-none d-lg-flex" style={{ gap: "28px", alignItems: "center" }}>
             {navLinks.map((link) => (
               <Link
@@ -176,7 +171,7 @@ const HeaderSIU = () => {
             </Link>
           </div>
 
-          {/* MOBILE MENU TOGGLE */}
+          {/* Mobile hamburger */}
           <button
             className="d-lg-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -195,7 +190,7 @@ const HeaderSIU = () => {
         </nav>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU DROPDOWN */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -205,18 +200,19 @@ const HeaderSIU = () => {
             style={{
               position: "absolute",
               top: "100%",
-              left: 0,
-              width: "100%",
-              marginTop: "12px",
+              right: "16px",
+              minWidth: "220px",
+              marginTop: "8px",
               background: "rgba(10, 17, 40, 0.95)",
               backdropFilter: "blur(20px)",
-              padding: "24px",
-              borderRadius: "24px",
+              padding: "20px",
+              borderRadius: "20px",
               border: "1px solid rgba(255, 255, 255, 0.1)",
               display: "flex",
               flexDirection: "column",
-              gap: "20px",
-              zIndex: 999
+              gap: "16px",
+              zIndex: 999,
+              pointerEvents: "auto"
             }}
           >
             {navLinks.map((link) => (
@@ -228,7 +224,9 @@ const HeaderSIU = () => {
                   color: "#fff",
                   textDecoration: "none",
                   fontWeight: 600,
-                  fontSize: "1.1rem"
+                  fontSize: "1.05rem",
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                  paddingBottom: "10px"
                 }}
               >
                 {link.name}
@@ -238,7 +236,7 @@ const HeaderSIU = () => {
               href="/apply"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
-                padding: "14px",
+                padding: "12px",
                 background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
                 borderRadius: "12px",
                 color: "#fff",
@@ -252,6 +250,27 @@ const HeaderSIU = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx>{`
+        /* ── MOBILE ONLY ── */
+        @media (max-width: 991px) {
+          /* Shrink logo circle */
+          header .container > a > div:first-child {
+            width: 68px !important;
+            height: 68px !important;
+            padding: 5px !important;
+          }
+          /* Hide bilingual text to keep nav pill (hamburger) visible */
+          header .container > a > div:last-child {
+            display: none !important;
+          }
+          /* Shrink nav pill to just wrap the hamburger */
+          header nav {
+            padding: 10px 18px !important;
+            gap: 0 !important;
+          }
+        }
+      `}</style>
     </header>
   );
 };

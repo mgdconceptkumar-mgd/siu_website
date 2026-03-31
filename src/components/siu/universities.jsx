@@ -27,7 +27,7 @@ const Universities = () => {
             viewport={{ once: true }}
             style={{ 
               fontSize: "4.2rem", 
-              fontWeight: 900, 
+              fontWeight: 700, 
               color: "#ffffff", 
               marginBottom: "28px",
               letterSpacing: "-3px"
@@ -122,7 +122,7 @@ const Universities = () => {
           </motion.div>
         </div>
 
-        <div style={{ 
+        <div className="strategic-positioning-card" style={{ 
           marginTop: "100px", 
           textAlign: "center", 
           background: "rgba(255, 255, 255, 0.03)", 
@@ -131,14 +131,80 @@ const Universities = () => {
           border: "1px solid rgba(255, 255, 255, 0.08)",
           backdropFilter: "blur(40px)"
         }}>
-          <h3 style={{ color: "#ffffff", fontSize: "4.5rem", fontWeight: 700, marginBottom: "40px", letterSpacing: "-3px" }}>
+          <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.5rem", fontWeight: 600, marginBottom: "40px", letterSpacing: "-3px" }}>
             Strategic Positioning
           </h3>
-          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "2.2rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>
+          <p className="strategic-quote" style={{ color: "rgba(255,255,255,0.75)", fontSize: "2.2rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>
             “SIU extends this vision globally—bringing international students into a structured, transparent, and scalable ecosystem.”
           </p>
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 991px) {
+          #universities {
+            padding: 60px 0 !important;
+          }
+          
+          #universities h2 {
+            font-size: 2.5rem !important;
+            letter-spacing: -1px !important;
+            margin-bottom: 16px !important;
+          }
+
+          #universities p {
+            font-size: 1.1rem !important;
+            margin-bottom: 40px !important;
+            line-height: 1.5 !important;
+          }
+
+          /* Logo Marquee mobile sizing */
+          .siu-glass-card {
+            min-width: 320px !important;
+            padding: 20px !important;
+            border-radius: 20px !important;
+            gap: 16px !important;
+          }
+
+          .siu-glass-card > div:first-child {
+            width: 70px !important;
+            height: 70px !important;
+            border-radius: 12px !important;
+          }
+
+          .siu-glass-card h4 {
+            font-size: 1.1rem !important;
+          }
+
+          /* Strategic Positioning Card — Mobile centered */
+          .strategic-positioning-card {
+            padding: 40px 24px !important;
+            border-radius: 32px !important;
+            margin-top: 60px !important;
+            text-align: center !important;
+          }
+
+          .strategic-title {
+            font-size: 2.2rem !important;
+            letter-spacing: -1px !important;
+            margin-bottom: 20px !important;
+          }
+
+          .strategic-quote {
+            font-size: 1.25rem !important;
+            line-height: 1.6 !important;
+            max-width: 100% !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .strategic-title {
+            font-size: 1.8rem !important;
+          }
+          .strategic-quote {
+            font-size: 1.1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
