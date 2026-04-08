@@ -13,7 +13,7 @@ const Ecosystem = () => {
     { 
       title: "Scholarships", 
       icon: "💰", 
-      desc: "Integrated merit and priority-based scholarship allocation for top students.", 
+      desc: "Easily find and apply for scholarships that match your qualifications and needs.", 
       color: "#06b6d4" 
     },
     { 
@@ -136,7 +136,7 @@ const Ecosystem = () => {
                   <h3 style={{ 
                     color: "#ffffff", 
                     fontWeight: 700, 
-                    fontSize: "1.8rem", 
+                    fontSize: "2rem", // Increased from 1.8rem
                     lineHeight: 1.1,
                     letterSpacing: "-0.02em",
                     margin: 0
@@ -147,7 +147,7 @@ const Ecosystem = () => {
                 
                 <p style={{ 
                   color: "#cbd5e1", 
-                  fontSize: "1.3rem", 
+                  fontSize: "1.55rem", // Increased from 1.3rem
                   lineHeight: 1.6, 
                   margin: 0,
                   flexGrow: 1
@@ -184,53 +184,52 @@ const Ecosystem = () => {
         </div>
       </div>
       <style jsx>{`
-        @media (max-width: 768px) {
+        @media (max-width: 991px) {
           #ecosystem {
             padding: 60px 0 !important;
           }
           
           #ecosystem h2 {
-            font-size: 2.2rem !important;
+            font-size: 2.5rem !important; // Bumped on mobile
+            letter-spacing: -1px !important;
+            line-height: 1.15 !important;
+            margin-bottom: 14px !important;
           }
 
           #ecosystem p {
-            font-size: 1.1rem !important;
+            font-size: 1.1rem !important; // Bumped on mobile
+            padding: 0 20px !important;
+            line-height: 1.6 !important;
           }
 
           #ecosystem .row {
-            margin-top: 40px !important;
-          }
-
-          #ecosystem .col-md-6 {
-            padding-left: 15px !important;
-            padding-right: 15px !important;
+            margin-top: 30px !important;
+            padding: 0 10px !important;
           }
 
           #ecosystem [style*="padding: \"40px\""] {
-            padding: 25px !important;
+            padding: 24px !important;
             border-radius: 20px !important;
           }
 
-          #ecosystem [style*="fontSize: \"2rem\""] {
-            font-size: 1.5rem !important;
-            width: 50px !important;
-            height: 50px !important;
-          }
-
           #ecosystem h3 {
-            font-size: 1.4rem !important;
+            font-size: 1.5rem !important; // Increased from 1.2rem
+            letter-spacing: -0.3px !important;
           }
 
-          #ecosystem [style*="fontSize: \"1.3rem\""] {
-            font-size: 1rem !important;
+          #ecosystem [style*="fontSize: \"1.55rem\""] {
+            font-size: 1.25rem !important; // Increased from 0.9rem
+            line-height: 1.6 !important;
           }
 
           #ecosystem [style*="padding: \"24px 64px\""] {
-            padding: 16px 24px !important;
-            font-size: 1.1rem !important;
+            padding: 14px 20px !important;
+            font-size: 0.85rem !important;
             border-radius: 30px !important;
-            width: 100%;
+            width: calc(100% - 30px);
+            margin: 0 auto;
             display: block !important;
+            letter-spacing: 0.5px !important;
           }
         }
       `}</style>

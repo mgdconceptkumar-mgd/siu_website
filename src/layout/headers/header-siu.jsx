@@ -10,13 +10,15 @@ const HeaderSIU = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      // Close mobile menu on scroll
+      if (isMobileMenuOpen) setIsMobileMenuOpen(false);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: "DOWNLOAD  APP", href: "#apply-once" },
+    // { name: "DOWNLOAD  APP", href: "#apply-once" },
     { name: "Universities", href: "#universities" },
     { name: "Ecosystem", href: "#ecosystem" },
     { name: "Features", href: "#how-it-works" },
@@ -149,26 +151,48 @@ const HeaderSIU = () => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              href="/apply"
-              style={{
-                padding: "10px 28px",
-                background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-                borderRadius: "50px",
+            <div style={{ position: "relative", display: "inline-block" }}>
+              <Link
+                href="#"
+                style={{
+                  padding: "10px 28px",
+                  background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
+                  borderRadius: "50px",
+                  color: "#fff",
+                  fontWeight: 800,
+                  textDecoration: "none",
+                  fontSize: "1.1rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
+                  transition: "transform 0.3s ease",
+                  opacity: 0.7,
+                  cursor: "not-allowed",
+                  pointerEvents: "none"
+                }}
+              >
+                DOWNLOAD APP
+              </Link>
+              <span style={{
+                position: "absolute",
+                top: "-12px",
+                right: "-5px",
+                background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
                 color: "#fff",
-                fontWeight: 800,
-                textDecoration: "none",
-                fontSize: "1.1rem",
+                fontSize: "0.6rem",
+                fontWeight: 900,
+                padding: "3px 8px",
+                borderRadius: "20px",
+                boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
                 textTransform: "uppercase",
-                letterSpacing: "1px",
-                boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
-                transition: "transform 0.3s ease"
-              }}
-              onMouseEnter={(e) => e.target.style.transform = "translateY(-2px)"}
-              onMouseLeave={(e) => e.target.style.transform = "translateY(0)"}
-            >
-              DOWNLOAD  APP
-            </Link>
+                letterSpacing: "0.5px",
+                zIndex: 2,
+                pointerEvents: "none",
+                whiteSpace: "nowrap"
+              }}>
+                Coming Soon
+              </span>
+            </div>
           </div>
 
           {/* Mobile hamburger */}
@@ -190,64 +214,107 @@ const HeaderSIU = () => {
         </nav>
       </div>
 
-      {/* MOBILE MENU DROPDOWN */}
+      {/* MOBILE MENU BACKDROP + DROPDOWN */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            style={{
-              position: "absolute",
-              top: "100%",
-              right: "16px",
-              minWidth: "220px",
-              marginTop: "8px",
-              background: "rgba(10, 17, 40, 0.95)",
-              backdropFilter: "blur(20px)",
-              padding: "20px",
-              borderRadius: "20px",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-              zIndex: 999,
-              pointerEvents: "auto"
-            }}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                style={{
-                  color: "#fff",
-                  textDecoration: "none",
-                  fontWeight: 600,
-                  fontSize: "1.05rem",
-                  borderBottom: "1px solid rgba(255,255,255,0.07)",
-                  paddingBottom: "10px"
-                }}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link
-              href="/apply"
+          <>
+            {/* Invisible backdrop — tap anywhere to close */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
-                padding: "12px",
-                background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-                borderRadius: "12px",
-                color: "#fff",
-                fontWeight: 700,
-                textAlign: "center",
-                textDecoration: "none"
+                position: "fixed",
+                inset: 0,
+                zIndex: 998,
+                pointerEvents: "auto"
+              }}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              style={{
+                position: "absolute",
+                top: "100%",
+                right: "16px",
+                minWidth: "220px",
+                marginTop: "8px",
+                background: "rgba(10, 17, 40, 0.95)",
+                backdropFilter: "blur(20px)",
+                padding: "20px",
+                borderRadius: "20px",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+                zIndex: 999,
+                pointerEvents: "auto"
               }}
             >
-              DOWNLOAD  APP
-            </Link>
-          </motion.div>
+              {navLinks.filter(l => l.name !== "DOWNLOAD  APP").map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    color: "#fff",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                    fontSize: "1.05rem",
+                    borderBottom: "1px solid rgba(255,255,255,0.07)",
+                    paddingBottom: "10px"
+                  }}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div style={{ position: "relative", width: "100%" }}>
+                <Link
+                  href="#"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    display: "block",
+                    padding: "10px 20px",
+                    background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
+                    borderRadius: "50px",
+                    color: "#fff",
+                    fontWeight: 800,
+                    textAlign: "center",
+                    textDecoration: "none",
+                    fontSize: "0.9rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.8px",
+                    marginTop: "4px",
+                    opacity: 0.7,
+                    cursor: "not-allowed",
+                    pointerEvents: "none"
+                  }}
+                >
+                  DOWNLOAD APP
+                </Link>
+                <span style={{
+                  position: "absolute",
+                  top: "-5px",
+                  right: "-5px",
+                  background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
+                  color: "#fff",
+                  fontSize: "0.55rem",
+                  fontWeight: 900,
+                  padding: "2px 6px",
+                  borderRadius: "20px",
+                  boxShadow: "0 4px 10px rgba(245, 158, 11, 0.3)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  zIndex: 2,
+                  pointerEvents: "none"
+                }}>
+                  Coming Soon
+                </span>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 

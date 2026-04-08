@@ -1,8 +1,55 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 991);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // ── Phone dimensions based on screen ──
+  const phoneW = isMobile ? 200 : 280;
+  const phoneH = isMobile ? 400 : 560;
+  const borderW = isMobile ? 7 : 10;
+  const slideW = phoneW - borderW * 2; // inner content width
+
+  const slides = [
+    { src: "/assets/images/about/SIU%20(3).jpeg", badge: "PAY ONCE • APPLY TO MANY", title: "One Application.\nMultiple Universities.", desc: "Apply to top UAE universities with a single form" },
+    { src: "/assets/images/about/SIU%20(2).jpeg", badge: "SMART DISCOVERY", title: "Discover & Shortlist Your Dream Programs", desc: "Browse programs, compare universities, and build your shortlist" },
+    { src: "/assets/images/about/SIU%20(1).jpeg", badge: "END-TO-END SUPPORT", title: "We Handle Your Entire Admission", desc: "From document submission to offer letters — handled end-to-end." },
+    { src: "/assets/images/about/screen1.jpeg" },
+    { src: "/assets/images/about/screen2.jpeg" },
+    { src: "/assets/images/about/screen3.jpeg" },
+    { src: "/assets/images/about/screen4.jpeg" },
+    { src: "/assets/images/about/screen5.jpeg" },
+    { src: "/assets/images/about/screen6.jpeg" },
+    { src: "/assets/images/about/screen7.jpeg" },
+    { src: "/assets/images/about/screen8.jpeg" },
+    { src: "/assets/images/about/screen9.jpeg" },
+    { src: "/assets/images/about/SIU%20(3).jpeg", badge: "PAY ONCE • APPLY TO MANY", title: "One Application.\nMultiple Universities.", desc: "Apply to top UAE universities with a single form" }
+  ];
+
+  // Build animation keyframes: hold → snap → hold → snap ...
+  const totalSlides = slides.length;
+  const xValues = [];
+  const timeValues = [];
+  for (let i = 0; i < totalSlides; i++) {
+    const offset = -i * slideW;
+    xValues.push(offset, offset);  // hold position twice (enter, stay)
+  }
+  // Remove last duplicate
+  xValues.pop();
+
+  const steps = xValues.length;
+  for (let i = 0; i < steps; i++) {
+    timeValues.push(i / (steps - 1));
+  }
+
   return (
     <section 
       id="hero" 
@@ -87,7 +134,39 @@ const Hero = () => {
               </p>
 
               <div className="hero-btns" style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "48px" }}>
-                <button className="siu-btn-primary">DOWNLOAD  APP</button>
+                {/* Download App Button with Coming Soon Badge */}
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <button 
+                    className="siu-btn-primary" 
+                    style={{ 
+                      opacity: 0.7, 
+                      cursor: "not-allowed", 
+                      pointerEvents: "none",
+                      filter: "grayscale(0.3)" 
+                    }}
+                  >
+                    DOWNLOAD APP
+                  </button>
+                  <span style={{
+                    position: "absolute",
+                    top: "-12px",
+                    right: "-12px",
+                    background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
+                    color: "#fff",
+                    fontSize: "0.65rem",
+                    fontWeight: 900,
+                    padding: "4px 10px",
+                    borderRadius: "20px",
+                    boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                    zIndex: 2,
+                    pointerEvents: "none"
+                  }}>
+                    Coming Soon
+                  </span>
+                </div>
+
                 <a href="#universities" className="siu-btn-secondary" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
                   Explore Universities
                 </a>
@@ -119,60 +198,49 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.9, x: 50 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 1 }}
-              style={{ position: "relative", display: "flex", justifyContent: "center", paddingTop: "80px" }}
+              style={{ position: "relative", display: "flex", justifyContent: "center", paddingTop: isMobile ? "0" : "80px" }}
             >
-              {/* Clean Premium Mobile Frame */}
+              {/* Phone Frame */}
               <div className="hero-phone-frame" style={{ 
-                width: "280px", 
-                height: "560px", 
+                width: `${phoneW}px`, 
+                height: `${phoneH}px`, 
                 background: "#0f172a", 
-                borderRadius: "44px", 
-                border: "10px solid #ffffff",
+                borderRadius: isMobile ? "32px" : "44px", 
+                border: `${borderW}px solid #ffffff`,
                 boxShadow: "0 25px 60px rgba(0,0,0,0.9), 0 0 40px rgba(59, 130, 246, 0.15)",
                 position: "relative",
                 overflow: "hidden"
               }}>
+                {/* Glass reflection */}
                 <div style={{
                   position: "absolute", top: 0, left: 0, right: 0, height: "100%",
                   background: "linear-gradient(145deg, rgba(255,255,255,0.06) 0%, transparent 40%)",
                   pointerEvents: "none", zIndex: 5
                 }} />
 
+                {/* Carousel — uses dynamic slideW so images snap perfectly */}
                 <motion.div 
-                  animate={{ x: [0,0,-260,-260,-520,-520,-780,-780,-1040,-1040,-1300,-1300,-1560,-1560,-1820,-1820,-2080,-2080,-2340,-2340,-2600,-2600,-2860,-2860,-3120] }}
+                  key={slideW} // remount on resize so animation recalculates
+                  animate={{ x: xValues }}
                   transition={{ 
                     duration: 45, repeat: Infinity, ease: "easeInOut",
-                    times: [0,0.07,0.08,0.15,0.16,0.23,0.24,0.31,0.32,0.39,0.40,0.47,0.48,0.55,0.56,0.63,0.64,0.71,0.72,0.79,0.80,0.87,0.88,0.95,1]
+                    times: timeValues
                   }}
                   style={{ display: "flex", height: "100%", width: "max-content" }}
                 >
-                  {[
-                    { src: "/assets/images/about/SIU%20(3).jpeg", badge: "PAY ONCE • APPLY TO MANY", title: "One Application.\nMultiple Universities.", desc: "Apply to top UAE universities with a single form" },
-                    { src: "/assets/images/about/SIU%20(2).jpeg", badge: "SMART DISCOVERY", title: "Discover & Shortlist Your Dream Programs", desc: "Browse programs, compare universities, and build your shortlist" },
-                    { src: "/assets/images/about/SIU%20(1).jpeg", badge: "END-TO-END SUPPORT", title: "We Handle Your Entire Admission", desc: "From document submission to offer letters — handled end-to-end." },
-                    { src: "/assets/images/about/screen1.jpeg" },
-                    { src: "/assets/images/about/screen2.jpeg" },
-                    { src: "/assets/images/about/screen3.jpeg" },
-                    { src: "/assets/images/about/screen4.jpeg" },
-                    { src: "/assets/images/about/screen5.jpeg" },
-                    { src: "/assets/images/about/screen6.jpeg" },
-                    { src: "/assets/images/about/screen7.jpeg" },
-                    { src: "/assets/images/about/screen8.jpeg" },
-                    { src: "/assets/images/about/screen9.jpeg" },
-                    { src: "/assets/images/about/SIU%20(3).jpeg", badge: "PAY ONCE • APPLY TO MANY", title: "One Application.\nMultiple Universities.", desc: "Apply to top UAE universities with a single form" }
-                  ].map((slide, i) => (
-                    <div key={i} style={{ width: "260px", height: "560px", flexShrink: 0, position: "relative" }}>
+                  {slides.map((slide, i) => (
+                    <div key={i} style={{ width: `${slideW}px`, height: `${phoneH - borderW * 2}px`, flexShrink: 0, position: "relative" }}>
                       <img src={slide.src} alt={`Screen ${i}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                       {slide.badge && (
                         <>
                           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.4) 40%, transparent 100%)", zIndex: 1 }} />
-                          <div style={{ position: "absolute", bottom: "40px", left: "20px", right: "20px", zIndex: 2, textAlign: "left" }}>
-                            <span style={{ fontSize: "0.65rem", fontWeight: 950, color: "#fff", background: "rgba(255,255,255,0.15)", padding: "6px 12px", borderRadius: "50px", border: "1px solid rgba(255,255,255,0.2)", textTransform: "uppercase", letterSpacing: "1px", display: "inline-block", marginBottom: "12px", backdropFilter: "blur(4px)" }}>
+                          <div style={{ position: "absolute", bottom: isMobile ? "20px" : "40px", left: isMobile ? "12px" : "20px", right: isMobile ? "12px" : "20px", zIndex: 2, textAlign: "left" }}>
+                            <span style={{ fontSize: isMobile ? "0.55rem" : "0.65rem", fontWeight: 950, color: "#fff", background: "rgba(255,255,255,0.15)", padding: isMobile ? "4px 8px" : "6px 12px", borderRadius: "50px", border: "1px solid rgba(255,255,255,0.2)", textTransform: "uppercase", letterSpacing: "1px", display: "inline-block", marginBottom: isMobile ? "8px" : "12px", backdropFilter: "blur(4px)" }}>
                               {slide.badge}
                             </span>
-                            <h4 style={{ fontSize: "1.4rem", fontWeight: 900, color: "#fff", lineHeight: 1.1, marginBottom: "10px", whiteSpace: "pre-line" }}>{slide.title}</h4>
-                            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.4, margin: 0 }}>{slide.desc}</p>
-                            <div style={{ display: "flex", gap: "6px", marginTop: "20px", opacity: 0.6 }}>
+                            <h4 style={{ fontSize: isMobile ? "1rem" : "1.4rem", fontWeight: 900, color: "#fff", lineHeight: 1.1, marginBottom: isMobile ? "6px" : "10px", whiteSpace: "pre-line" }}>{slide.title}</h4>
+                            <p style={{ fontSize: isMobile ? "0.72rem" : "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.4, margin: 0 }}>{slide.desc}</p>
+                            <div style={{ display: "flex", gap: "6px", marginTop: isMobile ? "10px" : "20px", opacity: 0.6 }}>
                               {[0,1,2].map((dot) => (
                                 <div key={dot} style={{ width: dot===i?"24px":"4px", height: "4px", borderRadius: "4px", background: dot===i?"#3b82f6":"rgba(255,255,255,0.3)", transition: "all 0.3s ease" }} />
                               ))}
@@ -194,98 +262,99 @@ const Hero = () => {
       </div>
 
       <style jsx>{`
-        /* ====== MOBILE ONLY — ≤991px ====== */
+        /* ====== MOBILE — ≤991px ====== */
         @media (max-width: 991px) {
 
           .siu-hero-section {
             min-height: auto !important;
-            padding-top: 0 !important;
-            padding-bottom: 30px !important;
+            padding-top: 20px !important;
+            padding-bottom: 50px !important;
+            align-items: flex-start !important;
           }
 
-          /* Badge — reduce top gap, center */
+          /* Badge — sits below header with comfortable gap */
           .hero-badge-wrapper {
             justify-content: center !important;
-            padding-top: 120px !important;
+            padding-top: 100px !important;
+            margin-bottom: 28px !important;
           }
           .hero-badge {
             font-size: 0.65rem !important;
-            letter-spacing: 2px !important;
-            padding: 6px 14px !important;
+            letter-spacing: 1.5px !important;
+            padding: 7px 16px !important;
           }
 
-          /* Headings — center */
+          /* Headings — generous vertical rhythm */
           .hero-h1 {
-            font-size: 2.4rem !important;
-            letter-spacing: -1px !important;
-            margin-bottom: 10px !important;
+            font-size: 2.5rem !important;
+            letter-spacing: -1.5px !important;
+            margin-bottom: 20px !important;
             text-align: center !important;
+            line-height: 1.1 !important;
           }
           .hero-h2 {
-            font-size: 1.5rem !important;
-            margin-bottom: 10px !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 20px !important;
             text-align: center !important;
           }
           .hero-desc {
-            font-size: 1rem !important;
-            margin-bottom: 20px !important;
+            font-size: 0.95rem !important;
+            margin-bottom: 36px !important;
             text-align: center !important;
             margin-left: auto !important;
             margin-right: auto !important;
             max-width: 100% !important;
+            padding: 0 24px !important;
+            line-height: 1.6 !important;
           }
 
-          /* Buttons — centered */
+          /* Buttons — more bottom gap before stats */
           .hero-btns {
             justify-content: center !important;
             gap: 12px !important;
-            margin-bottom: 20px !important;
+            margin-bottom: 40px !important;
+            padding: 0 24px !important;
           }
           .hero-btns .siu-btn-primary,
           .hero-btns .siu-btn-secondary {
             flex: 1 1 140px !important;
             text-align: center !important;
-            padding: 12px 10px !important;
-            font-size: 0.85rem !important;
+            padding: 14px 10px !important;
+            font-size: 0.9rem !important;
+            border-radius: 12px !important;
           }
 
-          /* Stats — centered, tighter */
+          /* Stats — more breathing room */
           .hero-stats {
             justify-content: center !important;
-            gap: 16px !important;
-            margin-bottom: 0px !important;
+            gap: 20px !important;
+            margin-bottom: 0 !important;
+            padding: 0 16px !important;
           }
           .hero-stat-num {
             font-size: 2rem !important;
+            text-align: center !important;
           }
           .hero-stat-label {
             font-size: 0.75rem !important;
+            text-align: center !important;
           }
 
-          /* Phone mockup — smaller, tighter gap above */
+          /* Phone — comfortable gap above */
           .hero-phone-col {
             display: flex !important;
             justify-content: center !important;
-            margin-top: -25px !important;
-          }
-          .hero-phone-col > div {
-            padding-top: 0 !important;
-          }
-          .hero-phone-frame {
-            width: 200px !important;
-            height: 400px !important;
-            border-radius: 32px !important;
-            border-width: 7px !important;
+            margin-top: 48px !important;
+            padding-bottom: 0 !important;
           }
         }
 
         /* Extra small */
-        @media (max-width: 400px) {
-          .hero-h1 { font-size: 2rem !important; }
-          .hero-h2 { font-size: 1.3rem !important; }
+        @media (max-width: 480px) {
+          .hero-h1 { font-size: 2.1rem !important; }
+          .hero-h2 { font-size: 1.2rem !important; }
           .hero-btns .siu-btn-primary,
           .hero-btns .siu-btn-secondary { flex: 0 0 100% !important; }
-          .hero-phone-frame { width: 170px !important; height: 340px !important; }
         }
       `}</style>
     </section>

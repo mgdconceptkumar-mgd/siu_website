@@ -55,49 +55,73 @@ const Closing = () => {
             <button className="siu-btn-secondary" style={{ padding: "16px 48px", fontSize: "1.1rem" }}>Contact Support</button>
           </div>
 
+          {/* Powered by MGD */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{
+              marginTop: "48px",
+              fontSize: "0.78rem",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.3)",
+              fontWeight: 500,
+            }}
+          >
+            Powered by{" "}
+            <span style={{ color: "rgba(134, 167, 218, 0.7)", fontWeight: 700 }}>
+              MGD
+            </span>
+          </motion.p>
+
         </motion.div>
       </div>
       <style jsx>{`
         @media (max-width: 991px) {
           #cta {
-            padding: 80px 0 !important;
+            padding: 70px 0 !important;
           }
           
           .closing-sub-title {
-            font-size: 0.95rem !important;
-            letter-spacing: 2px !important;
-            margin-bottom: 24px !important;
-            line-height: 1.4 !important;
+            font-size: 0.8rem !important;
+            letter-spacing: 1.5px !important;
+            margin-bottom: 20px !important;
+            line-height: 1.5 !important;
+            padding: 0 20px !important;
           }
 
           .closing-main-title {
-            font-size: 2.8rem !important;
-            letter-spacing: -2px !important;
-            margin-bottom: 40px !important;
-            line-height: 1.1 !important;
+            font-size: 2.2rem !important;
+            letter-spacing: -1.5px !important;
+            margin-bottom: 32px !important;
+            line-height: 1.15 !important;
+            padding: 0 10px !important;
           }
 
           .closing-btns {
-            gap: 16px !important;
+            gap: 12px !important;
+            padding: 0 20px !important;
           }
 
           .closing-btns .siu-btn-primary, 
           .closing-btns .siu-btn-secondary {
-            padding: 14px 32px !important;
-            font-size: 1rem !important;
+            padding: 13px 28px !important;
+            font-size: 0.9rem !important;
             width: 100% !important;
-            max-width: 280px !important;
+            max-width: 260px !important;
           }
         }
 
         @media (max-width: 480px) {
           .closing-main-title {
-            font-size: 2.3rem !important;
+            font-size: 1.9rem !important;
             line-height: 1.2 !important;
           }
           .closing-sub-title {
-            font-size: 0.8rem !important;
-            letter-spacing: 1.5px !important;
+            font-size: 0.72rem !important;
+            letter-spacing: 1px !important;
           }
         }
       `}</style>

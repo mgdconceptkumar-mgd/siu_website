@@ -1,6 +1,7 @@
 
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 
@@ -143,7 +144,7 @@ export default function Footer() {
 
             <div style={styles.bottomSection}>
               <nav style={styles.footerNav}>
-                <a href="/contact-us" style={styles.navLink}>About Us</a>
+                <Link href="/siu/about" style={styles.navLink}>About Us</Link>
                 <span style={styles.navDivider}>•</span>
 
                 <a href="/contact-us" style={styles.navLink}>Contact</a>
@@ -171,8 +172,19 @@ export default function Footer() {
               </nav>
 
               <p className="copyright" style={styles.copyright}>
-
                 © {new Date().getFullYear()} SIU App. All Rights Reserved.
+              </p>
+              <p style={{
+                marginTop: "8px",
+                fontSize: "11px",
+                letterSpacing: "1.5px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.35)",
+                fontWeight: 500,
+                textAlign: "center",
+              }}>
+                Powered by{" "}
+                <span style={{ color: "rgba(78, 195, 255, 0.75)", fontWeight: 700 }}>MGD</span>
               </p>
             </div>
           </>
