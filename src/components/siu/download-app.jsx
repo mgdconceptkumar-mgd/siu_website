@@ -157,7 +157,7 @@ const DownloadApp = () => {
                   position: "relative"
                 }}>
                   <img
-                    src="/assets/images/about/Whey Protein Blend – Power Your Progress.jpg.jpeg"
+                    src="/assets/images/about/student-university.jpeg"
                     alt="Student using SIU Mobile App"
                     style={{
                       width: "100%",
