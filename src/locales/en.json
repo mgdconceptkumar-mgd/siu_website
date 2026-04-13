@@ -1,0 +1,223 @@
+{
+  "header": {
+    "universities": "Universities",
+    "ecosystem": "Ecosystem",
+    "features": "Features",
+    "download_app": "DOWNLOAD APP",
+    "coming_soon": "Coming Soon"
+  },
+  "hero": {
+    "badge": "UAE'S UNIFIED ADMISSION PLATFORM",
+    "main_title_part1": "One Platform.",
+    "main_title_gradient": "All UAE Universities.",
+    "main_title_part2": "Global Access.",
+    "subtitle": "Study in UAE™ Ecosystem.",
+    "description": "SIU helps you discover UAE universities, apply to programs, receive offers, and manage your entire study journey in the UAE - from applications to enrolment.",
+    "btn_download": "DOWNLOAD APP",
+    "btn_explore": "Explore Universities",
+    "stat_universities": "Universities",
+    "stat_programs": "Programs",
+    "stat_online": "Online",
+    "slides": [
+      {
+        "badge": "PAY ONCE • APPLY TO MANY",
+        "title": "One Application.\nMultiple Universities.",
+        "desc": "Apply to top UAE universities with a single form"
+      },
+      {
+        "badge": "SMART DISCOVERY",
+        "title": "Discover & Shortlist Your Dream Programs",
+        "desc": "Browse programs, compare universities, and build your shortlist"
+      },
+      {
+        "badge": "END-TO-END SUPPORT",
+        "title": "We Handle Your Entire Admission",
+        "desc": "From document submission to offer letters — handled end-to-end."
+      }
+    ]
+  },
+  "ecosystem": {
+    "title": "The SIU Ecosystem",
+    "subtitle": "An end-to-end ecosystem that helps you at every step - from choosing the right university to building your future in the UAE.",
+    "layers": {
+      "admissions": {
+        "title": "Admissions",
+        "desc": "Apply to multiple UAE universities using a single account, with course suggestions based on your goals and profile. View estimated timelines from application to offer so you know what to expect, and access insights on course demand and future career scope to make more informed decisions."
+      },
+      "scholarships": {
+        "title": "Scholarships",
+        "desc": "Access scholarships that match your profile and help reduce your study costs in the UAE. View scholarship deadlines and availability in real time, and plan your budget more effectively with a clear breakdown of tuition and living expenses."
+      },
+      "visa": {
+        "title": "Visa & Compliance",
+        "desc": "Get complete assistance with visa, documentation, and all required steps to move and study in the UAE easily. Understand entry requirements, rules, and regulations before travel, and ensure a smooth transition without last-minute issues."
+      },
+      "career": {
+        "title": "Career Integration",
+        "desc": "Discover internships and job opportunities to build your career while studying. Gain practical experience alongside your education, explore career paths aligned with your chosen course, and build a profile that meets internship and job requirements."
+      },
+      "settlement": {
+        "title": "Settlement Support",
+        "desc": "Guidance on finding housing, insurance, and settling in so you can start your student life comfortably. Access essential services required for a smooth and well-prepared start."
+      }
+    },
+    "footer_banner": "Hands-on platform with trusted universities and support made for students."
+  },
+  "process": {
+    "badge": "Step-by-Step",
+    "title": "How it works",
+    "subtitle": "A smarter way to apply. We've simplified the entire university journey into four seamless steps.",
+    "steps": [
+      {
+        "title": "Discover Programs",
+        "desc": "Explore over 500+ programs across various UAE institutions. Compare fees, requirements, and campus details to find your perfect fit in one place."
+      },
+      {
+        "title": "One Application",
+        "desc": "No more repetitive forms. Fill out your profile once, and SIU intelligently handles your applications to multiple universities simultaneously."
+      },
+      {
+        "title": "Track & Decide",
+        "desc": "Receive and track all your offers in a single, unified dashboard. Compare university decisions side-by-side and secure your place with ease."
+      },
+      {
+        "title": "Visa & Move",
+        "desc": "Get end-to-end guidance for your student visa and settlement. We help with your documentation and insurance for a smooth arrival in the UAE."
+      }
+    ]
+  },
+  "for_parents": {
+    "badge": "For Parents & Guardians",
+    "title_part1": "Your Child's Future,",
+    "title_highlight": "Secured.",
+    "subtitle": "We understand that sending your child abroad is a big decision. SIU is built to give parents complete peace of mind — with verified universities, transparent processes, and end-to-end support.",
+    "benefits": [
+      {
+        "title": "Trusted University Partners",
+        "desc": "Every university on SIU is accredited and verified by UAE's official education authorities. Your child applies only to recognised, quality institutions — giving you confidence in where they study."
+      },
+      {
+        "title": "Complete Transparency",
+        "desc": "Stay informed at every stage — from application submission to offer letters and visa processing. SIU provides clear timelines, real-time status updates, and full visibility into your child's journey."
+      },
+      {
+        "title": "Safe & Structured Process",
+        "desc": "All documents, payments, and communication happen through one secure platform. No scattered paperwork, no middlemen — just a structured, reliable process from start to finish."
+      },
+      {
+        "title": "Financial Clarity",
+        "desc": "Get a clear breakdown of tuition fees, living expenses, and available scholarships before making any commitment. SIU helps your family plan and budget with no hidden costs or surprises."
+      },
+      {
+        "title": "Settlement & Safety",
+        "desc": "SIU supports students with housing guidance, health insurance, and settling-in assistance — so you know your child is well looked after from the moment they arrive in the UAE."
+      },
+      {
+        "title": "Ongoing Support",
+        "desc": "From pre-arrival guidance to post-enrolment support, SIU remains accessible throughout your child's academic journey. Reach out anytime for help with documentation, compliance, or queries."
+      }
+    ],
+    "banner": "Trusted by families across 50+ countries worldwide.",
+    "highlight_countries": "50+ countries"
+  },
+  "download_app": {
+    "badge": "Seamless Mobility",
+    "title": "SIU in Your Pocket.",
+    "description": "Manage your applications, track scholarships, and receive real-time notifications on the go with the SIU mobile experience.",
+    "store_apple_label": "Download on the",
+    "store_apple_name": "App Store",
+    "store_google_label": "GET IT ON",
+    "store_google_name": "Google Play",
+    "overlay_hint": "READY FOR UAE 🇦🇪"
+  },
+  "universities": {
+    "title": "A Global Network of Excellence",
+    "subtitle": "SIU connects you to Dubai’s premier federal and private institutions, creating a unified gateway to world-class education.",
+    "strategic_title": "Strategic Positioning",
+    "strategic_quote": "“SIU extends this vision globally—bringing international students into a structured, transparent, and scalable ecosystem.”"
+  },
+  "testimonials": {
+    "badge": "SIU Beta Program",
+    "title_part1": "Trusted by early",
+    "title_highlight": "pioneers.",
+    "subtitle": "Hear from the students and parents who are already experiencing the future of UAE world-class education.",
+    "reviews": [
+      {
+        "name": "Sara Ahmed",
+        "role": "Student, Computer Science",
+        "content": "SIU made my university transition so seamless. Being able to apply to three different institutions from one dashboard saved me weeks of stress. The visa guidance was the cherry on top!"
+      },
+      {
+        "name": "David Kingston",
+        "role": "Parent",
+        "content": "As a parent, the transparency SIU provides is invaluable. I could track my son's application status in real-time and felt confident knowing all the universities were verified by UAE authorities."
+      },
+      {
+        "name": "Li Wei",
+        "role": "International Student",
+        "content": "Exploring UAE universities from abroad felt overwhelming until I found SIU. The program comparison tool is extremely helpful for understanding the real costs and requirements."
+      }
+    ],
+    "cta": "Become an early adopter and shape the future of UAE education.",
+    "cta_link": "Join the Waitlist →"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about the Study in UAE™ ecosystem and your admission journey.",
+    "questions": [
+      {
+        "q": "Which universities can I apply to?",
+        "a": "The platform connects you to over 100+ accredited institutions across the UAE, including national federal universities and top-tier private international branch campuses."
+      },
+      {
+        "q": "How does the unified application work?",
+        "a": "You create one profile and upload your educational documents once. SIRT intelligently maps your data so you can apply to multiple universities with a single digital application, saving weeks of repetitive paperwork."
+      },
+      {
+        "q": "Does SIU help with student visas?",
+        "a": "Absolutely. SIU provides end-to-end guidance for the visa application and compliance process, ensuring you have the right documentation and support for a smooth transition to the UAE."
+      },
+      {
+        "q": "How can I track my application status?",
+        "a": "Once submitted, you can monitor everything from your unified dashboard. You will receive real-time notifications for status changes, offer letters, and next steps for every university in one place."
+      },
+      {
+        "q": "Are scholarships available through the platform?",
+        "a": "Yes, the SIU ecosystem includes a dedicated scholarship module where you can discover, match with, and apply for various merit-based and need-based scholarships directly."
+      }
+    ]
+  },
+  "closing": {
+    "sub_title": "From Admission to Employment – One Unified Journey",
+    "highlight_journey": "One Unified Journey",
+    "main_title": "SIU will unify the world’s <br /> access to UAE.",
+    "highlight_access": "access to UAE.",
+    "btn_download": "Download Now",
+    "btn_contact": "Contact Support",
+    "powered_by": "Powered by",
+    "brand": "MGD"
+  },
+  "footer": {
+    "tagline": "Unified Admission Portal",
+    "support_title": "Support & Contact",
+    "email_title": "Email Info",
+    "contact_title": "Contact Us",
+    "get_in_touch": "Get in Touch",
+    "nav": {
+      "about": "About Us",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions",
+      "cookie": "Cookie Policy",
+      "refund": "Refund Policy",
+      "disclaimer": "Disclaimer",
+      "data_protection": "Data Protection",
+      "ai_policy": "AI Policy",
+      "user_agreement": "User Agreement",
+      "partner_sharing": "Partner Data Sharing",
+      "platform_liability": "Platform Liability"
+    },
+    "copyright": "© {{year}} SIU App. All Rights Reserved.",
+    "powered_by": "Powered by"
+  }
+}

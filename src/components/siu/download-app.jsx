@@ -1,65 +1,70 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const DownloadApp = () => {
+  const { lang, t } = useLanguage();
+
   return (
-    <section id="download-app" className="download-app-section" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", position: "relative", overflow: "hidden" }}>
+    <section id="download-app" className="download-app-section" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", position: "relative", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
       {/* Decorative Blur */}
-      <div style={{ position: "absolute", bottom: "-10%", left: "10%", width: "400px", height: "400px", background: "rgba(255, 255, 255, 0.05)", borderRadius: "50%", filter: "blur(100px)", zIndex: 0 }} />
+      <div style={{ position: "absolute", bottom: "-10%", left: lang === "ar" ? "auto" : "10%", right: lang === "ar" ? "10%" : "auto", width: "400px", height: "400px", background: "rgba(255, 255, 255, 0.05)", borderRadius: "50%", filter: "blur(100px)", zIndex: 0 }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="download-app-inner" style={{ padding: "80px", overflow: "hidden", position: "relative", background: "rgba(255, 255, 255, 0.03)", borderRadius: "48px", border: "1px solid rgba(255, 255, 255, 0.08)", backdropFilter: "blur(20px)" }}>
-          <div className="row align-items-center">
+          <div className="row align-items-center" style={{ flexDirection: lang === "ar" ? "row-reverse" : "row" }}>
             {/* TEXT CONTENT */}
-            <div className="col-lg-7 download-app-text-col">
+            <div className="col-lg-7 download-app-text-col" style={{ textAlign: lang === "ar" ? "right" : "left" }}>
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: lang === "ar" ? 30 : -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <span className="download-app-badge" style={{ color: "#3b82f6", fontWeight: 800, fontSize: "1rem", textTransform: "uppercase", letterSpacing: "2px", display: "block", marginBottom: "20px" }}>
-                  Seamless Mobility
+                <span className="download-app-badge" style={{ color: "#3b82f6", fontWeight: 800, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: lang === "ar" ? "0" : "2px", display: "block", marginBottom: "20px" }}>
+                  {t("download_app.badge")}
                 </span>
-                <h2 className="download-app-title" style={{ fontSize: "4.5rem", fontWeight: 700, color: "#ffffff", marginBottom: "24px", lineHeight: 1.1, letterSpacing: "-3px" }}>
-                  SIU in Your Pocket.
+                <h2 className="download-app-title" style={{ fontSize: "4.5rem", fontWeight: 700, color: "#ffffff", marginBottom: "24px", lineHeight: 1.1, letterSpacing: lang === "ar" ? "0" : "-3px" }}>
+                  {t("download_app.title")}
                 </h2>
-                <p className="download-app-desc" style={{ fontSize: "1.5rem", color: "#cbd5e1", marginBottom: "48px", lineHeight: 1.6, maxWidth: "600px" }}>
-                  Manage your applications, track scholarships, and receive real-time notifications on the go with the SIU mobile experience.
+                <p className="download-app-desc" style={{ fontSize: "1.7rem", color: "#cbd5e1", marginBottom: "48px", lineHeight: 1.6, maxWidth: "600px", marginLeft: lang === "ar" ? "auto" : "0", marginRight: lang === "ar" ? "0" : "auto" }}>
+                  {t("download_app.description")}
                 </p>
 
-                <div className="download-app-btns" style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+                <div className="download-app-btns" style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: lang === "ar" ? "flex-start" : "flex-start" }}>
                   {/* App Store Button */}
                   <div style={{ position: "relative" }}>
-                    <motion.a 
+                    <motion.a
                       whileHover={{ scale: 1 }}
-                      href="#" 
-                      style={{ 
-                        padding: "16px 32px", 
-                        background: "#ffffff", 
-                        borderRadius: "16px", 
-                        display: "flex", 
-                        alignItems: "center", 
-                        gap: "12px", 
+                      href="#"
+                      style={{
+                        padding: "16px 32px",
+                        background: "#ffffff",
+                        borderRadius: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
                         textDecoration: "none",
                         boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                         opacity: 0.7,
                         cursor: "not-allowed",
-                        pointerEvents: "none"
+                        pointerEvents: "none",
+                        flexDirection: lang === "ar" ? "row-reverse" : "row"
                       }}
                     >
                       <svg width="28" height="28" viewBox="0 0 384 512" fill="#000000">
-                        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
                       </svg>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span className="store-label" style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600 }}>Download on the</span>
-                        <span className="store-name" style={{ fontSize: "1.1rem", color: "#0f172a", fontWeight: 800 }}>App Store</span>
+                      <div style={{ display: "flex", flexDirection: "column", textAlign: lang === "ar" ? "right" : "left" }}>
+                        <span className="store-label" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>{t("download_app.store_apple_label")}</span>
+                        <span className="store-name" style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800 }}>{t("download_app.store_apple_name")}</span>
                       </div>
                     </motion.a>
                     <span style={{
                       position: "absolute",
                       top: "-8px",
-                      right: "-8px",
+                      right: lang === "ar" ? "auto" : "-8px",
+                      left: lang === "ar" ? "-8px" : "auto",
                       background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
                       color: "#fff",
                       fontSize: "0.6rem",
@@ -72,42 +77,44 @@ const DownloadApp = () => {
                       zIndex: 2,
                       pointerEvents: "none"
                     }}>
-                      Coming Soon
+                      {t("header.coming_soon")}
                     </span>
                   </div>
 
                   {/* Google Play Button */}
                   <div style={{ position: "relative" }}>
-                    <motion.a 
+                    <motion.a
                       whileHover={{ scale: 1 }}
-                      href="#" 
-                      style={{ 
-                        padding: "16px 32px", 
-                        background: "rgba(255, 255, 255, 0.1)", 
-                        borderRadius: "16px", 
-                        display: "flex", 
-                        alignItems: "center", 
-                        gap: "12px", 
+                      href="#"
+                      style={{
+                        padding: "16px 32px",
+                        background: "rgba(255, 255, 255, 0.1)",
+                        borderRadius: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
                         textDecoration: "none",
                         border: "1px solid rgba(255, 255, 255, 0.1)",
                         boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                         opacity: 0.7,
                         cursor: "not-allowed",
-                        pointerEvents: "none"
+                        pointerEvents: "none",
+                        flexDirection: lang === "ar" ? "row-reverse" : "row"
                       }}
                     >
                       <svg width="28" height="28" viewBox="0 0 512 512" fill="none">
-                        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" fill="#ffffff"/>
+                        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" fill="#ffffff" />
                       </svg>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span className="store-label" style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 600 }}>GET IT ON</span>
-                        <span className="store-name" style={{ fontSize: "1.1rem", color: "#ffffff", fontWeight: 800 }}>Google Play</span>
+                      <div style={{ display: "flex", flexDirection: "column", textAlign: lang === "ar" ? "right" : "left" }}>
+                        <span className="store-label" style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 600 }}>{t("download_app.store_google_label")}</span>
+                        <span className="store-name" style={{ fontSize: "1.1rem", color: "#ffffff", fontWeight: 800 }}>{t("download_app.store_google_name")}</span>
                       </div>
                     </motion.a>
                     <span style={{
                       position: "absolute",
                       top: "-8px",
-                      right: "-8px",
+                      right: lang === "ar" ? "auto" : "-8px",
+                      left: lang === "ar" ? "-8px" : "auto",
                       background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
                       color: "#fff",
                       fontSize: "0.6rem",
@@ -120,7 +127,7 @@ const DownloadApp = () => {
                       zIndex: 2,
                       pointerEvents: "none"
                     }}>
-                      Coming Soon
+                      {t("header.coming_soon")}
                     </span>
                   </div>
                 </div>
@@ -149,8 +156,8 @@ const DownloadApp = () => {
                   overflow: "hidden",
                   position: "relative"
                 }}>
-                  <img 
-                    src="/siu-assets/student_mobile_university.png" 
+                  <img
+                    src="/assets/images/about/Whey Protein Blend – Power Your Progress.jpg.jpeg"
                     alt="Student using SIU Mobile App"
                     style={{
                       width: "100%",
@@ -160,12 +167,13 @@ const DownloadApp = () => {
                       opacity: 0.9
                     }}
                   />
-                  
+
                   {/* Glass overlay hint */}
                   <div className="download-app-overlay-hint" style={{
                     position: "absolute",
                     bottom: "35px",
-                    left: "35px",
+                    right: lang === "ar" ? "auto" : "35px",
+                    left: lang === "ar" ? "35px" : "auto",
                     padding: "12px 24px",
                     background: "rgba(255, 255, 255, 0.1)",
                     backdropFilter: "blur(20px)",
@@ -176,7 +184,7 @@ const DownloadApp = () => {
                     fontWeight: 700,
                     letterSpacing: "1px"
                   }}>
-                    READY FOR UAE 🇦🇪
+                    {t("download_app.overlay_hint")}
                   </div>
                 </div>
 

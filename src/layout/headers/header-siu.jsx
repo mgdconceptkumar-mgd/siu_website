@@ -2,15 +2,17 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const HeaderSIU = () => {
+  const { lang, setLang, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      // Close mobile menu on scroll
       if (isMobileMenuOpen) setIsMobileMenuOpen(false);
     };
     window.addEventListener("scroll", handleScroll);
@@ -18,10 +20,9 @@ const HeaderSIU = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    // { name: "DOWNLOAD  APP", href: "#apply-once" },
-    { name: "Universities", href: "#universities" },
-    { name: "Ecosystem", href: "#ecosystem" },
-    { name: "Features", href: "#how-it-works" },
+    { name: t("header.universities"), href: "#universities" },
+    { name: t("header.ecosystem"), href: "#ecosystem" },
+    { name: t("header.features"), href: "#how-it-works" },
   ];
 
   return (
@@ -32,11 +33,12 @@ const HeaderSIU = () => {
         left: "0",
         right: "0",
         width: "100%",
+        direction: lang === "ar" ? "ltr" : "ltr", // Keep header container LTR for layout consistency, but inner text follows lang
         zIndex: 1000,
         pointerEvents: "none"
       }}
     >
-      <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", direction: lang === "ar" ? "rtl" : "ltr" }}>
 
         {/* LOGO — LEFT */}
         <Link href="/" style={{
@@ -82,7 +84,7 @@ const HeaderSIU = () => {
           </div>
 
           {/* Bilingual Text */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px", textAlign: "left" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px", textAlign: lang === "ar" ? "right" : "left" }}>
             <span style={{
               color: "#fff",
               fontWeight: 950,
@@ -122,7 +124,8 @@ const HeaderSIU = () => {
             boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
             pointerEvents: "auto",
             maxWidth: "max-content",
-            flexShrink: 0
+            flexShrink: 0,
+            direction: "ltr" // Links always LTR sequence in the pill
           }}
         >
           {/* Desktop links */}
@@ -151,47 +154,90 @@ const HeaderSIU = () => {
                 {link.name}
               </Link>
             ))}
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <Link
-                href="#"
+
+            {/* Language Toggle */}
+            <div style={{ position: "relative" }}>
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
                 style={{
-                  padding: "10px 28px",
-                  background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  background: "rgba(255, 255, 255, 0.08)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  padding: "8px 16px",
                   borderRadius: "50px",
                   color: "#fff",
-                  fontWeight: 800,
-                  textDecoration: "none",
-                  fontSize: "1.1rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
-                  transition: "transform 0.3s ease",
-                  opacity: 0.7,
-                  cursor: "not-allowed",
-                  pointerEvents: "none"
+                  fontSize: "1rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  transition: "all 0.3s ease"
                 }}
               >
-                DOWNLOAD APP
-              </Link>
-              <span style={{
-                position: "absolute",
-                top: "-12px",
-                right: "-5px",
-                background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
-                color: "#fff",
-                fontSize: "0.6rem",
-                fontWeight: 900,
-                padding: "3px 8px",
-                borderRadius: "20px",
-                boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
-                textTransform: "uppercase",
-                letterSpacing: "0.5px",
-                zIndex: 2,
-                pointerEvents: "none",
-                whiteSpace: "nowrap"
-              }}>
-                Coming Soon
-              </span>
+                <span style={{ opacity: lang === 'en' ? 1 : 0.5 }}>EN</span>
+                <span style={{ width: "1px", height: "14px", background: "rgba(255,255,255,0.2)" }} />
+                <span style={{ opacity: lang === 'ar' ? 1 : 0.5 }}>AR</span>
+                <span style={{ fontSize: "0.8rem", transform: isLangOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.3s" }}>▼</span>
+              </button>
+
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    style={{
+                      position: "absolute",
+                      top: "calc(100% + 10px)",
+                      right: 0,
+                      background: "rgba(15, 23, 42, 0.95)",
+                      backdropFilter: "blur(20px)",
+                      borderRadius: "16px",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      padding: "8px",
+                      minWidth: "140px",
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "4px"
+                    }}
+                  >
+                    {[
+                      { id: 'en', label: 'English', flag: '🇺🇸' },
+                      { id: 'ar', label: 'العربية', flag: '🇦🇪' }
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setLang(item.id);
+                          setIsLangOpen(false);
+                        }}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "10px 14px",
+                          background: lang === item.id ? "rgba(59, 130, 246, 0.2)" : "transparent",
+                          borderRadius: "10px",
+                          border: "none",
+                          color: "#fff",
+                          fontSize: "0.95rem",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                          width: "100%",
+                          textAlign: "left"
+                        }}
+                      >
+                        <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                          <span>{item.flag}</span>
+                          {item.label}
+                        </span>
+                        {lang === item.id && <span style={{ color: "#3b82f6" }}>✓</span>}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 

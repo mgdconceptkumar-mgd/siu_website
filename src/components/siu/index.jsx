@@ -4,12 +4,15 @@ import "../../styles/siu-redesign.css";
 import HeaderSIU from "../../layout/headers/header-siu";
 import Hero from "./hero";
 import Ecosystem from "./ecosystem";
-import Features from "./features";
-import Universities from "./universities";
+import Process from "./process";
+import ForParents from "./for-parents";
 import DownloadApp from "./download-app";
+import Universities from "./universities";
+import Testimonials from "./testimonials";
+import FAQ from "./faq";
 import Closing from "./closing";
 import { Footer } from "../../layout";
-import { motion } from "framer-motion";
+import { LanguageProvider } from "../../contexts/LanguageContext";
 
 const StudyInUAEMain = () => {
   return (
@@ -18,9 +21,12 @@ const StudyInUAEMain = () => {
       <main>
         <Hero />
         <Ecosystem />
-        <Features />
+        <Process />
+        <ForParents />
         <DownloadApp />
         <Universities />
+        <Testimonials />
+        <FAQ />
         <Closing />
       </main>
       <Footer />

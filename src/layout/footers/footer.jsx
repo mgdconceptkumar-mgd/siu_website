@@ -1,8 +1,8 @@
-
 "use client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 
 // Icons as SVG components
@@ -15,12 +15,13 @@ const FaYoutube = () => <svg width="16" height="16" viewBox="0 0 576 512" fill="
 const SiTiktok = () => <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z" /></svg>;
 const FaMapMarkerAlt = () => <svg width="16" height="16" viewBox="0 0 384 512" fill="currentColor"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" /></svg>;
 
-const offices = [
-  { title: "Email Info", info: "info@studyinuae.app", link: "info@studyinuae.app" },
-  { title: "Contact Us", info: "Get in Touch", link: "/contact-us" },
-];
-
 export default function Footer() {
+  const { lang, t } = useLanguage();
+
+  const offices = [
+    { title: t("footer.email_title"), info: "info@studyinuae.app", link: "mailto:info@studyinuae.app" },
+    { title: t("footer.contact_title"), info: t("footer.get_in_touch"), link: "/contact-us" },
+  ];
 
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -46,11 +47,8 @@ export default function Footer() {
     setShowPlatformLiability(false);
   };
 
-
-
-
   return (
-    <footer className="app-footer" style={styles.footer}>
+    <footer className="app-footer" style={{ ...styles.footer, direction: lang === "ar" ? "rtl" : "ltr" }}>
 
       <div style={styles.overlay} />
 
@@ -73,7 +71,7 @@ export default function Footer() {
                     priority
                   />
                 </div>
-                <p style={styles.tagline}>Unified Admission Portal</p>
+                <p style={styles.tagline}>{t("footer.tagline")}</p>
 
                 <div style={styles.socialContainer}>
                   <a href="#!" style={styles.socialLink} aria-label="Facebook">
@@ -103,30 +101,20 @@ export default function Footer() {
 
             {/* Office Locations Grid */}
             <div style={styles.officesSection}>
-              <h3 style={styles.sectionTitle}>Support & Contact</h3>
+              <h3 style={styles.sectionTitle}>{t("footer.support_title")}</h3>
               <div
                 style={styles.officeGrid}
-                onMouseEnter={() => {
-                  if (trackRef.current) {
-                    trackRef.current.style.animationPlayState = "paused";
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (trackRef.current) {
-                    trackRef.current.style.animationPlayState = "running";
-                  }
-                }}
               >
-                <div className="officeGridStatic" style={styles.officeGridStatic}>
+                <div className="officeGridStatic" style={{ ...styles.officeGridStatic, flexDirection: lang === "ar" ? "row-reverse" : "row" }}>
 
                   {offices.map((office, i) => (
-                    <div key={i} className="officeCard" style={styles.officeCard}>
+                    <div key={i} className="officeCard" style={{ ...styles.officeCard, textAlign: lang === "ar" ? "right" : "left" }}>
 
-                      <div style={styles.cardHeader}>
+                      <div style={{ ...styles.cardHeader, flexDirection: lang === "ar" ? "row-reverse" : "row" }}>
                         <div style={styles.locationBadge}>
                           {i === 0 ? <FaEnvelope style={styles.badgeIcon} /> : <FaMapMarkerAlt style={styles.badgeIcon} />}
                         </div>
-                        <h4 className="officeTitle" style={styles.officeTitle}>
+                        <h4 className="officeTitle" style={{ ...styles.officeTitle, [lang === "ar" ? "marginRight" : "marginLeft"]: "12px" }}>
                           {office.title}</h4>
                       </div>
 
@@ -143,36 +131,36 @@ export default function Footer() {
 
 
             <div style={styles.bottomSection}>
-              <nav style={styles.footerNav}>
-                <Link href="/siu/about" style={styles.navLink}>About Us</Link>
+              <nav style={{ ...styles.footerNav, flexDirection: lang === "ar" ? "row-reverse" : "row" }}>
+                <Link href="/siu/about" style={styles.navLink}>{t("footer.nav.about")}</Link>
                 <span style={styles.navDivider}>•</span>
 
-                <a href="/contact-us" style={styles.navLink}>Contact</a>
+                <a href="/contact-us" style={styles.navLink}>{t("footer.nav.contact")}</a>
                 <span style={styles.navDivider}>•</span>
 
-                <button onClick={() => { closeAll(); setShowPrivacy(true); }} style={styles.navButton}>Privacy Policy</button>
+                <button onClick={() => { closeAll(); setShowPrivacy(true); }} style={styles.navButton}>{t("footer.nav.privacy")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowTerms(true); }} style={styles.navButton}>Terms & Conditions</button>
+                <button onClick={() => { closeAll(); setShowTerms(true); }} style={styles.navButton}>{t("footer.nav.terms")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowCookie(true); }} style={styles.navButton}>Cookie Policy</button>
+                <button onClick={() => { closeAll(); setShowCookie(true); }} style={styles.navButton}>{t("footer.nav.cookie")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowRefund(true); }} style={styles.navButton}>Refund Policy</button>
+                <button onClick={() => { closeAll(); setShowRefund(true); }} style={styles.navButton}>{t("footer.nav.refund")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowDisclaimer(true); }} style={styles.navButton}>Disclaimer</button>
+                <button onClick={() => { closeAll(); setShowDisclaimer(true); }} style={styles.navButton}>{t("footer.nav.disclaimer")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowDataProtect(true); }} style={styles.navButton}>Data Protection</button>
+                <button onClick={() => { closeAll(); setShowDataProtect(true); }} style={styles.navButton}>{t("footer.nav.data_protection")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowAiPolicy(true); }} style={styles.navButton}>AI Policy</button>
+                <button onClick={() => { closeAll(); setShowAiPolicy(true); }} style={styles.navButton}>{t("footer.nav.ai_policy")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowUserAgreement(true); }} style={styles.navButton}>User Agreement</button>
+                <button onClick={() => { closeAll(); setShowUserAgreement(true); }} style={styles.navButton}>{t("footer.nav.user_agreement")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowPartnerSharing(true); }} style={styles.navButton}>Partner Data Sharing</button>
+                <button onClick={() => { closeAll(); setShowPartnerSharing(true); }} style={styles.navButton}>{t("footer.nav.partner_sharing")}</button>
                 <span style={styles.navDivider}>•</span>
-                <button onClick={() => { closeAll(); setShowPlatformLiability(true); }} style={styles.navButton}>Platform Liability</button>
+                <button onClick={() => { closeAll(); setShowPlatformLiability(true); }} style={styles.navButton}>{t("footer.nav.platform_liability")}</button>
               </nav>
 
               <p className="copyright" style={styles.copyright}>
-                © {new Date().getFullYear()} SIU App. All Rights Reserved.
+                {t("footer.copyright").replace("{{year}}", new Date().getFullYear())}
               </p>
               <p style={{
                 marginTop: "8px",
@@ -183,7 +171,7 @@ export default function Footer() {
                 fontWeight: 500,
                 textAlign: "center",
               }}>
-                Powered by{" "}
+                {t("footer.powered_by")}{" "}
                 <span style={{ color: "rgba(78, 195, 255, 0.75)", fontWeight: 700 }}>MGD</span>
               </p>
             </div>
@@ -192,27 +180,26 @@ export default function Footer() {
 
         {/* ---- PRIVACY VIEW ---- */}
         {showPrivacy && (
-          <div style={styles.privacyWrapper}>
+          <div style={{ ...styles.privacyWrapper, textAlign: lang === "ar" ? "right" : "left" }}>
 
-            <h2 style={styles.privacyTitle}>Privacy Policy</h2>
-            <p style={styles.date}>Effective: 22/12/25<br />Last Updated: 22/12/25</p>
+            <h2 style={styles.privacyTitle}>{t("footer.nav.privacy")}</h2>
+            <p style={styles.date}>{lang === "ar" ? "ساري من: ٢٢/١٢/٢٥" : "Effective: 22/12/25"}<br />{lang === "ar" ? "آخر تحديث: ٢٢/١٢/٢٥" : "Last Updated: 22/12/25"}</p>
 
             <div style={styles.privacyText}>
-
               <p style={styles.p}>
-                <strong>1. Introduction</strong><br />
-                This Privacy Policy explains how SIU – Study in UAE™ collects, uses, stores, and protects personal data when users access our website, mobile applications, or digital services. SIU is committed to protecting personal data in accordance with applicable laws including the UAE Personal Data Protection Law (PDPL) and internationally recognized privacy standards.
+                <strong>1. {lang === "ar" ? "مقدمة" : "Introduction"}</strong><br />
+                {lang === "ar" ? "تشرح سياسة الخصوصية هذه..." : "This Privacy Policy explains how SIU – Study in UAE™ collects, uses, stores, and protects personal data when users access our website, mobile applications, or digital services. SIU is committed to protecting personal data in accordance with applicable laws including the UAE Personal Data Protection Law (PDPL) and internationally recognized privacy standards."}
               </p>
 
               <p style={styles.p}>
-                <strong>2. Scope of This Policy</strong><br />
-                This policy applies to:
+                <strong>2. {lang === "ar" ? "نطاق هذه السياسة" : "Scope of This Policy"}</strong><br />
+                {lang === "ar" ? "تنطبق هذه السياسة على:" : "This policy applies to:"}
                 <ul style={styles.ul}>
-                  <li style={styles.li}>students and prospective students</li>
-                  <li style={styles.li}>parents and guardians</li>
-                  <li style={styles.li}>universities and institutions</li>
-                  <li style={styles.li}>partner organizations</li>
-                  <li style={styles.li}>website visitors and application users</li>
+                  <li style={styles.li}>{lang === "ar" ? "الطلاب والمتقدمين المحتملين" : "students and prospective students"}</li>
+                  <li style={styles.li}>{lang === "ar" ? "الآباء والأوصياء" : "parents and guardians"}</li>
+                  <li style={styles.li}>{lang === "ar" ? "الجامعات والمؤسسات" : "universities and institutions"}</li>
+                  <li style={styles.li}>{lang === "ar" ? "المنظمات الشريكة" : "partner organizations"}</li>
+                  <li style={styles.li}>{lang === "ar" ? "زوار الموقع ومستخدمي التطبيق" : "website visitors and application users"}</li>
                 </ul>
               </p>
 

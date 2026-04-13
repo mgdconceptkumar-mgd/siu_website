@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Universities = () => {
+  const { lang, t } = useLanguage();
+
   const dubaiUnis = [
     { name: "Middlesex University Dubai", img: "/siu-assets/middlesex_logo.png", isIndividual: true, ranking: "QS Top 700" },
     { name: "University of Birmingham", img: "/siu-assets/birmingham_logo.png", isIndividual: true, ranking: "80 Global Rank" },
@@ -18,7 +21,7 @@ const Universities = () => {
   ];
 
   return (
-    <section id="universities" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", overflow: "hidden" }}>
+    <section id="universities" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
       <div className="container">
         <div style={{ textAlign: "center", marginBottom: "80px" }}>
           <motion.h2
@@ -30,10 +33,10 @@ const Universities = () => {
               fontWeight: 700,
               color: "#ffffff",
               marginBottom: "28px",
-              letterSpacing: "-3px"
+              letterSpacing: lang === "ar" ? "0" : "-3px"
             }}
           >
-            A Global Network of Excellence
+            {t("universities.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -41,27 +44,27 @@ const Universities = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             style={{
-              fontSize: "1.6rem",
+              fontSize: "1.75rem",
               color: "#cbd5e1",
               maxWidth: "900px",
               margin: "0 auto 80px",
               lineHeight: 1.6
             }}
           >
-            SIU connects you to Dubai’s premier federal and private institutions, creating a unified gateway to world-class education.
+            {t("universities.subtitle")}
           </motion.p>
         </div>
 
         {/* Logo Section - Responsive Marquee */}
         <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "20px 0" }}>
           <motion.div
-            animate={{ x: [0, -2400] }}
-            transition={{ 
-              duration: typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 45, // Faster on mobile
-              repeat: Infinity, 
-              ease: "linear" 
+            animate={{ x: lang === "ar" ? [0, 2400] : [0, -2400] }}
+            transition={{
+              duration: typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 45,
+              repeat: Infinity,
+              ease: "linear"
             }}
-            style={{ display: "flex", gap: "24px", width: "max-content", alignItems: "center" }}
+            style={{ display: "flex", gap: "24px", width: "max-content", alignItems: "center", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
           >
             {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis].map((uni, i) => (
               <div
@@ -76,7 +79,9 @@ const Universities = () => {
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                   borderRadius: "28px",
                   backdropFilter: "blur(20px)",
-                  minWidth: typeof window !== 'undefined' && window.innerWidth < 768 ? "300px" : "450px" // Single card feel on mobile
+                  minWidth: typeof window !== 'undefined' && window.innerWidth < 768 ? "300px" : "450px",
+                  flexDirection: lang === "ar" ? "row-reverse" : "row",
+                  textAlign: lang === "ar" ? "right" : "left"
                 }}
               >
                 <div style={{
@@ -109,7 +114,7 @@ const Universities = () => {
                     }}
                   />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: lang === "ar" ? "flex-end" : "flex-start" }}>
                   <div style={{
                     background: "rgba(96, 165, 250, 0.15)",
                     padding: "4px 12px",
@@ -117,9 +122,9 @@ const Universities = () => {
                     width: "fit-content",
                     border: "1px solid rgba(96, 165, 250, 0.3)"
                   }}>
-                    <span style={{ fontSize: "0.95rem", color: "#60a5fa", fontWeight: 800, textTransform: "uppercase" }}>{uni.ranking}</span>
+                    <span style={{ fontSize: "1.1rem", color: "#60a5fa", fontWeight: 800, textTransform: "uppercase" }}>{uni.ranking}</span>
                   </div>
-                  <h4 style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.3rem", margin: 0, lineHeight: 1.2 }}>{uni.name}</h4>
+                  <h4 style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.5rem", margin: 0, lineHeight: 1.2 }}>{uni.name}</h4>
                 </div>
               </div>
             ))}
@@ -135,11 +140,11 @@ const Universities = () => {
           border: "1px solid rgba(255, 255, 255, 0.08)",
           backdropFilter: "blur(40px)"
         }}>
-          <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.8rem", fontWeight: 600, marginBottom: "40px", letterSpacing: "-3px" }}>
-            Strategic Positioning
+          <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.8rem", fontWeight: 600, marginBottom: "40px", letterSpacing: lang === "ar" ? "0" : "-3px" }}>
+            {t("universities.strategic_title")}
           </h3>
           <p className="strategic-quote" style={{ color: "rgba(255,255,255,0.85)", fontSize: "2.4rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>
-            “SIU extends this vision globally—bringing international students into a structured, transparent, and scalable ecosystem.”
+            {t("universities.strategic_quote")}
           </p>
         </div>
       </div>
@@ -150,22 +155,21 @@ const Universities = () => {
           }
           
           #universities h2 {
-            font-size: 3rem !important; /* Increased from 2.4rem */
+            font-size: 3rem !important;
             letter-spacing: -1.5px !important;
             margin-bottom: 20px !important;
             line-height: 1.1 !important;
           }
 
           #universities p {
-            font-size: 1.25rem !important; /* Increased from 1.05rem */
+            font-size: 1.25rem !important;
             margin-bottom: 40px !important;
             line-height: 1.6 !important;
             padding: 0 15px !important;
           }
 
-          /* Logo Marquee mobile sizing */
           .siu-glass-card {
-            min-width: 320px !important; /* Slightly larger to fit text */
+            min-width: 320px !important;
             padding: 24px !important;
             border-radius: 20px !important;
             gap: 16px !important;
@@ -179,16 +183,15 @@ const Universities = () => {
           }
 
           .siu-glass-card h4 {
-            font-size: 1.35rem !important; /* Increased significantly from 1rem */
+            font-size: 1.35rem !important;
             letter-spacing: -0.2px !important;
             font-weight: 800 !important;
           }
 
           .siu-glass-card span {
-            font-size: 0.9rem !important; /* Increased ranking font on mobile */
+            font-size: 0.9rem !important;
           }
 
-          /* Strategic Positioning Card — Mobile centered */
           .strategic-positioning-card {
             padding: 60px 24px !important;
             border-radius: 32px !important;
@@ -198,14 +201,14 @@ const Universities = () => {
           }
 
           .strategic-title {
-            font-size: 2.5rem !important; /* Increased from 1.8rem */
+            font-size: 2.5rem !important;
             letter-spacing: -1.5px !important;
             margin-bottom: 24px !important;
             line-height:1.2 !important;
           }
 
           .strategic-quote {
-            font-size: 1.6rem !important; /* Increased from 1.15rem */
+            font-size: 1.6rem !important;
             line-height: 1.6 !important;
             max-width: 100% !important;
             font-weight: 500 !important;

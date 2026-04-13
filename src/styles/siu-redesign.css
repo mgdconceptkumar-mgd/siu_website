@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syncopate:wght@400;700&display=swap');
 
 :root {
-  --siu-navy: #0f172a; /* Slightly lighter navy */
+  --siu-navy: #0f172a;
+  /* Slightly lighter navy */
   --siu-navy-depth: #0a1128;
   --siu-navy-light: #1e293b;
-  --siu-royal: #2563eb; /* More vibrant royal blue */
+  --siu-royal: #2563eb;
+  /* More vibrant royal blue */
   --siu-blue: #3b82f6;
   --siu-cyan: #06b6d4;
-  --siu-electric: #6366f1; /* Vibrant electric indigo */
+  --siu-electric: #6366f1;
+  /* Vibrant electric indigo */
   --siu-silver: #94a3b8;
   --siu-white: #ffffff;
   --siu-glass: rgba(255, 255, 255, 0.05);
@@ -16,7 +19,8 @@
   --siu-font: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -28,7 +32,7 @@ html, body {
   background-color: #ffffff;
   color: #ffffff;
   font-family: var(--siu-font);
-  font-size: 18px; 
+  font-size: 18px;
   line-height: 1.6;
   position: relative;
   min-height: 100vh;
@@ -85,9 +89,17 @@ html, body {
 
 /* Animations */
 @keyframes glow-pulse {
-  0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.4); }
-  100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+  0% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
 }
 
 .animate-glow {

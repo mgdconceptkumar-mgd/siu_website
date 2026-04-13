@@ -1,52 +1,56 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Ecosystem = () => {
+  const { lang, t } = useLanguage();
+
   const layers = [
-    { 
-      title: "Admissions", 
-      icon: "🎓", 
-      desc: "One account, multiple universities. Centralized and smart program selection.", 
-      color: "#3b82f6" 
+    {
+      title: t("ecosystem.layers.admissions.title"),
+      icon: "🎓",
+      desc: t("ecosystem.layers.admissions.desc"),
+      color: "#3b82f6"
     },
-    { 
-      title: "Scholarships", 
-      icon: "💰", 
-      desc: "Easily find and apply for scholarships that match your qualifications and needs.", 
-      color: "#06b6d4" 
+    {
+      title: t("ecosystem.layers.scholarships.title"),
+      icon: "💰",
+      desc: t("ecosystem.layers.scholarships.desc"),
+      color: "#06b6d4"
     },
-    { 
-      title: "Visa & Compliance", 
-      icon: "🛂", 
-      desc: "Streamlined visa applications and digital compliance for a smooth transition.", 
-      color: "#8b5cf6" 
+    {
+      title: t("ecosystem.layers.visa.title"),
+      icon: "🛂",
+      desc: t("ecosystem.layers.visa.desc"),
+      color: "#8b5cf6"
     },
-    { 
-      title: "Career Integration", 
-      icon: "💼", 
-      desc: "Connecting students to employment opportunities and industry partners in the UAE.", 
-      color: "#f59e0b" 
+    {
+      title: t("ecosystem.layers.career.title"),
+      icon: "💼",
+      desc: t("ecosystem.layers.career.desc"),
+      color: "#f59e0b"
     },
-    { 
-      title: "Settlement Support", 
-      icon: "🏠", 
-      desc: "Ongoing support for housing, insurance, and everything needed to start your new life.", 
-      color: "#10b981" 
+    {
+      title: t("ecosystem.layers.settlement.title"),
+      icon: "🏠",
+      desc: t("ecosystem.layers.settlement.desc"),
+      color: "#10b981"
     },
   ];
 
   return (
-    <section 
-      id="ecosystem" 
-      style={{ 
-        padding: "100px 0", 
-        background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", 
-        fontFamily: "var(--font-primary), sans-serif"
+    <section
+      id="ecosystem"
+      style={{
+        padding: "100px 0",
+        background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)",
+        fontFamily: "var(--font-primary), sans-serif",
+        direction: lang === "ar" ? "rtl" : "ltr"
       }}
     >
       <div className="container">
-        
+
         {/* HEADER SECTION */}
         <div style={{ textAlign: "center", marginBottom: "70px" }}>
           <motion.div
@@ -59,18 +63,18 @@ const Ecosystem = () => {
               fontWeight: 700,
               color: "#ffffff",
               marginBottom: "20px",
-              letterSpacing: "-0.03em",
+              letterSpacing: lang === "ar" ? "0" : "-0.03em",
             }}>
-              The SIU Ecosystem
+              {t("ecosystem.title")}
             </h2>
             <p style={{
-              fontSize: "1.4rem",
+              fontSize: "1.6rem",
               color: "#cbd5e1",
               maxWidth: "800px",
               margin: "0 auto",
               lineHeight: 1.6,
             }}>
-              A multi-layered infrastructure designed to streamline every aspect of the international student journey in the UAE.
+              {t("ecosystem.subtitle")}
             </p>
           </motion.div>
         </div>
@@ -96,7 +100,8 @@ const Ecosystem = () => {
                   position: "relative",
                   display: "flex",
                   flexDirection: "column",
-                  cursor: "pointer"
+                  cursor: "pointer",
+                  textAlign: lang === "ar" ? "right" : "left"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = `rgba(255, 255, 255, 0.2)`;
@@ -109,8 +114,9 @@ const Ecosystem = () => {
                 <div style={{
                   position: "absolute",
                   top: "30px",
-                  right: "40px",
-                  fontSize: "1rem",
+                  right: lang === "ar" ? "auto" : "40px",
+                  left: lang === "ar" ? "40px" : "auto",
+                  fontSize: "1.2rem",
                   fontWeight: 700,
                   color: "rgba(255, 255, 255, 0.1)",
                   letterSpacing: "2px",
@@ -119,8 +125,8 @@ const Ecosystem = () => {
                   LAYER_0{idx + 1}
                 </div>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "25px", marginBottom: "30px" }}>
-                  <div style={{ 
+                <div style={{ display: "flex", alignItems: "center", gap: "25px", marginBottom: "30px", flexDirection: lang === "ar" ? "row-reverse" : "row", justifyContent: lang === "ar" ? "flex-start" : "flex-start" }}>
+                  <div style={{
                     width: "60px",
                     height: "60px",
                     background: `linear-gradient(135deg, ${layer.color}25, ${layer.color}10)`,
@@ -133,22 +139,22 @@ const Ecosystem = () => {
                   }}>
                     {layer.icon}
                   </div>
-                  <h3 style={{ 
-                    color: "#ffffff", 
-                    fontWeight: 700, 
-                    fontSize: "2rem", // Increased from 1.8rem
+                  <h3 style={{
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "2rem",
                     lineHeight: 1.1,
-                    letterSpacing: "-0.02em",
+                    letterSpacing: lang === "ar" ? "0" : "-0.02em",
                     margin: 0
                   }}>
                     {layer.title}
                   </h3>
                 </div>
-                
-                <p style={{ 
-                  color: "#cbd5e1", 
-                  fontSize: "1.55rem", // Increased from 1.3rem
-                  lineHeight: 1.6, 
+
+                <p style={{
+                  color: "#cbd5e1",
+                  fontSize: "1.55rem",
+                  lineHeight: 1.6,
                   margin: 0,
                   flexGrow: 1
                 }}>
@@ -159,19 +165,18 @@ const Ecosystem = () => {
             </div>
           ))}
         </div>
-        
+
         <div style={{ textAlign: "center", marginTop: "80px" }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ 
+            style={{
               display: "inline-block",
-              fontSize: "2.2rem", 
-              fontWeight: 700, 
-              color: "#ffffff", 
-              letterSpacing: "1px", 
-              textTransform: "uppercase",
+              fontSize: "2.2rem",
+              fontWeight: 700,
+              color: "#ffffff",
+              letterSpacing: lang === "ar" ? "0" : "1px",
               background: "rgba(255, 255, 255, 0.05)",
               padding: "24px 64px",
               borderRadius: "100px",
@@ -179,7 +184,7 @@ const Ecosystem = () => {
               backdropFilter: "blur(20px)"
             }}
           >
-            One Platform. All UAE Universities. <span style={{ color: "#eceff4ff" }}>Global Access.</span>
+            {t("ecosystem.footer_banner")}
           </motion.div>
         </div>
       </div>
@@ -190,14 +195,14 @@ const Ecosystem = () => {
           }
           
           #ecosystem h2 {
-            font-size: 2.5rem !important; // Bumped on mobile
+            font-size: 2.5rem !important;
             letter-spacing: -1px !important;
             line-height: 1.15 !important;
             margin-bottom: 14px !important;
           }
 
           #ecosystem p {
-            font-size: 1.1rem !important; // Bumped on mobile
+            font-size: 1.2rem !important;
             padding: 0 20px !important;
             line-height: 1.6 !important;
           }
@@ -213,12 +218,12 @@ const Ecosystem = () => {
           }
 
           #ecosystem h3 {
-            font-size: 1.5rem !important; // Increased from 1.2rem
+            font-size: 1.5rem !important;
             letter-spacing: -0.3px !important;
           }
 
           #ecosystem [style*="fontSize: \"1.55rem\""] {
-            font-size: 1.25rem !important; // Increased from 0.9rem
+            font-size: 1.25rem !important;
             line-height: 1.6 !important;
           }
 
