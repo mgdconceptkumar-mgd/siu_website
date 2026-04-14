@@ -39,15 +39,28 @@ const Hero = () => {
       title: t("hero.slides.2.title"), 
       desc: t("hero.slides.2.desc") 
     },
-    { src: "/assets/images/about/screen1.jpeg" },
-    { src: "/assets/images/about/screen2.jpeg" },
-    { src: "/assets/images/about/screen3.jpeg" },
-    { src: "/assets/images/about/screen4.jpeg" },
-    { src: "/assets/images/about/screen5.jpeg" },
-    { src: "/assets/images/about/screen6.jpeg" },
-    { src: "/assets/images/about/screen7.jpeg" },
-    { src: "/assets/images/about/screen8.jpeg" },
-    { src: "/assets/images/about/screen9.jpeg" },
+    // Dynamically include screens based on language
+    ...(lang === "ar" 
+      ? [
+          { src: "/assets/images/about/screen1_ar.jpeg" },
+          { src: "/assets/images/about/screen2_ar.jpeg" },
+          { src: "/assets/images/about/screen3_ar.jpeg" },
+          { src: "/assets/images/about/screen4_ar.jpeg" },
+          { src: "/assets/images/about/screen5_ar.jpeg" },
+          { src: "/assets/images/about/screen6_ar.jpeg" },
+        ]
+      : [
+          { src: "/assets/images/about/screen1.jpeg" },
+          { src: "/assets/images/about/screen2.jpeg" },
+          { src: "/assets/images/about/screen3.jpeg" },
+          { src: "/assets/images/about/screen4.jpeg" },
+          { src: "/assets/images/about/screen5.jpeg" },
+          { src: "/assets/images/about/screen6.jpeg" },
+          { src: "/assets/images/about/screen7.jpeg" },
+          { src: "/assets/images/about/screen8.jpeg" },
+          { src: "/assets/images/about/screen9.jpeg" },
+        ]
+    ),
     { 
       src: "/assets/images/about/SIU%20(3).jpeg", 
       badge: t("hero.slides.0.badge"), 

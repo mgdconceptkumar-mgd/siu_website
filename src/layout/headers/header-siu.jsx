@@ -155,108 +155,113 @@ const HeaderSIU = () => {
               </Link>
             ))}
 
-            {/* Language Toggle */}
-            <div style={{ position: "relative" }}>
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
+            {/* Desktop Language Switcher (Sliding Toggle) */}
+            <div style={{
+              background: "rgba(255, 255, 255, 0.05)",
+              borderRadius: "100px",
+              padding: "2px",
+              display: "flex",
+              position: "relative",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              minWidth: "120px"
+            }}>
+              {/* Sliding Background */}
+              <motion.div
+                animate={{ x: lang === 'en' ? '0%' : '100%' }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 style={{
+                  position: "absolute",
+                  top: "2px",
+                  left: "2px",
+                  width: "calc(50% - 2px)",
+                  height: "calc(100% - 4px)",
+                  background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+                  borderRadius: "100px",
+                  zIndex: 1
+                }}
+              />
+              <button
+                onClick={() => setLang('en')}
+                style={{
+                  flex: 1,
+                  padding: "6px 12px",
+                  background: "none",
+                  border: "none",
+                  color: lang === 'en' ? "#fff" : "rgba(255,255,255,0.4)",
+                  fontSize: "0.9rem",
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  zIndex: 2,
+                  transition: "color 0.3s ease",
                   display: "flex",
                   alignItems: "center",
-                  gap: "10px",
-                  background: "rgba(255, 255, 255, 0.08)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  padding: "8px 16px",
-                  borderRadius: "50px",
-                  color: "#fff",
-                  fontSize: "1rem",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  transition: "all 0.3s ease"
+                  justifyContent: "center",
+                  gap: "6px"
                 }}
               >
-                <span style={{ opacity: lang === 'en' ? 1 : 0.5 }}>EN</span>
-                <span style={{ width: "1px", height: "14px", background: "rgba(255,255,255,0.2)" }} />
-                <span style={{ opacity: lang === 'ar' ? 1 : 0.5 }}>AR</span>
-                <span style={{ fontSize: "0.8rem", transform: isLangOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.3s" }}>▼</span>
+                EN
               </button>
-
-              <AnimatePresence>
-                {isLangOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    style={{
-                      position: "absolute",
-                      top: "calc(100% + 10px)",
-                      right: 0,
-                      background: "rgba(15, 23, 42, 0.95)",
-                      backdropFilter: "blur(20px)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      padding: "8px",
-                      minWidth: "140px",
-                      boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "4px"
-                    }}
-                  >
-                    {[
-                      { id: 'en', label: 'English', flag: '🇺🇸' },
-                      { id: 'ar', label: 'العربية', flag: '🇦🇪' }
-                    ].map((item) => (
-                      <button
-                        key={item.id}
-                        onClick={() => {
-                          setLang(item.id);
-                          setIsLangOpen(false);
-                        }}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          padding: "10px 14px",
-                          background: lang === item.id ? "rgba(59, 130, 246, 0.2)" : "transparent",
-                          borderRadius: "10px",
-                          border: "none",
-                          color: "#fff",
-                          fontSize: "0.95rem",
-                          fontWeight: 600,
-                          cursor: "pointer",
-                          width: "100%",
-                          textAlign: "left"
-                        }}
-                      >
-                        <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                          <span>{item.flag}</span>
-                          {item.label}
-                        </span>
-                        {lang === item.id && <span style={{ color: "#3b82f6" }}>✓</span>}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <button
+                onClick={() => setLang('ar')}
+                style={{
+                  flex: 1,
+                  padding: "6px 12px",
+                  background: "none",
+                  border: "none",
+                  color: lang === 'ar' ? "#fff" : "rgba(255,255,255,0.4)",
+                  fontSize: "0.9rem",
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  zIndex: 2,
+                  transition: "color 0.3s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "6px"
+                }}
+              >
+                AR
+              </button>
             </div>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="d-lg-none"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            style={{
-              background: "none",
-              border: "none",
-              color: "#fff",
-              fontSize: "1.5rem",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center"
-            }}
-          >
-            {isMobileMenuOpen ? "✕" : "☰"}
-          </button>
+          {/* Mobile hamburger + Quick Toggle */}
+          <div className="d-lg-none" style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+            {/* Quick Toggle for Mobile */}
+            <div 
+              onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                background: "rgba(255, 255, 255, 0.1)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                padding: "4px 12px",
+                borderRadius: "50px",
+                cursor: "pointer",
+                transition: "all 0.3s ease"
+              }}
+            >
+              <span style={{ fontSize: "0.85rem", fontWeight: 800, color: lang === 'en' ? "#fff" : "rgba(255,255,255,0.4)" }}>EN</span>
+              <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.2)" }} />
+              <span style={{ fontSize: "0.85rem", fontWeight: 800, color: lang === 'ar' ? "#fff" : "rgba(255,255,255,0.4)" }}>AR</span>
+            </div>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#fff",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              {isMobileMenuOpen ? "✕" : "☰"}
+            </button>
+          </div>
         </nav>
       </div>
 
@@ -278,27 +283,102 @@ const HeaderSIU = () => {
               }}
             />
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               style={{
                 position: "absolute",
                 top: "100%",
                 right: "16px",
-                minWidth: "220px",
-                marginTop: "8px",
-                background: "rgba(10, 17, 40, 0.95)",
-                backdropFilter: "blur(20px)",
-                padding: "20px",
-                borderRadius: "20px",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
+                minWidth: "260px",
+                marginTop: "12px",
+                background: "rgba(10, 17, 40, 0.98)",
+                backdropFilter: "blur(30px)",
+                padding: "24px",
+                borderRadius: "28px",
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+                boxShadow: "0 30px 60px rgba(0,0,0,0.6)",
                 display: "flex",
                 flexDirection: "column",
-                gap: "16px",
+                gap: "20px",
                 zIndex: 999,
                 pointerEvents: "auto"
               }}
             >
+              {/* Mobile Language Switcher Section */}
+              <div style={{ paddingBottom: "16px", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "12px" }}>
+                  Select Language
+                </p>
+                <div style={{
+                  background: "rgba(255, 255, 255, 0.05)",
+                  borderRadius: "100px",
+                  padding: "4px",
+                  display: "flex",
+                  position: "relative",
+                  border: "1px solid rgba(255,255,255,0.1)"
+                }}>
+                  {/* Sliding Background */}
+                  <motion.div
+                    animate={{ x: lang === 'en' ? '0%' : '100%' }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    style={{
+                      position: "absolute",
+                      top: "4px",
+                      left: "4px",
+                      width: "calc(50% - 4px)",
+                      height: "calc(100% - 8px)",
+                      background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+                      borderRadius: "100px",
+                      zIndex: 1
+                    }}
+                  />
+                  <button
+                    onClick={() => setLang('en')}
+                    style={{
+                      flex: 1,
+                      padding: "10px",
+                      background: "none",
+                      border: "none",
+                      color: lang === 'en' ? "#fff" : "rgba(255,255,255,0.4)",
+                      fontSize: "0.95rem",
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      zIndex: 2,
+                      transition: "color 0.3s ease",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px"
+                    }}
+                  >
+                    <span>🇺🇸</span> EN
+                  </button>
+                  <button
+                    onClick={() => setLang('ar')}
+                    style={{
+                      flex: 1,
+                      padding: "10px",
+                      background: "none",
+                      border: "none",
+                      color: lang === 'ar' ? "#fff" : "rgba(255,255,255,0.4)",
+                      fontSize: "0.95rem",
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      zIndex: 2,
+                      transition: "color 0.3s ease",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px"
+                    }}
+                  >
+                    <span>🇦🇪</span> العربية
+                  </button>
+                </div>
+              </div>
+
               {navLinks.filter(l => l.name !== "DOWNLOAD  APP").map((link) => (
                 <Link
                   key={link.name}
@@ -307,52 +387,59 @@ const HeaderSIU = () => {
                   style={{
                     color: "#fff",
                     textDecoration: "none",
-                    fontWeight: 600,
-                    fontSize: "1.05rem",
-                    borderBottom: "1px solid rgba(255,255,255,0.07)",
-                    paddingBottom: "10px"
+                    fontWeight: 700,
+                    fontSize: "1.15rem",
+                    padding: "10px 0",
+                    transition: "all 0.3s ease",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between"
                   }}
                 >
                   {link.name}
+                  <span style={{ fontSize: "1.2rem", opacity: 0.3 }}>
+                    {lang === 'ar' ? "←" : "→"}
+                  </span>
                 </Link>
               ))}
-              <div style={{ position: "relative", width: "100%" }}>
+
+              <div style={{ position: "relative", width: "100%", marginTop: "10px" }}>
                 <Link
                   href="#"
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{
                     display: "block",
-                    padding: "10px 20px",
+                    padding: "16px 20px",
                     background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-                    borderRadius: "50px",
+                    borderRadius: "20px",
                     color: "#fff",
                     fontWeight: 800,
                     textAlign: "center",
                     textDecoration: "none",
-                    fontSize: "0.9rem",
+                    fontSize: "0.95rem",
                     textTransform: "uppercase",
-                    letterSpacing: "0.8px",
-                    marginTop: "4px",
+                    letterSpacing: "1px",
                     opacity: 0.7,
                     cursor: "not-allowed",
-                    pointerEvents: "none"
+                    pointerEvents: "none",
+                    boxShadow: "0 10px 20px rgba(59, 130, 246, 0.2)"
                   }}
                 >
                   DOWNLOAD APP
                 </Link>
                 <span style={{
                   position: "absolute",
-                  top: "-5px",
-                  right: "-5px",
+                  top: "-8px",
+                  right: "-4px",
                   background: "linear-gradient(90deg, #f59e0b, #fbbf24)",
                   color: "#fff",
-                  fontSize: "0.55rem",
+                  fontSize: "0.6rem",
                   fontWeight: 900,
-                  padding: "2px 6px",
+                  padding: "4px 10px",
                   borderRadius: "20px",
-                  boxShadow: "0 4px 10px rgba(245, 158, 11, 0.3)",
+                  boxShadow: "0 4px 12px rgba(245, 158, 11, 0.4)",
                   textTransform: "uppercase",
-                  letterSpacing: "0.5px",
+                  letterSpacing: "0.8px",
                   zIndex: 2,
                   pointerEvents: "none"
                 }}>
@@ -369,18 +456,19 @@ const HeaderSIU = () => {
         @media (max-width: 991px) {
           /* Shrink logo circle */
           header .container > a > div:first-child {
-            width: 68px !important;
-            height: 68px !important;
-            padding: 5px !important;
+            width: 62px !important;
+            height: 62px !important;
+            padding: 4px !important;
           }
           /* Hide bilingual text to keep nav pill (hamburger) visible */
           header .container > a > div:last-child {
             display: none !important;
           }
-          /* Shrink nav pill to just wrap the hamburger */
+          /* Responsive Nav Pill */
           header nav {
-            padding: 10px 18px !important;
+            padding: 10px 16px !important;
             gap: 0 !important;
+            margin-left: auto;
           }
         }
       `}</style>
