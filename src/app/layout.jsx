@@ -1,5 +1,6 @@
 import "./globals.scss";
 import { Providers } from "@/redux/provider";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import { DM_Sans } from "next/font/google";
 import CopyProtection from "@/components/CopyProtection";
 
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
           rel="preload" 
           href="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" 
           as="image" 
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </head>
 
@@ -32,7 +33,11 @@ export default function RootLayout({ children }) {
         <CopyProtection />
 
         {/* ✅ YOUR ORIGINAL PROVIDER */}
-        <Providers>{children}</Providers>
+        <Providers>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </Providers>
       </body>
     </html>
   );
