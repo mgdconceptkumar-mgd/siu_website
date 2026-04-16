@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
           rel="preload" 
           href="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" 
           as="image" 
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </head>
 
