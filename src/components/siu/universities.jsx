@@ -3,7 +3,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { FaUniversity, FaSearch, FaCheckCircle, FaTimes, FaTimesCircle } from "react-icons/fa";
+import { FaUniversity, FaSearch, FaCheckCircle, FaTimes, FaTimesCircle, FaApple, FaAndroid } from "react-icons/fa";
 import { useLanguage } from "../../contexts/LanguageContext";
 
 const UNIVERSITY_LIST = [
@@ -47,17 +47,16 @@ const Universities = () => {
   const [formData, setFormData] = useState({ email: "", mobile: "" });
 
   const dubaiUnis = [
-    { name: "Middlesex University Dubai", img: "/siu-assets/middlesex_logo.png", isIndividual: true, ranking: "QS Top 700" },
-    { name: "University of Birmingham", img: "/siu-assets/birmingham_logo.png", isIndividual: true, ranking: "80 Global Rank" },
-    { name: "University of Wollongong", img: "/siu-assets/wollongong_logo.png", isIndividual: true, ranking: "185 Global Rank" },
-    { name: "University of Dubai", img: "/siu-assets/udubai_logo.png", isIndividual: true, ranking: "QS 601" },
-    { name: "Zayed University", img: "/siu-assets/zayed_logo.png", isIndividual: true, ranking: "595 Global Rank" },
-    { name: "American Univ. in Dubai", img: "/siu-assets/aud_logo.png", isIndividual: true, ranking: "QS Top 610" },
-    { name: "Canadian Univ. Dubai", img: "/siu-assets/final_logo_batch.png", pos: { x: 0, y: 0 }, ranking: "#604 Global Rank" },
-    { name: "Murdoch Univ. Dubai", img: "/siu-assets/final_logo_batch.png", pos: { x: -100, y: 0 }, ranking: "#436 Global Rank" },
-    { name: "Amity Univ. Dubai", img: "/siu-assets/final_logo_batch.png", pos: { x: 0, y: -100 }, ranking: "Premier Global" },
-    { name: "BITS Pilani Dubai", img: "/siu-assets/final_logo_batch.png", pos: { x: -100, y: -100 }, ranking: "Top 800 Global" },
-    { name: "Heriot-Watt Dubai", img: "/siu-assets/final_logo_batch.png", pos: { x: 0, y: -200 }, ranking: "#235 Global Rank" },
+    { name: "University of Europe", img: "/assets/images/about/university od europe.png", isIndividual: true, ranking: "QS Europe #1" },
+    { name: "American Univ. in Dubai", img: "/assets/images/about/American_University_in_Dubai.png", isIndividual: true, ranking: "QS #610 Global" },
+    { name: "Rochester Institute of Tech", img: "/assets/images/about/Rochester_Institute_of_Technology_Dubai.png", isIndividual: true, ranking: "US Top Tier" },
+    { name: "Amity University Dubai", img: "/assets/images/about/Amity_University_Dubai.png", isIndividual: true, ranking: "Premier Global" },
+    { name: "SP Jain School of Mgmt", img: "/assets/images/about/sp_jain.png", isIndividual: true, ranking: "Forbes Top 10" },
+    { name: "Middlesex University", img: "/assets/images/about/Middlesex_University_Dubai.png", isIndividual: true, ranking: "QS Top 700" },
+    { name: "Symbiosis International", img: "/assets/images/about/symboisis.png", isIndividual: true, ranking: "QS 5-Star" },
+    { name: "University of Dubai", img: "/siu-assets/udubai_logo.png", isIndividual: true, ranking: "QS 601 Global" },
+    { name: "University of Birmingham", img: "/assets/images/about/University_of_Birmingham_Dubai.png", isIndividual: true, ranking: "80 Global Rank" },
+    { name: "University of Wollongong", img: "/assets/images/about/University_of_Wollongong_in_Dubai.png", isIndividual: true, ranking: "185 Global Rank" },
   ];
 
   const filteredUnis = useMemo(() => {
@@ -265,78 +264,123 @@ const Universities = () => {
           </motion.p>
         </div>
 
-        {/* Logo Section - Responsive Marquee */}
-        <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "20px 0" }}>
+        {/* Logo Section - Compact Premium Cards */}
+        <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "30px 0" }}>
+          {/* Row 1: Left to Right */}
           <motion.div
-            animate={{ x: lang === "ar" ? [0, 2400] : [0, -2400] }}
+            animate={{ x: lang === "ar" ? [-2000, 0] : [0, -2000] }}
             transition={{
-              duration: typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 45,
+              duration: 45,
               repeat: Infinity,
               ease: "linear"
             }}
-            style={{ display: "flex", gap: "24px", width: "max-content", alignItems: "center", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
+            style={{ display: "flex", gap: "20px", width: "max-content", marginBottom: "20px", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
           >
-            {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis].map((uni, i) => (
-              <div
+            {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].map((uni, i) => (
+              <motion.div
                 key={i}
-                className="siu-glass-card"
+                whileHover={{ scale: 1.05, y: -5 }}
                 style={{
-                  padding: "24px 32px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "24px",
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  borderRadius: "28px",
-                  backdropFilter: "blur(20px)",
-                  minWidth: "450px",
-                  flexDirection: lang === "ar" ? "row-reverse" : "row",
-                  textAlign: lang === "ar" ? "right" : "left"
-                }}
-              >
-                <div style={{
-                  width: "80px",
-                  height: "80px",
-                  overflow: "hidden",
-                  borderRadius: "16px",
+                  width: "180px",
+                  height: "115px",
                   background: "#ffffff",
-                  position: "relative",
+                  borderRadius: "18px",
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  padding: uni.isIndividual ? "10px" : "0",
-                  flexShrink: 0
-                }}>
+                  padding: "12px",
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  cursor: "pointer",
+                  gap: "8px",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", overflow: "hidden" }}>
                   <img
                     src={uni.img}
                     alt={uni.name}
-                    style={uni.isIndividual ? {
+                    style={{
                       maxWidth: "100%",
                       maxHeight: "100%",
                       objectFit: "contain"
-                    } : {
-                      position: "absolute",
-                      width: "200%",
-                      height: "300%",
-                      top: `${uni.pos.y}%`,
-                      left: `${uni.pos.x}%`,
-                      objectFit: "fill"
                     }}
                   />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: lang === "ar" ? "flex-end" : "flex-start" }}>
-                  <div style={{
-                    background: "rgba(96, 165, 250, 0.15)",
-                    padding: "4px 12px",
-                    borderRadius: "6px",
-                    width: "fit-content",
-                    border: "1px solid rgba(96, 165, 250, 0.3)"
-                  }}>
-                    <span style={{ fontSize: "1.1rem", color: "#60a5fa", fontWeight: 800, textTransform: "uppercase" }}>{uni.ranking}</span>
-                  </div>
-                  <h4 style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.5rem", margin: 0, lineHeight: 1.2 }}>{uni.name}</h4>
+                <span style={{ 
+                  fontSize: "0.95rem", 
+                  fontWeight: 700, 
+                  color: "#1e293b", 
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  width: "100%",
+                  padding: "0 4px"
+                }}>
+                  {uni.name}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Row 2: Right to Left */}
+          <motion.div
+            animate={{ x: lang === "ar" ? [0, -2000] : [-2000, 0] }}
+            transition={{
+              duration: 55,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{ display: "flex", gap: "20px", width: "max-content", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
+          >
+            {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].reverse().map((uni, i) => (
+              <motion.div
+                key={`rev-${i}`}
+                whileHover={{ scale: 1.05, y: -5 }}
+                style={{
+                  width: "180px",
+                  height: "115px",
+                  background: "#ffffff",
+                  borderRadius: "18px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "12px",
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  cursor: "pointer",
+                  gap: "8px",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", overflow: "hidden" }}>
+                  <img
+                    src={uni.img}
+                    alt={uni.name}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain"
+                    }}
+                  />
                 </div>
-              </div>
+                <span style={{ 
+                  fontSize: "0.95rem", 
+                  fontWeight: 700, 
+                  color: "#1e293b", 
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  width: "100%",
+                  padding: "0 4px"
+                }}>
+                  {uni.name}
+                </span>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -390,10 +434,10 @@ const Universities = () => {
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               style={{
                 width: "100%",
-                maxWidth: "640px",
+                maxWidth: isSuccess ? "720px" : "600px",
                 background: "#0f172a",
                 borderRadius: "32px",
-                padding: "50px",
+                padding: typeof window !== 'undefined' && window.innerWidth < 768 ? "35px 20px" : "50px 40px",
                 position: "relative",
                 border: "1px solid rgba(255, 255, 255, 0.08)",
                 boxShadow: "0 50px 100px -20px rgba(0, 0, 0, 0.8)",
@@ -510,50 +554,195 @@ const Universities = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
                 >
-                  <FaCheckCircle style={{ color: "#22c55e", fontSize: "7rem", marginBottom: "25px" }} />
-                  <h3 style={{ color: "#ffffff", fontSize: "3.2rem", fontWeight: 800, marginBottom: "20px" }}>
-                    {lang === "ar" ? "تم استلام طلبك بنجاح!" : "Access Granted!"}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 12, stiffness: 200 }}
+                  >
+                    <FaCheckCircle style={{ color: "#22c55e", fontSize: "8rem", marginBottom: "25px", filter: "drop-shadow(0 0 20px rgba(34, 197, 94, 0.4))" }} />
+                  </motion.div>
+
+                  <h3 style={{ 
+                    color: "#ffffff", 
+                    fontSize: "3.4rem", 
+                    fontWeight: 900, 
+                    marginBottom: "12px", 
+                    letterSpacing: "-1px",
+                    background: "linear-gradient(to bottom, #ffffff, #cbd5e1)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent"
+                  }}>
+                    {lang === "ar" ? "تحميل التطبيق الآن" : "Download App Now"}
                   </h3>
-                  <p style={{ color: "#94a3b8", fontSize: "1.6rem", marginBottom: "40px", lineHeight: 1.5 }}>
+                  
+                  <p style={{ color: "#94a3b8", fontSize: "1.5rem", marginBottom: "40px", maxWidth: "480px", margin: "0 auto 40px", lineHeight: 1.6 }}>
                     {lang === "ar" 
-                      ? "مسح رمز الاستجابة السريعة لتحميل التطبيق والبدء فوراً"
-                      : "Scan your personalized QR code to download the SIU app and track your admission status."}
+                      ? "اختر نظامك المفضل لتحميل تطبيق SIU ومتابعة حالة قبولك."
+                      : "Choose your platform to download the SIU app and track your admission status in real-time."}
                   </p>
                   
-                  {/* --- PREMIUM QR CODE SECTION --- */}
-                  <div style={{
-                    background: "#ffffff",
-                    padding: "20px",
-                    borderRadius: "28px",
-                    width: "240px",
-                    margin: "0 auto 40px",
-                    boxShadow: "0 0 50px rgba(59, 130, 246, 0.4)",
-                    border: "8px solid rgba(59, 130, 246, 0.1)"
+                  <div style={{ 
+                    display: "flex", 
+                    gap: "24px", 
+                    justifyContent: "center", 
+                    width: "100%",
+                    flexWrap: "wrap"
                   }}>
-                    <img
-                      src="/assets/images/qr-code.png"
-                      alt="SIU QR Code"
-                      style={{ width: "100%", height: "auto", display: "block" }}
-                    />
+                    {/* iOS Option */}
+                    <motion.div 
+                      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                      style={{
+                        flex: "1 1 200px",
+                        maxWidth: "260px",
+                        background: "rgba(255, 255, 255, 0.03)",
+                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        borderRadius: "28px",
+                        padding: "30px 20px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        backdropFilter: "blur(20px)",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+                      }}
+                    >
+                      <FaApple style={{ color: "#ffffff", fontSize: "3.2rem", marginBottom: "12px" }} />
+                      <span style={{ color: "#ffffff", fontSize: "1.3rem", fontWeight: 700, marginBottom: "20px" }}>iOS App</span>
+                      <div style={{
+                        background: "#ffffff",
+                        padding: "12px",
+                        borderRadius: "18px",
+                        width: "150px",
+                        height: "150px",
+                        marginBottom: "25px",
+                        boxShadow: "0 15px 30px rgba(0,0,0,0.4)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}>
+                        <img
+                          src="/assets/images/qr-code.png"
+                          alt="iOS QR"
+                          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        />
+                      </div>
+                      <button
+                        onClick={() => window.open('https://apps.apple.com', '_blank')}
+                        style={{
+                          width: "100%",
+                          background: "rgba(255, 255, 255, 0.08)",
+                          color: "white",
+                          padding: "16px",
+                          borderRadius: "14px",
+                          fontSize: "1.3rem",
+                          fontWeight: 700,
+                          border: "1px solid rgba(255, 255, 255, 0.15)",
+                          cursor: "pointer",
+                          transition: "all 0.3s",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "10px"
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
+                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+                        }}
+                      >
+                         App Store
+                      </button>
+                    </motion.div>
+
+                    {/* Android Option */}
+                    <motion.div 
+                      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                      style={{
+                        flex: "1 1 200px",
+                        maxWidth: "260px",
+                        background: "linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%)",
+                        border: "1px solid rgba(59, 130, 246, 0.2)",
+                        borderRadius: "28px",
+                        padding: "30px 20px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        backdropFilter: "blur(20px)",
+                        boxShadow: "0 20px 40px rgba(37, 99, 235, 0.1)"
+                      }}
+                    >
+                      <FaAndroid style={{ color: "#3DDC84", fontSize: "3.2rem", marginBottom: "12px" }} />
+                      <span style={{ color: "#ffffff", fontSize: "1.3rem", fontWeight: 700, marginBottom: "20px" }}>Android App</span>
+                      <div style={{
+                        background: "#ffffff",
+                        padding: "12px",
+                        borderRadius: "18px",
+                        width: "150px",
+                        height: "150px",
+                        marginBottom: "25px",
+                        boxShadow: "0 15px 30px rgba(0,0,0,0.4)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}>
+                        <img
+                          src="/assets/images/qr-code.png"
+                          alt="Android QR"
+                          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        />
+                      </div>
+                      <button
+                        onClick={() => window.open('https://play.google.com', '_blank')}
+                        style={{
+                          width: "100%",
+                          background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+                          color: "white",
+                          padding: "16px",
+                          borderRadius: "14px",
+                          fontSize: "1.3rem",
+                          fontWeight: 700,
+                          border: "none",
+                          cursor: "pointer",
+                          transition: "all 0.3s",
+                          boxShadow: "0 10px 20px rgba(37, 99, 235, 0.3)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "10px"
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.transform = "translateY(-1px)";
+                          e.currentTarget.style.boxShadow = "0 15px 30px rgba(37, 99, 235, 0.5)";
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.boxShadow = "0 10px 20px rgba(37, 99, 235, 0.3)";
+                        }}
+                      >
+                        Google Play
+                      </button>
+                    </motion.div>
                   </div>
-                  
+
                   <button
-                    onClick={() => window.open('https://studyinuae.moe.gov.ae', '_blank')}
+                    onClick={() => setShowModal(false)}
                     style={{
-                      width: "100%",
-                      background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-                      color: "white",
-                      padding: "22px",
-                      borderRadius: "18px",
-                      fontSize: "1.6rem",
-                      fontWeight: 800,
+                      marginTop: "40px",
+                      background: "transparent",
+                      color: "#94a3b8",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
                       border: "none",
                       cursor: "pointer",
-                      boxShadow: "0 20px 40px rgba(37, 99, 235, 0.4)"
+                      textDecoration: "underline",
+                      opacity: 0.7
                     }}
                   >
-                    {lang === "ar" ? "تحميل التطبيق الآن" : "Download App Now"}
+                    {lang === "ar" ? "إغلاق" : "Close window"}
                   </button>
                 </motion.div>
               )}
