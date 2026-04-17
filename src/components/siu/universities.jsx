@@ -3,9 +3,14 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { FaUniversity, FaSearch, FaCheckCircle, FaTimes, FaTimesCircle, FaApple, FaAndroid } from "react-icons/fa";
+import { FaUniversity, FaSearch, FaCheckCircle, FaTimes, FaTimesCircle, FaApple, FaAndroid, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+import { HiOutlineAcademicCap, HiOutlineUserGroup, HiOutlineStar, HiOutlineCalendar, HiOutlineClipboardCheck, HiOutlineDeviceMobile } from "react-icons/hi";
 import { useLanguage } from "../../contexts/LanguageContext";
+import "./universities.css";
 
+/* ============================================================
+   UNIVERSITY SEARCH LIST — autocomplete suggestions
+   ============================================================ */
 const UNIVERSITY_LIST = [
   "ABU DHABI HOSPITALITY ACADEMY – LES ROCHES", "ABU DHABI POLYTECHNIC", "ABU DHABI SCHOOL OF MANAGEMENT",
   "Abu Dhabi University", "Ajman University", "AL AIN UNIVERSITY", "Al Qasimia University", "AL WASL UNIVERSITY",
@@ -38,14 +43,173 @@ const UNIVERSITY_LIST = [
   "University of Khorfakkan", "University of Al Dhaid", "Zayed Military University"
 ];
 
+/* ============================================================
+   DUMMY UNIVERSITY DETAIL DATA
+   Keyed by name (lowercase). Will be replaced with .json / API.
+   Falls back to a generic record if university is not mapped.
+   ============================================================ */
+const UNIVERSITY_DETAILS = {
+  "university of dubai": {
+    name: "University of Dubai",
+    logo: "/siu-assets/udubai_logo.png",
+    location: "Dubai, UAE",
+    description:
+      "The University of Dubai is a premier institution offering internationally accredited programs in Business, Law, Engineering, and Information Technology. Rooted in innovation and entrepreneurship, it empowers students with real-world skills, industry partnerships, and a truly global learning environment in the heart of Dubai.",
+    stats: { programs: "45+", students: "3,500+", ranking: "Top 10", established: "1997" },
+  },
+  "american university in dubai": {
+    name: "American University in Dubai",
+    logo: "/assets/images/about/American_University_in_Dubai.png",
+    location: "Dubai, UAE",
+    description:
+      "The American University in Dubai (AUD) offers a comprehensive American-style education with programs accredited by top US agencies. With over 40 undergraduate and graduate majors, AUD prepares students for global careers in business, architecture, design, communication, and more.",
+    stats: { programs: "40+", students: "2,800+", ranking: "QS #610", established: "1995" },
+  },
+  "khalifa university": {
+    name: "Khalifa University",
+    logo: "/assets/images/about/siu logo.jpeg",
+    location: "Abu Dhabi, UAE",
+    description:
+      "Khalifa University is the UAE's top-ranked research-intensive university focusing on engineering, science, and technology. It offers cutting-edge facilities, world-class faculty, and robust research programs that drive innovation and knowledge creation for the nation's future.",
+    stats: { programs: "55+", students: "4,200+", ranking: "Top 5", established: "2007" },
+  },
+  "university of sharjah": {
+    name: "University of Sharjah",
+    logo: "/assets/images/about/siu logo.jpeg",
+    location: "Sharjah, UAE",
+    description:
+      "The University of Sharjah is one of the largest and most comprehensive universities in the UAE, offering over 100 programs across 16 colleges. Known for its academic excellence, diverse campus life, and strong community engagement, it is a hub for quality education.",
+    stats: { programs: "100+", students: "14,000+", ranking: "Top 8", established: "1997" },
+  },
+  "heriot-watt university": {
+    name: "Heriot-Watt University Dubai",
+    logo: "/assets/images/about/siu logo.jpeg",
+    location: "Dubai, UAE",
+    description:
+      "Heriot-Watt University Dubai is a branch campus of the prestigious UK institution, providing internationally recognized degrees in engineering, business, computing, and design. Students benefit from UK-quality education in the vibrant setting of Dubai.",
+    stats: { programs: "35+", students: "5,000+", ranking: "Top 20", established: "2005" },
+  },
+  "middlesex university dubai": {
+    name: "Middlesex University Dubai",
+    logo: "/assets/images/about/Middlesex_University_Dubai.png",
+    location: "Dubai, UAE",
+    description:
+      "Middlesex University Dubai is a globally recognized UK university campus offering a wide range of programs in business, IT, law, psychology, media, and education. With a focus on career readiness and international exposure, it shapes future-ready graduates.",
+    stats: { programs: "30+", students: "3,800+", ranking: "QS Top 700", established: "2005" },
+  },
+  "ajman university": {
+    name: "Ajman University",
+    logo: "/assets/images/about/siu logo.jpeg",
+    location: "Ajman, UAE",
+    description:
+      "Ajman University is a leading private university offering diverse programs across multiple disciplines including engineering, pharmacy, dentistry, business, and humanities. It emphasizes research-driven learning and community impact within a supportive environment.",
+    stats: { programs: "60+", students: "7,500+", ranking: "Top 12", established: "1988" },
+  },
+  "abu dhabi university": {
+    name: "Abu Dhabi University",
+    logo: "/assets/images/about/siu logo.jpeg",
+    location: "Abu Dhabi, UAE",
+    description:
+      "Abu Dhabi University delivers quality education through its colleges of arts & sciences, business, engineering, health sciences, and law. Committed to innovation and student success, it fosters a dynamic and inclusive academic community.",
+    stats: { programs: "50+", students: "8,000+", ranking: "Top 15", established: "2003" },
+  },
+  "amity university dubai": {
+    name: "Amity University Dubai",
+    logo: "/assets/images/about/Amity_University_Dubai.png",
+    location: "Dubai, UAE",
+    description:
+      "Amity University Dubai provides quality education with a focus on innovation, research, and holistic student development. With a diverse student body and industry-aligned programs, it is a preferred choice for international students in the UAE.",
+    stats: { programs: "38+", students: "4,000+", ranking: "Premier", established: "2011" },
+  },
+  "university of wollongong in dubai": {
+    name: "University of Wollongong in Dubai",
+    logo: "/assets/images/about/University_of_Wollongong_in_Dubai.png",
+    location: "Dubai, UAE",
+    description:
+      "The University of Wollongong in Dubai delivers globally recognized Australian education in the heart of Dubai. It offers a wide range of accredited undergraduate and postgraduate programs in business, engineering, IT, and media across a modern campus.",
+    stats: { programs: "40+", students: "4,500+", ranking: "#185 Global", established: "1993" },
+  },
+  "rochester institute of technology – dubai": {
+    name: "Rochester Institute of Technology – Dubai",
+    logo: "/assets/images/about/Rochester_Institute_of_Technology_Dubai.png",
+    location: "Dubai, UAE",
+    description:
+      "RIT Dubai offers American-quality education in technology, engineering, business, and computing. Students earn the same degree as the New York campus and benefit from strong industry connections, internship opportunities, and a focus on experiential learning.",
+    stats: { programs: "20+", students: "1,500+", ranking: "US Top Tier", established: "2008" },
+  },
+  "university of birmingham dubai": {
+    name: "University of Birmingham Dubai",
+    logo: "/assets/images/about/University_of_Birmingham_Dubai.png",
+    location: "Dubai, UAE",
+    description:
+      "The University of Birmingham Dubai brings the prestige of a UK Russell Group university to the UAE. Students benefit from identical degree standards, world-class research, and a vibrant campus in Dubai's Academic City.",
+    stats: { programs: "25+", students: "1,800+", ranking: "#80 Global", established: "2018" },
+  },
+  "s p jain school of global management": {
+    name: "SP Jain School of Global Management",
+    logo: "/assets/images/about/sp_jain.png",
+    location: "Dubai, UAE",
+    description:
+      "SP Jain School of Global Management is a top-ranked business school with campuses in Dubai, Mumbai, Singapore, and Sydney. Its tri-city model provides students unmatched global exposure, preparing them for leadership in the international business world.",
+    stats: { programs: "12+", students: "3,000+", ranking: "Forbes Top 10", established: "2004" },
+  },
+  "symbiosis international university": {
+    name: "Symbiosis International University",
+    logo: "/assets/images/about/symboisis.png",
+    location: "Dubai, UAE",
+    description:
+      "Symbiosis International University Dubai offers quality management and business programs with Indian academic heritage. The university focuses on practical learning, global outlook, and industry-relevant curriculum in a multicultural campus setting.",
+    stats: { programs: "10+", students: "1,200+", ranking: "QS 5-Star", established: "2010" },
+  },
+  "university of europe for applied sciences": {
+    name: "University of Europe for Applied Sciences",
+    logo: "/assets/images/about/university od europe.png",
+    location: "Dubai, UAE",
+    description:
+      "The University of Europe for Applied Sciences (UE) Dubai campus offers innovative, practice-oriented degree programs in business, design, technology, and sports. Its German educational standards combined with Dubai's dynamic environment create a unique learning experience.",
+    stats: { programs: "15+", students: "2,000+", ranking: "QS Europe #1", established: "2020" },
+  },
+};
+
+/**
+ * Looks up a university detail record by name (case-insensitive).
+ * Falls back to a generic placeholder if not found in the map.
+ */
+const getUniversityDetail = (name) => {
+  const key = name.toLowerCase();
+  if (UNIVERSITY_DETAILS[key]) return UNIVERSITY_DETAILS[key];
+
+  // Generic fallback for unmapped universities
+  return {
+    name: name,
+    logo: "/assets/images/about/siu logo.jpeg",
+    location: "UAE",
+    description: `${name} is a recognized institution in the UAE offering a wide range of academic programs. Discover world-class education, diverse campus life, and strong career opportunities by applying through SIU.`,
+    stats: { programs: "30+", students: "2,000+", ranking: "Accredited", established: "—" },
+  };
+};
+
+
+/* ============================================================
+   MAIN COMPONENT
+   Views: Search → Detail → Apply Modal → QR Modal
+   ============================================================ */
 const Universities = () => {
   const { lang, t } = useLanguage();
+
+  // ── Original states ──
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({ email: "", mobile: "" });
 
+  // ── NEW states for detail view & apply flow ──
+  const [selectedUni, setSelectedUni] = useState(null);       // university detail object
+  const [showApplyModal, setShowApplyModal] = useState(false); // apply now 2-option modal
+  const [showQRModal, setShowQRModal] = useState(false);       // QR download modal
+
+  // ── Marquee logos (original) ──
   const dubaiUnis = [
     { name: "University of Europe", img: "/assets/images/about/university od europe.png", isIndividual: true, ranking: "QS Europe #1" },
     { name: "American Univ. in Dubai", img: "/assets/images/about/American_University_in_Dubai.png", isIndividual: true, ranking: "QS #610 Global" },
@@ -59,6 +223,7 @@ const Universities = () => {
     { name: "University of Wollongong", img: "/assets/images/about/University_of_Wollongong_in_Dubai.png", isIndividual: true, ranking: "185 Global Rank" },
   ];
 
+  // ── Filtered autocomplete results ──
   const filteredUnis = useMemo(() => {
     if (!searchTerm) return [];
     return UNIVERSITY_LIST.filter(uni => 
@@ -66,11 +231,36 @@ const Universities = () => {
     ).slice(0, 5);
   }, [searchTerm]);
 
+  // ── MODIFIED: Search now goes to detail view instead of lead modal ──
   const handleSearch = () => {
     if (!searchTerm) return;
-    setShowModal(true);
+    const detail = getUniversityDetail(searchTerm);
+    setSelectedUni(detail);
   };
 
+  // ── Back from detail to main section ──
+  const handleBackToSearch = () => {
+    setSelectedUni(null);
+  };
+
+  // ── Apply Now now directly opens the QR modal (skipping screen 1) ──
+  const handleApplyNow = () => {
+    setShowQRModal(true);
+  };
+
+  // ── Register Now — placeholder for now ──
+  const handleRegisterNow = () => {
+    // Will be implemented later
+    alert("Registration flow coming soon!");
+  };
+
+  // ── Download App — close apply modal, open QR modal ──
+  const handleDownloadApp = () => {
+    setShowApplyModal(false);
+    setShowQRModal(true);
+  };
+
+  // ── Original enquiry handler (kept for backwards compat) ──
   const handleEnquiry = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -97,660 +287,623 @@ const Universities = () => {
   return (
     <section id="universities" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
       <div className="container">
-        <div style={{ textAlign: "center", marginBottom: "70px" }}>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{
-              fontSize: "4.2rem",
-              fontWeight: 700,
-              color: "#ffffff",
-              marginBottom: "28px",
-              letterSpacing: lang === "ar" ? "0" : "-3px"
-            }}
-          >
-            {t("universities.title")}
-          </motion.h2>
-          
-          {/* --- Premium Search Bar --- */}
-          <div style={{ maxWidth: "600px", margin: "0 auto 40px", position: "relative" }}>
-            <div style={{
-              display: "flex",
-              background: "rgba(255, 255, 255, 0.08)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              borderRadius: "50px",
-              padding: "5px 8px",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-              flexDirection: lang === "ar" ? "row-reverse" : "row"
-            }}>
-              <div style={{ display: "flex", alignItems: "center", flex: 1, padding: lang === "ar" ? "0 0 0 15px" : "0 15px 0 0", position: "relative" }}>
-                <FaSearch style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.5rem", marginLeft: lang === "ar" ? "0" : "15px", marginRight: lang === "ar" ? "15px" : "0" }} />
-                <input
-                  type="text"
-                  placeholder={lang === "ar" ? "ابحث عن جامعتك مفضلة..." : "Search for your target university..."}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  style={{
-                    flex: 1,
-                    background: "transparent",
-                    border: "none",
-                    padding: "12px 40px 12px 15px",
-                    color: "#ffffff",
-                    fontSize: "1.45rem",
-                    outline: "none",
-                    textAlign: lang === "ar" ? "right" : "left"
-                  }}
-                />
-                {searchTerm && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    onClick={() => setSearchTerm("")}
-                    style={{
-                      position: "absolute",
-                      right: lang === "ar" ? "auto" : "20px",
-                      left: lang === "ar" ? "20px" : "auto",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "rgba(255, 255, 255, 0.4)",
-                      transition: "color 0.2s"
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)"}
-                    onMouseOut={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.4)"}
-                  >
-                    <FaTimesCircle style={{ fontSize: "1.4rem" }} />
-                  </motion.div>
-                )}
-              </div>
-              <button 
-                onClick={handleSearch}
+
+        {/* ============================================================
+            ORIGINAL LAYOUT — Title, Search, Marquee, Strategic Card
+            Only shown when NO university is selected
+            ============================================================ */}
+        {!selectedUni ? (
+          <>
+            <div style={{ textAlign: "center", marginBottom: "70px" }}>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 style={{
-                  background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-                  color: "white",
-                  border: "none",
-                  padding: "0 30px",
-                  borderRadius: "40px",
-                  fontSize: "1.5rem",
+                  fontSize: "4.2rem",
                   fontWeight: 700,
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  boxShadow: "0 10px 20px rgba(37, 99, 235, 0.3)"
+                  color: "#ffffff",
+                  marginBottom: "28px",
+                  letterSpacing: lang === "ar" ? "0" : "-3px"
                 }}
-                onMouseOver={(e) => e.target.style.transform = "translateY(-1px)"}
-                onMouseOut={(e) => e.target.style.transform = "translateY(0)"}
               >
-                {lang === "ar" ? "بحث" : "Search"}
-              </button>
-            </div>
-            
-            {/* Search Suggestions */}
-            <AnimatePresence>
-              {searchTerm && filteredUnis.length > 0 && !showModal && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  style={{
-                    position: "absolute",
-                    top: "100%",
-                    left: 0,
-                    right: 0,
-                    marginTop: "12px",
-                    background: "rgba(15, 23, 42, 0.98)",
-                    backdropFilter: "blur(30px)",
-                    border: "1px solid rgba(255, 255, 255, 0.12)",
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    zIndex: 100,
-                    boxShadow: "0 30px 60px rgba(0,0,0,0.6)"
-                  }}
-                >
-                  {filteredUnis.map((uni, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => {
-                        setSearchTerm(uni);
-                        setShowModal(true);
+                {t("universities.title")}
+              </motion.h2>
+              
+              {/* --- Premium Search Bar --- */}
+              <div style={{ maxWidth: "600px", margin: "0 auto 40px", position: "relative" }}>
+                <div style={{
+                  display: "flex",
+                  background: "rgba(255, 255, 255, 0.08)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  borderRadius: "50px",
+                  padding: "5px 8px",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                  flexDirection: lang === "ar" ? "row-reverse" : "row"
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", flex: 1, padding: lang === "ar" ? "0 0 0 15px" : "0 15px 0 0", position: "relative" }}>
+                    <FaSearch style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.5rem", marginLeft: lang === "ar" ? "0" : "15px", marginRight: lang === "ar" ? "15px" : "0" }} />
+                    <input
+                      type="text"
+                      placeholder={lang === "ar" ? "ابحث عن جامعتك مفضلة..." : "Search for your target university..."}
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSearch();
                       }}
                       style={{
-                        padding: "16px 24px",
+                        flex: 1,
+                        background: "transparent",
+                        border: "none",
+                        padding: "12px 40px 12px 15px",
                         color: "#ffffff",
-                        cursor: "pointer",
-                        borderBottom: "1px solid rgba(255,255,255,0.06)",
-                        textAlign: lang === "ar" ? "right" : "left",
-                        transition: "all 0.2s",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "15px",
-                        flexDirection: lang === "ar" ? "row-reverse" : "row"
+                        fontSize: "1.45rem",
+                        outline: "none",
+                        textAlign: lang === "ar" ? "right" : "left"
                       }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.background = "rgba(59, 130, 246, 0.15)";
-                        e.currentTarget.style.paddingLeft = lang === "ar" ? "24px" : "30px";
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.paddingLeft = "24px";
+                    />
+                    {searchTerm && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        onClick={() => setSearchTerm("")}
+                        style={{
+                          position: "absolute",
+                          right: lang === "ar" ? "auto" : "20px",
+                          left: lang === "ar" ? "20px" : "auto",
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "rgba(255, 255, 255, 0.4)",
+                          transition: "color 0.2s"
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)"}
+                        onMouseOut={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.4)"}
+                      >
+                        <FaTimesCircle style={{ fontSize: "1.4rem" }} />
+                      </motion.div>
+                    )}
+                  </div>
+                  <button 
+                    onClick={handleSearch}
+                    style={{
+                      background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+                      color: "white",
+                      border: "none",
+                      padding: "0 30px",
+                      borderRadius: "40px",
+                      fontSize: "1.5rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      boxShadow: "0 10px 20px rgba(37, 99, 235, 0.3)"
+                    }}
+                    onMouseOver={(e) => e.target.style.transform = "translateY(-1px)"}
+                    onMouseOut={(e) => e.target.style.transform = "translateY(0)"}
+                  >
+                    {lang === "ar" ? "بحث" : "Search"}
+                  </button>
+                </div>
+                
+                {/* Search Suggestions */}
+                <AnimatePresence>
+                  {searchTerm && filteredUnis.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: 0,
+                        right: 0,
+                        marginTop: "12px",
+                        background: "rgba(15, 23, 42, 0.98)",
+                        backdropFilter: "blur(30px)",
+                        border: "1px solid rgba(255, 255, 255, 0.12)",
+                        borderRadius: "20px",
+                        overflow: "hidden",
+                        zIndex: 100,
+                        boxShadow: "0 30px 60px rgba(0,0,0,0.6)"
                       }}
                     >
-                      <FaUniversity style={{ color: "#3b82f6", fontSize: "1.2rem" }} />
-                      <span style={{ fontSize: "1.2rem", fontWeight: 500 }}>{uni}</span>
+                      {filteredUnis.map((uni, idx) => (
+                        <div
+                          key={idx}
+                          onClick={() => {
+                            setSearchTerm(uni);
+                            // Navigate to detail view instead of lead modal
+                            const detail = getUniversityDetail(uni);
+                            setSelectedUni(detail);
+                          }}
+                          style={{
+                            padding: "16px 24px",
+                            color: "#ffffff",
+                            cursor: "pointer",
+                            borderBottom: "1px solid rgba(255,255,255,0.06)",
+                            textAlign: lang === "ar" ? "right" : "left",
+                            transition: "all 0.2s",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "15px",
+                            flexDirection: lang === "ar" ? "row-reverse" : "row"
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.background = "rgba(59, 130, 246, 0.15)";
+                            e.currentTarget.style.paddingLeft = lang === "ar" ? "24px" : "30px";
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.background = "transparent";
+                            e.currentTarget.style.paddingLeft = "24px";
+                          }}
+                        >
+                          <FaUniversity style={{ color: "#3b82f6", fontSize: "1.2rem" }} />
+                          <span style={{ fontSize: "1.2rem", fontWeight: 500 }}>{uni}</span>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                style={{
+                  fontSize: "1.75rem",
+                  color: "#cbd5e1",
+                  maxWidth: "900px",
+                  margin: "0 auto 80px",
+                  lineHeight: 1.6
+                }}
+              >
+                {t("universities.subtitle")}
+              </motion.p>
+            </div>
+
+            {/* Logo Marquee Section - Compact Premium Cards */}
+            <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "30px 0" }}>
+              {/* Row 1: Left to Right */}
+              <motion.div
+                animate={{ x: lang === "ar" ? [-2000, 0] : [0, -2000] }}
+                transition={{
+                  duration: 45,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{ display: "flex", gap: "20px", width: "max-content", marginBottom: "20px", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
+              >
+                {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].map((uni, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    style={{
+                      width: "180px",
+                      height: "115px",
+                      background: "#ffffff",
+                      borderRadius: "18px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px",
+                      boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      cursor: "pointer",
+                      gap: "8px",
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", overflow: "hidden" }}>
+                      <img
+                        src={uni.img}
+                        alt={uni.name}
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
                     </div>
-                  ))}
+                    <span style={{ 
+                      fontSize: "0.95rem", 
+                      fontWeight: 700, 
+                      color: "#1e293b", 
+                      textAlign: "center",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      width: "100%",
+                      padding: "0 4px"
+                    }}>
+                      {uni.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Row 2: Right to Left */}
+              <motion.div
+                animate={{ x: lang === "ar" ? [0, -2000] : [-2000, 0] }}
+                transition={{
+                  duration: 55,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{ display: "flex", gap: "20px", width: "max-content", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
+              >
+                {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].reverse().map((uni, i) => (
+                  <motion.div
+                    key={`rev-${i}`}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    style={{
+                      width: "180px",
+                      height: "115px",
+                      background: "#ffffff",
+                      borderRadius: "18px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px",
+                      boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      cursor: "pointer",
+                      gap: "8px",
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", overflow: "hidden" }}>
+                      <img
+                        src={uni.img}
+                        alt={uni.name}
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </div>
+                    <span style={{ 
+                      fontSize: "0.95rem", 
+                      fontWeight: 700, 
+                      color: "#1e293b", 
+                      textAlign: "center",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      width: "100%",
+                      padding: "0 4px"
+                    }}>
+                      {uni.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Strategic Positioning Card */}
+            <div className="strategic-positioning-card" style={{
+              marginTop: "100px",
+              textAlign: "center",
+              background: "rgba(255, 255, 255, 0.03)",
+              padding: "80px",
+              borderRadius: "48px",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(40px)"
+            }}>
+              <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.8rem", fontWeight: 600, marginBottom: "40px", letterSpacing: lang === "ar" ? "0" : "-3px" }}>
+                {t("universities.strategic_title")}
+              </h3>
+              <p className="strategic-quote" style={{ color: "rgba(255,255,255,0.85)", fontSize: "2.4rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>
+                {t("universities.strategic_quote")}
+              </p>
+            </div>
+          </>
+        ) : (
+          /* ============================================================
+             UNIVERSITY DETAIL VIEW — Premium with staggered animations
+             ============================================================ */
+          <motion.div
+            className="uni-detail"
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+          >
+            {/* Back Button */}
+            <motion.button
+              className="uni-detail__back-btn"
+              onClick={handleBackToSearch}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {lang === "ar" ? "العودة إلى الجامعات" : "Back to Universities"}
+            </motion.button>
+
+            {/* Detail Card */}
+            <motion.div
+              className="uni-detail__card"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            >
+              {/* Logo + Name + Location */}
+              <div className="uni-detail__top">
+                <motion.div
+                  className="uni-detail__logo-wrap"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.25, type: "spring", stiffness: 200, damping: 15 }}
+                >
+                  <img src={selectedUni.logo} alt={selectedUni.name} className="uni-detail__logo-img" />
                 </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            style={{
-              fontSize: "1.75rem",
-              color: "#cbd5e1",
-              maxWidth: "900px",
-              margin: "0 auto 80px",
-              lineHeight: 1.6
-            }}
-          >
-            {t("universities.subtitle")}
-          </motion.p>
-        </div>
-
-        {/* Logo Section - Compact Premium Cards */}
-        <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "30px 0" }}>
-          {/* Row 1: Left to Right */}
-          <motion.div
-            animate={{ x: lang === "ar" ? [-2000, 0] : [0, -2000] }}
-            transition={{
-              duration: 45,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{ display: "flex", gap: "20px", width: "max-content", marginBottom: "20px", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
-          >
-            {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].map((uni, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05, y: -5 }}
-                style={{
-                  width: "180px",
-                  height: "115px",
-                  background: "#ffffff",
-                  borderRadius: "18px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "12px",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  cursor: "pointer",
-                  gap: "8px",
-                  transition: "all 0.3s ease"
-                }}
-              >
-                <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", overflow: "hidden" }}>
-                  <img
-                    src={uni.img}
-                    alt={uni.name}
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      objectFit: "contain"
-                    }}
-                  />
+                <div className="uni-detail__info">
+                  <h2 className="uni-detail__name">{selectedUni.name}</h2>
+                  <p className="uni-detail__location">
+                    <FaMapMarkerAlt className="uni-detail__location-icon" />
+                    {selectedUni.location}
+                  </p>
                 </div>
-                <span style={{ 
-                  fontSize: "0.95rem", 
-                  fontWeight: 700, 
-                  color: "#1e293b", 
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  width: "100%",
-                  padding: "0 4px"
-                }}>
-                  {uni.name}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
 
-          {/* Row 2: Right to Left */}
-          <motion.div
-            animate={{ x: lang === "ar" ? [0, -2000] : [-2000, 0] }}
-            transition={{
-              duration: 55,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{ display: "flex", gap: "20px", width: "max-content", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
-          >
-            {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].reverse().map((uni, i) => (
-              <motion.div
-                key={`rev-${i}`}
-                whileHover={{ scale: 1.05, y: -5 }}
-                style={{
-                  width: "180px",
-                  height: "115px",
-                  background: "#ffffff",
-                  borderRadius: "18px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "12px",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  cursor: "pointer",
-                  gap: "8px",
-                  transition: "all 0.3s ease"
-                }}
+              {/* Divider */}
+              <div className="uni-detail__divider" />
+
+              {/* Description */}
+              <motion.p
+                className="uni-detail__desc"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
               >
-                <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", overflow: "hidden" }}>
-                  <img
-                    src={uni.img}
-                    alt={uni.name}
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      objectFit: "contain"
-                    }}
-                  />
-                </div>
-                <span style={{ 
-                  fontSize: "0.95rem", 
-                  fontWeight: 700, 
-                  color: "#1e293b", 
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  width: "100%",
-                  padding: "0 4px"
-                }}>
-                  {uni.name}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                {selectedUni.description}
+              </motion.p>
 
-        <div className="strategic-positioning-card" style={{
-          marginTop: "100px",
-          textAlign: "center",
-          background: "rgba(255, 255, 255, 0.03)",
-          padding: "80px",
-          borderRadius: "48px",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
-          backdropFilter: "blur(40px)"
-        }}>
-          <h3 className="strategic-title" style={{ color: "#ffffff", fontSize: "4.8rem", fontWeight: 600, marginBottom: "40px", letterSpacing: lang === "ar" ? "0" : "-3px" }}>
-            {t("universities.strategic_title")}
-          </h3>
-          <p className="strategic-quote" style={{ color: "rgba(255,255,255,0.85)", fontSize: "2.4rem", lineHeight: 1.5, maxWidth: "1100px", margin: "0 auto", fontWeight: 500, fontStyle: "italic" }}>
-            {t("universities.strategic_quote")}
-          </p>
-        </div>
+
+
+              {/* Apply Now Button — centered, not full width */}
+              <motion.button
+                className="uni-detail__apply-btn"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={handleApplyNow}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                {lang === "ar" ? "قدّم الآن" : "Apply Now"}
+                <FaArrowRight className="btn-arrow" />
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
 
-      {/* --- PREMIUM LEAD MODAL --- */}
+      {/* ============================================================
+          NEW: APPLY NOW MODAL — 2 Options (Register / Download)
+          (Currently Commented Out per request)
+          ============================================================ */}
+      {/* 
       <AnimatePresence>
-        {showModal && (
-          <div style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px"
-          }}>
+        {showApplyModal && (
+          <motion.div
+            className="apply-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowApplyModal(false)}
+          >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => !isSubmitting && setShowModal(false)}
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "rgba(2, 6, 23, 0.8)",
-                backdropFilter: "blur(12px)"
-              }}
-            />
-            
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 30 }}
+              className="apply-modal"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.93, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 30 }}
-              style={{
-                width: "100%",
-                maxWidth: isSuccess ? "720px" : "600px",
-                background: "#0f172a",
-                borderRadius: "32px",
-                padding: typeof window !== 'undefined' && window.innerWidth < 768 ? "35px 20px" : "50px 40px",
-                position: "relative",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
-                boxShadow: "0 50px 100px -20px rgba(0, 0, 0, 0.8)",
-                textAlign: "center"
-              }}
+              exit={{ scale: 0.93, opacity: 0, y: 30 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
-              <button 
-                onClick={() => setShowModal(false)}
-                style={{ position: "absolute", top: "30px", right: "30px", background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: "1.5rem" }}
-              >
+              <button className="apply-modal__close" onClick={() => setShowApplyModal(false)}>
                 <FaTimes />
               </button>
 
-              {!isSuccess ? (
-                <>
-                  <h3 style={{ color: "#ffffff", fontSize: "3.2rem", fontWeight: 800, marginBottom: "15px", letterSpacing: "-1px" }}>
-                    {lang === "ar" ? "ابدأ رحلتك الجامعية" : "Start Your Journey"}
-                  </h3>
-                  <p style={{ color: "#94a3b8", fontSize: "1.5rem", marginBottom: "45px", fontWeight: 500 }}>
-                    {lang === "ar" 
-                      ? `احصل على مشورة الخبراء لـ ${searchTerm}`
-                      : `Get expert guidance for ${searchTerm}`}
-                  </p>
-                  
-                  <form onSubmit={handleEnquiry} style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-                    <div style={{ textAlign: "left" }}>
-                      <label style={{ color: "#f8fafc", fontSize: "1.2rem", display: "block", marginBottom: "12px", fontWeight: 600 }}>Email Address</label>
-                      <input
-                        required
-                        type="email"
-                        placeholder="example@email.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        style={{
-                          width: "100%",
-                          background: "rgba(255, 255, 255, 0.04)",
-                          border: "1px solid rgba(255, 255, 255, 0.12)",
-                          padding: "20px 24px",
-                          borderRadius: "16px",
-                          color: "white",
-                          fontSize: "1.4rem",
-                          outline: "none",
-                          transition: "border-color 0.2s"
-                        }}
-                        onFocus={(e) => e.target.style.borderColor = "#3b82f6"}
-                        onBlur={(e) => e.target.style.borderColor = "rgba(255, 255, 255, 0.12)"}
-                      />
-                    </div>
-                    
-                    <div style={{ textAlign: "left" }}>
-                      <label style={{ color: "#f8fafc", fontSize: "1.2rem", display: "block", marginBottom: "12px", fontWeight: 600 }}>Mobile Number</label>
-                      <div className="siu-phone-wrapper">
-                        <PhoneInput
-                          country={"ae"}
-                          value={formData.mobile}
-                          onChange={(phone) => setFormData({...formData, mobile: phone})}
-                          containerStyle={{ width: "100%" }}
-                          inputStyle={{
-                            width: "100%",
-                            height: "64px",
-                            background: "rgba(255, 255, 255, 0.04)",
-                            border: "1px solid rgba(255, 255, 255, 0.12)",
-                            borderRadius: "16px",
-                            color: "white",
-                            fontSize: "1.5rem",
-                            paddingLeft: "80px"
-                          }}
-                          buttonStyle={{
-                            background: "rgba(255, 255, 255, 0.06)",
-                            border: "none",
-                            borderRadius: "16px 0 0 16px",
-                            width: "70px",
-                            borderRight: "1px solid rgba(255, 255, 255, 0.1)"
-                          }}
-                          dropdownStyle={{
-                            background: "#1e293b",
-                            color: "white",
-                            border: "1px solid rgba(255, 255, 255, 0.2)",
-                            borderRadius: "12px",
-                            boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
-                            textAlign: "left",
-                            width: "350px",
-                            fontSize: "1.3rem"
-                          }}
-                        />
-                      </div>
-                    </div>
-                    
-                    <button
-                      disabled={isSubmitting}
-                      type="submit"
-                      style={{
-                        marginTop: "10px",
-                        background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-                        color: "white",
-                        padding: "22px",
-                        borderRadius: "18px",
-                        fontSize: "1.6rem",
-                        fontWeight: 800,
-                        border: "none",
-                        cursor: isSubmitting ? "not-allowed" : "pointer",
-                        opacity: isSubmitting ? 0.7 : 1,
-                        transition: "all 0.3s",
-                        boxShadow: "0 15px 30px rgba(37, 99, 235, 0.4)"
-                      }}
-                      onMouseOver={(e) => !isSubmitting && (e.target.style.transform = "translateY(-2px)")}
-                      onMouseOut={(e) => !isSubmitting && (e.target.style.transform = "translateY(0)")}
-                    >
-                      {isSubmitting ? (lang === "ar" ? "جاري الإرسال..." : "Submitting...") : (lang === "ar" ? "تقديم طلب اهتمام" : "Unlock Admissions Guide")}
-                    </button>
-                  </form>
-                </>
-              ) : (
+              <motion.div
+                className="apply-modal__icon-wrap"
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.15, type: "spring", stiffness: 200, damping: 12 }}
+              >
+                <HiOutlineAcademicCap />
+              </motion.div>
+
+              <motion.h3
+                className="apply-modal__title"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                {lang === "ar" ? "ابدأ طلبك" : "Start Your Application"}
+              </motion.h3>
+              <motion.p
+                className="apply-modal__subtitle"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+              >
+                {lang === "ar"
+                  ? <>اختر طريقة التقديم إلى <strong>{selectedUni?.name}</strong></>
+                  : <>Choose how you'd like to apply to <strong>{selectedUni?.name}</strong></>}
+              </motion.p>
+
+              <div className="apply-modal__options">
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+                  className="apply-option apply-option--register"
+                  onClick={handleRegisterNow}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
                 >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", damping: 12, stiffness: 200 }}
-                  >
-                    <FaCheckCircle style={{ color: "#22c55e", fontSize: "8rem", marginBottom: "25px", filter: "drop-shadow(0 0 20px rgba(34, 197, 94, 0.4))" }} />
-                  </motion.div>
-
-                  <h3 style={{ 
-                    color: "#ffffff", 
-                    fontSize: "3.4rem", 
-                    fontWeight: 900, 
-                    marginBottom: "12px", 
-                    letterSpacing: "-1px",
-                    background: "linear-gradient(to bottom, #ffffff, #cbd5e1)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent"
-                  }}>
-                    {lang === "ar" ? "تحميل التطبيق الآن" : "Download App Now"}
-                  </h3>
-                  
-                  <p style={{ color: "#94a3b8", fontSize: "1.5rem", marginBottom: "40px", maxWidth: "480px", margin: "0 auto 40px", lineHeight: 1.6 }}>
-                    {lang === "ar" 
-                      ? "اختر نظامك المفضل لتحميل تطبيق SIU ومتابعة حالة قبولك."
-                      : "Choose your platform to download the SIU app and track your admission status in real-time."}
-                  </p>
-                  
-                  <div style={{ 
-                    display: "flex", 
-                    gap: "24px", 
-                    justifyContent: "center", 
-                    width: "100%",
-                    flexWrap: "wrap"
-                  }}>
-                    {/* iOS Option */}
-                    <motion.div 
-                      whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                      style={{
-                        flex: "1 1 200px",
-                        maxWidth: "260px",
-                        background: "rgba(255, 255, 255, 0.03)",
-                        border: "1px solid rgba(255, 255, 255, 0.08)",
-                        borderRadius: "28px",
-                        padding: "30px 20px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        backdropFilter: "blur(20px)",
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
-                      }}
-                    >
-                      <FaApple style={{ color: "#ffffff", fontSize: "3.2rem", marginBottom: "12px" }} />
-                      <span style={{ color: "#ffffff", fontSize: "1.3rem", fontWeight: 700, marginBottom: "20px" }}>iOS App</span>
-                      <div style={{
-                        background: "#ffffff",
-                        padding: "12px",
-                        borderRadius: "18px",
-                        width: "150px",
-                        height: "150px",
-                        marginBottom: "25px",
-                        boxShadow: "0 15px 30px rgba(0,0,0,0.4)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}>
-                        <img
-                          src="/assets/images/qr-code.png"
-                          alt="iOS QR"
-                          style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                        />
-                      </div>
-                      <button
-                        onClick={() => window.open('https://apps.apple.com', '_blank')}
-                        style={{
-                          width: "100%",
-                          background: "rgba(255, 255, 255, 0.08)",
-                          color: "white",
-                          padding: "16px",
-                          borderRadius: "14px",
-                          fontSize: "1.3rem",
-                          fontWeight: 700,
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
-                          cursor: "pointer",
-                          transition: "all 0.3s",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "10px"
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-                        }}
-                      >
-                         App Store
-                      </button>
-                    </motion.div>
-
-                    {/* Android Option */}
-                    <motion.div 
-                      whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                      style={{
-                        flex: "1 1 200px",
-                        maxWidth: "260px",
-                        background: "linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%)",
-                        border: "1px solid rgba(59, 130, 246, 0.2)",
-                        borderRadius: "28px",
-                        padding: "30px 20px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        backdropFilter: "blur(20px)",
-                        boxShadow: "0 20px 40px rgba(37, 99, 235, 0.1)"
-                      }}
-                    >
-                      <FaAndroid style={{ color: "#3DDC84", fontSize: "3.2rem", marginBottom: "12px" }} />
-                      <span style={{ color: "#ffffff", fontSize: "1.3rem", fontWeight: 700, marginBottom: "20px" }}>Android App</span>
-                      <div style={{
-                        background: "#ffffff",
-                        padding: "12px",
-                        borderRadius: "18px",
-                        width: "150px",
-                        height: "150px",
-                        marginBottom: "25px",
-                        boxShadow: "0 15px 30px rgba(0,0,0,0.4)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}>
-                        <img
-                          src="/assets/images/qr-code.png"
-                          alt="Android QR"
-                          style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                        />
-                      </div>
-                      <button
-                        onClick={() => window.open('https://play.google.com', '_blank')}
-                        style={{
-                          width: "100%",
-                          background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-                          color: "white",
-                          padding: "16px",
-                          borderRadius: "14px",
-                          fontSize: "1.3rem",
-                          fontWeight: 700,
-                          border: "none",
-                          cursor: "pointer",
-                          transition: "all 0.3s",
-                          boxShadow: "0 10px 20px rgba(37, 99, 235, 0.3)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "10px"
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.transform = "translateY(-1px)";
-                          e.currentTarget.style.boxShadow = "0 15px 30px rgba(37, 99, 235, 0.5)";
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.transform = "translateY(0)";
-                          e.currentTarget.style.boxShadow = "0 10px 20px rgba(37, 99, 235, 0.3)";
-                        }}
-                      >
-                        Google Play
-                      </button>
-                    </motion.div>
+                  <span className="apply-option__badge">
+                    <span className="apply-option__badge-icon">✨</span>
+                    {lang === "ar" ? "احصل على خصم 10% فوري على التسجيل" : "Get Instant 10% Discount on Registration"}
+                  </span>
+                  <div className="apply-option__row">
+                    <div className="apply-option__icon-box">
+                      <HiOutlineClipboardCheck />
+                    </div>
+                    <div className="apply-option__content">
+                      <p className="apply-option__title">
+                        {lang === "ar" ? "سجّل الآن" : "Register Now"}
+                      </p>
+                      <p className="apply-option__desc">
+                        {lang === "ar"
+                          ? "أكمل تسجيلك عبر الإنترنت واحصل على خصم 10% حصري فوراً."
+                          : "Complete your registration online and unlock an exclusive 10% discount instantly."}
+                      </p>
+                    </div>
+                    <div className="apply-option__arrow">
+                      <FaArrowRight />
+                    </div>
                   </div>
+                </motion.div>
 
+                <motion.div 
+                  className="apply-modal__separator"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.35 }}
+                >
+                  {lang === "ar" ? "أو" : "OR"}
+                </motion.div>
+
+                <motion.div
+                  className="apply-option apply-option--download"
+                  onClick={handleDownloadApp}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                >
+                  <div className="apply-option__row">
+                    <div className="apply-option__icon-box">
+                      <HiOutlineDeviceMobile />
+                    </div>
+                    <div className="apply-option__content">
+                      <p className="apply-option__title">
+                        {lang === "ar" ? "تحميل التطبيق" : "Download App"}
+                      </p>
+                      <p className="apply-option__desc">
+                        {lang === "ar"
+                          ? "حمّل تطبيق SIU على iOS أو Android لأفضل تجربة تقديم."
+                          : "Get the SIU mobile app on iOS or Android for the best application experience."}
+                      </p>
+                    </div>
+                    <div className="apply-option__arrow">
+                      <FaArrowRight />
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      */}
+
+      {/* ============================================================
+          NEW: QR DOWNLOAD MODAL — iOS & Android
+          ============================================================ */}
+      <AnimatePresence>
+        {showQRModal && (
+          <motion.div
+            className="qr-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowQRModal(false)}
+          >
+            <motion.div
+              className="qr-modal"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.93, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.93, opacity: 0, y: 30 }}
+              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+            >
+              {/* Close */}
+              <button className="qr-modal__close" onClick={() => setShowQRModal(false)}>
+                <FaTimes />
+              </button>
+
+              {/* Header */}
+              <h3 className="qr-modal__title">
+                {lang === "ar" ? "تحميل تطبيق SIU" : "Download the SIU App"}
+              </h3>
+              <p className="qr-modal__subtitle">
+                {lang === "ar"
+                  ? "امسح رمز QR بكاميرا هاتفك لتحميل التطبيق على جهازك المفضل."
+                  : "Scan the QR code with your phone camera to download the app on your preferred platform."}
+              </p>
+
+              {/* Platform Cards */}
+              <div className="qr-modal__platforms">
+                {/* iOS */}
+                <motion.div
+                  className="qr-platform"
+                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                >
+                  <FaApple className="qr-platform__icon" />
+                  <span className="qr-platform__label">
+                    {lang === "ar" ? "تطبيق iOS" : "iOS App"}
+                  </span>
+                  <div className="qr-platform__qr-wrap">
+                    <img src="/assets/images/qr-code.png" alt="iOS QR" className="qr-platform__qr-img" />
+                  </div>
                   <button
-                    onClick={() => setShowModal(false)}
-                    style={{
-                      marginTop: "40px",
-                      background: "transparent",
-                      color: "#94a3b8",
-                      fontSize: "1.2rem",
-                      fontWeight: 600,
-                      border: "none",
-                      cursor: "pointer",
-                      textDecoration: "underline",
-                      opacity: 0.7
-                    }}
+                    className="qr-platform__btn qr-platform__btn--ios"
+                    onClick={() => window.open('https://apps.apple.com', '_blank')}
                   >
-                    {lang === "ar" ? "إغلاق" : "Close window"}
+                    App Store
                   </button>
                 </motion.div>
-              )}
+
+                {/* Android */}
+                <motion.div
+                  className="qr-platform qr-platform--android"
+                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                >
+                  <FaAndroid className="qr-platform__icon qr-platform__icon--android" />
+                  <span className="qr-platform__label">
+                    {lang === "ar" ? "تطبيق Android" : "Android App"}
+                  </span>
+                  <div className="qr-platform__qr-wrap">
+                    <img src="/assets/images/qr-code.png" alt="Android QR" className="qr-platform__qr-img" />
+                  </div>
+                  <button
+                    className="qr-platform__btn qr-platform__btn--android"
+                    onClick={() => window.open('https://play.google.com', '_blank')}
+                  >
+                    Google Play
+                  </button>
+                </motion.div>
+              </div>
+
+              {/* Close text */}
+              <button className="qr-modal__close-text" onClick={() => setShowQRModal(false)}>
+                {lang === "ar" ? "إغلاق" : "Close window"}
+              </button>
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
+      {/* ── Original styles (kept as-is) ── */}
       <style jsx global>{`
         .siu-phone-wrapper .react-tel-input {
           font-family: inherit !important;
@@ -813,7 +966,6 @@ const Universities = () => {
           padding: 10px 0 !important;
           box-shadow: 0 40px 80px rgba(0,0,0,0.7) !important;
           overflow-x: hidden !important;
-          /* Hide scrollbar */
           -ms-overflow-style: none !important;
           scrollbar-width: none !important;
         }
