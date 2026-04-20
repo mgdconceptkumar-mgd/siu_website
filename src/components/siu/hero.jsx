@@ -88,7 +88,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="siu-hero-section pt-150 pb-100 p-relative overflow-hidden"
+      className="siu-hero-section pt-120 pb-100 p-relative overflow-hidden"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -114,7 +114,7 @@ const Hero = () => {
               transition={{ duration: 0.8 }}
             >
               {/* BRANDING BADGE */}
-              <div className="hero-badge-wrapper" style={{ marginBottom: "12px", display: "flex", justifyContent: lang === "ar" ? "right" : "left", paddingTop: "130px" }}>
+              <div className="hero-badge-wrapper" style={{ marginBottom: "12px", display: "flex", justifyContent: lang === "ar" ? "right" : "left", paddingTop: "90px" }}>
                 <span className="hero-badge" style={{
                   fontFamily: "var(--font-primary), sans-serif",
                   fontWeight: 950,
@@ -318,7 +318,7 @@ const Hero = () => {
           /* Badge — sits below header with comfortable gap */
           .hero-badge-wrapper {
             justify-content: center !important;
-            padding-top: 100px !important;
+            padding-top: 70px !important;
             margin-bottom: 28px !important;
           }
           .hero-badge {

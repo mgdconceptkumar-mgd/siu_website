@@ -1,0 +1,768 @@
+[{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9cb"
+  },
+  "university": "ABU DHABI HOSPITALITY ACADEMY – LES ROCHES",
+  "universityCode": "ADEE6",
+  "universityDescription": "Abu Dhabi Hospitality Academy – Les Roches is a pioneering hospitality education institution in Abu Dhabi, established in partnership between Les Roches Global Hospitality Education and the Department of Culture and Tourism – Abu Dhabi to deliver world‑class programmes that blend international expertise with Emirati hospitality traditions. Located in Zayed Sports City, the academy offers practical, industry‑focused Bachelor’s and Master’s degrees in hospitality management and related fields with state‑of‑the‑art facilities and strong industry links for internships and career development, preparing future leaders for the global hospitality sector."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9cc"
+  },
+  "university": "ABU DHABI POLYTECHNIC",
+  "universityCode": "ADEE7",
+  "universityDescription": "Abu Dhabi Polytechnic is a government higher education institution established in 2010 as part of the Institute of Applied Technology to deliver industry‑aligned technical and applied science education supporting Abu Dhabi Economic Vision 2030. It offers accredited diplomas, higher diplomas and applied bachelor’s degrees in fields such as electromechanical and information security engineering, petroleum technology and meteorology, combining classroom learning with on‑the‑job training and strong industry partnerships to prepare skilled technologists and engineers for key national sectors."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9cd"
+  },
+  "university": "ABU DHABI SCHOOL OF MANAGEMENT",
+  "universityCode": "ADEE8",
+  "universityDescription": "Abu Dhabi School of Management (ADSM) is a government‑licensed business school in the UAE, established under the Abu Dhabi Chamber of Commerce to develop entrepreneurial leaders and managers through high‑quality, internationally accredited business programs. It offers bachelor’s and master’s degrees—including MBA and MSc specialisations in leadership, business analytics, quality and organisational development—focused on innovation, digital technologies and real‑world business challenges, with a vision to support sustainable socio‑economic development and the UAE’s knowledge economy."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9ce"
+  },
+  "university": "Abu Dhabi University",
+  "universityCode": "AD391",
+  "universityDescription": "Abu Dhabi University is committed to becoming the best institution of its kind in the region. We are a private, multi-campus university committed to meeting the education, skills and knowledge needs in the United Arab Emirates and neighbouring countries through qualifications and standards that are respected across the world."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9cf"
+  },
+  "university": "Ajman University",
+  "universityCode": "AUEAE",
+  "universityDescription": "Ajman University, established in 1988 as the first private university in the GCC, has been a pioneer in inclusion and innovation. It gained global recognition with QAA accreditation in 2020 and is the first private, non-profit university in the UAE and Arab region accredited by WSCUC."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d0"
+  },
+  "university": "AL AIN UNIVERSITY",
+  "universityCode": "AAEE9",
+  "universityDescription": "Al Ain University (AAU) is a private university in the United Arab Emirates, established in 2004 with campuses in Al Ain and Abu Dhabi, offering a broad range of accredited undergraduate, master’s, doctoral and professional programs across fields such as engineering, business, law, pharmacy, dentistry, nursing, education, humanities, communication and media. Licensed by the UAE Ministry of Education and internationally accredited by bodies such as QAA (UK), ABET, ACPE and AACSB, AAU focuses on high‑quality education, research and community engagement while preparing graduates for successful careers in a global and sustainable economy."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d3"
+  },
+  "university": "Al Qasimia University",
+  "universityCode": "AQECE",
+  "universityDescription": "Al Qasimia University (AQU), founded in 2013 by Royal Decree No. (2) under His Highness Sheikh Dr. Sultan bin Mohammed AlQasimi, Supreme Council Member and Ruler of Sharjah, is a distinctive Islamic-Arabic university in Sharjah. Located in University City, its eco-friendly campus blends Islamic architectural beauty with modern facilities, spanning over 1,036,049 m², including academic buildings, library, mosque, auditorium, and residential halls. AQU offers segregated colleges for men and women—Holy Quran, Sharia and Islamic Studies, Arts and Humanities, Communication, and Economics and Management—supported by lecture halls, faculty offices, labs, and administrative services, providing a vibrant, integrated learning environment guided by Islamic principles and open to the world."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d4"
+  },
+  "university": "AL WASL UNIVERSITY",
+  "universityCode": "AWEEA",
+  "universityDescription": "Al Wasl University is a non‑profit higher education institution in Dubai, United Arab Emirates, established in 1986 under the leadership of His Excellency Juma Al Majid to serve as a platform for knowledge, cultural identity and community development. Originally the College of Islamic and Arab Studies, it became Al Wasl University in 2019 and now offers high‑quality undergraduate and postgraduate programs—especially in Islamic studies, Arabic language and related fields—while enhancing research, creative thinking and partnerships locally and internationally to meet evolving societal needs."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d5"
+  },
+  "university": "ALEXANDRIA UNIVERSITY",
+  "universityCode": "AUEEB",
+  "universityDescription": "Alexandria University Dubai (Abu Dhabi branch) is the planned UAE‑based campus of Egypt’s historic Alexandria University, set to open for the 2025–2026 academic year in Abu Dhabi, expanding the university’s global footprint and academic reach. Approved by Egyptian and Emirati authorities, the branch will offer a range of undergraduate and graduate programs—including business, engineering, computer science, nursing, medicine and dentistry—alongside dual and joint degrees in collaboration with international partner universities, reflecting Alexandria University’s mission of quality education, research and knowledge dissemination in the UAE and beyond."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d6"
+  },
+  "university": "American University in Dubai",
+  "universityCode": "AUEB3",
+  "universityDescription": "The American University in Dubai is a private, academically and culturally inclusive institution of higher learning, providing a globally recognized American education."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d7"
+  },
+  "university": "American University In The Emirates",
+  "universityCode": "AUEB4",
+  "universityDescription": "The American University in the Emirates is a coeducational institution offering undergraduate and graduate programs, preparing students as global citizens through quality teaching, research, and service."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d8"
+  },
+  "university": "AMERICAN UNIVERSITY OF RAS AL KHAIMAH",
+  "universityCode": "AUEEC",
+  "universityDescription": "American University of Ras Al Khaimah (AURAK) is a public, non‑profit, co‑educational American‑style university in Ras Al Khaimah, UAE, offering accredited undergraduate and graduate programmes across business, engineering, computing, biotechnology, architecture, media and education. Its large, modern campus fosters intercultural learning with students from 45+ nationalities, mandatory internships and strong industry partnerships, preparing graduates for global careers while emphasising research, sustainability and real‑world skills. AURAK holds licensure from the UAE Ministry of Education and accreditation from US (SACSCOC), UK (QAA) and other recognised bodies."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9d9"
+  },
+  "university": "Amity University Dubai",
+  "universityCode": "AMITY",
+  "universityDescription": null
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9da"
+  },
+  "university": "BATTERJEE MEDICAL COLLEGE",
+  "universityCode": "BMEED",
+  "universityDescription": "Batterjee Medical College – Dubai is the UAE branch of Batterjee Medical College (BMC), a well‑established healthcare education institution originating in Saudi Arabia, offering accredited undergraduate programmes in Nursing, Respiratory Therapy and Occupational Therapy with hands‑on clinical training and global partnerships. Licensed by the Commission for Academic Accreditation (CAA) UAE, BMC Dubai combines modern facilities and expert faculty to prepare students for careers in regional and international healthcare sectors."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9db"
+  },
+  "university": "Birla Institute of Technology and Science, Pilani – Dubai Campus",
+  "universityCode": "BIEB6",
+  "universityDescription": "BITS Pilani Dubai Campus, the UAE’s premier engineering institute and the only international campus of BITS Pilani. Since 2000, we have delivered high-quality technical education while adapting to the local environment, earning a reputation as one of the region’s top institutions."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9dc"
+  },
+  "university": "Birla Institute of Technology, Ras Al Khaimah",
+  "universityCode": null,
+  "universityDescription": "BITS Pilani RAK Campus, the UAE’s premier engineering institute and the only international campus of BITS Pilani. Since 2000, we have delivered high-quality technical education while adapting to the local environment, earning a reputation as one of the region’s top institutions."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9dd"
+  },
+  "university": "British University in Dubai",
+  "universityCode": "BUEB7",
+  "universityDescription": null
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9df"
+  },
+  "university": "CANADIAN UNIVERSITY DUBAI",
+  "universityCode": "CU604",
+  "universityDescription": "Canadian University Dubai (CUD) is a private university in Dubai, United Arab Emirates, founded in 2006 to bring world‑class Canadian‑style education to Dubai’s dynamic business and cultural hub. Located at City Walk, it offers a wide range of accredited undergraduate and postgraduate programmes across business, engineering, architecture, communication, health sciences and creative industries with a Canadian‑inspired curriculum and strong industry alignment. Licensed by the UAE Ministry of Higher Education and Scientific Research, CUD has a diverse student community from 120+ nationalities, global academic partnerships, and opportunities to transfer credits to Canadian institutions, preparing graduates for careers in the UAE and internationally"
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e0"
+  },
+  "university": "City University Ajman",
+  "universityCode": "CUEAF",
+  "universityDescription": "City University Ajman has earned international recognition, with AQAS accreditation for its Public Relations and Advertising program and HCERES accreditation for its law degrees. As a member of AACSB, it demonstrates a strong commitment to global academic standards and high-quality education."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e1"
+  },
+  "university": "City University of London",
+  "universityCode": "CUED5",
+  "universityDescription": "City, University of London’s Dubai campus is an extension of the renowned UK-based institution, offering programs in business, finance, and management with the same academic rigor and quality as its London campus. Situated in Dubai’s dynamic business hub, the campus provides a multicultural learning environment that blends theoretical knowledge with practical, industry-relevant experience. It emphasizes leadership, analytical thinking, and global business perspectives, preparing students for careers in finance, consulting, and international business. The Dubai campus also leverages strong industry connections, guest lectures, and professional networking opportunities to equip students with the skills and insights needed to succeed in today’s competitive global market."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e2"
+  },
+  "university": "Curtin University",
+  "universityCode": "CU183",
+  "universityDescription": "Curtin University Dubai, launched in 2018 with Transnational Academic Group, is a global, innovative university known for high-impact research and strong industry ties. With a 95% graduate placement rate, it focuses on personalized learning, talent development, and producing industry-ready professionals."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e4"
+  },
+  "university": "Dubai Institute of Design and Innovation",
+  "universityCode": "DIEBA",
+  "universityDescription": "The Dubai Institute of Design and Innovation (DIDI) is a private, non-profit university in Dubai for creative thinkers, designers, and innovators. It offers the region’s first multidisciplinary design degree, combining visual literacy, technological fluency, and strategic proficiency to empower students to shape the future."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e5"
+  },
+  "university": "Dubai Medical University",
+  "universityCode": "DMEBB",
+  "universityDescription": "Dubai Medical University (DMU) continues the visionary legacy of H.E. Saeed Ahmed Lootah, uniting Dubai Medical College for Girls, Dubai Pharmacy College, and the new College of Nursing (2023). DMU offers comprehensive healthcare programs from undergraduate to postgraduate levels, fostering interdisciplinary collaboration and shaping the future of medical, pharmaceutical, and nursing education in Dubai and the UAE."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e6"
+  },
+  "university": "DUBAI POLICE ACADEMY",
+  "universityCode": "DPEEF",
+  "universityDescription": "Dubai Police Academy is the flagship training and education institution of Dubai Police, established in 1987 to prepare highly qualified, disciplined law enforcement professionals through a blend of academic excellence, police sciences, legal training and field readiness. It offers accredited programmes—including bachelor’s, master’s and specialised diplomas in security, criminal sciences, leadership and emerging fields such as cybersecurity—combining classroom study with military, tactical and practical training to equip officers with the skills to meet modern security challenges locally and internationally."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e7"
+  },
+  "university": "EM Normandie Business School",
+  "universityCode": "ENEE0",
+  "universityDescription": "Inaugurated in 2022, the EM Normandie Dubai campus is located in Dubai Knowledge Park near Palm Jumeirah, covering 1,400 m² with classrooms, executive offices, and social spaces. Designed in collaboration with KPS, the campus offers a modern, flexible environment for learning and collaboration, near major IT headquarters like Dell, Cisco, Huawei, and Amazon."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e8"
+  },
+  "university": "EMIRATES ACADEMY FOR IDENTITY & CITIZENSHIP",
+  "universityCode": "EAEF0",
+  "universityDescription": "Emirates Academy for Identity & Citizenship (EAIC) is a specialised higher education institution in the United Arab Emirates established under federal law and operating within the Federal Authority for Identity, Citizenship, Customs & Ports Security to provide accredited academic and professional programmes in identity management, citizenship, security sciences and national security. Licensed by the UAE Ministry of Education’s Commission for Academic Accreditation, EAIC offers bachelor’s and diploma programmes—and soon a Master of Science in National Security—designed to enhance theoretical knowledge and practical competencies for careers in security, governance and public service while supporting national development and the UAE’s strategic priorities."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9e9"
+  },
+  "university": "Emirates Aviation Academy",
+  "universityCode": "EAEBC",
+  "universityDescription": "Licensed by the UAE Ministry of Education and KHDA, this institute offers a wide range of aviation-focused programs, including aeronautical engineering, aviation management, business management, and aviation safety and security, providing students with specialised expertise for the industry."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9ea"
+  },
+  "university": "EMIRATES COLLEGE FOR ADVANCED EDUCATION",
+  "universityCode": "ECEF1",
+  "universityDescription": "Emirates College for Advanced Education (ECAE) is a government‑licensed higher education institution in Abu Dhabi, United Arab Emirates, founded in 2007 to prepare high‑quality teachers, educational leaders and professionals through internationally accredited undergraduate, postgraduate and professional development programmes aligned with national education reform goals. The college focuses on research‑informed practice, lifelong learning and educational innovation to transform school education in the UAE and support national visions such as Abu Dhabi Vision 2030 and UAE Centennial 2071"
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9eb"
+  },
+  "university": "Emirates Diplomatic Academy",
+  "universityCode": "EDEA4",
+  "universityDescription": "In today’s rapidly evolving global environment, where national security and prosperity increasingly depend on informed and well-connected leaders and policy makers, the Anwar Gargash Diplomatic Academy (AGDA) is a leading centre of excellence that educates the next generations of foreign policy decision makers and informs the public on the most pressing challenges facing the region and the world."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9ec"
+  },
+  "university": "ESCP BUSINESS SCHOOL",
+  "universityCode": "EBED8",
+  "universityDescription": "ESCP Business School Dubai is the Middle East branch of the historic ESCP Business School, the world’s first business school established in 1819, located in the Dubai International Financial Centre (DIFC) Academy. It offers world‑class postgraduate and executive education programmes—such as the Master of Science in Big Data and Business Analytics and Executive Doctorate in Business Administration—designed to develop leadership, innovation and analytical skills tailored to the UAE and global business landscape. As part of a multi‑campus institution with a strong global network, ESCP Dubai partners with government and industry leaders to support talent development and equip professionals to meet today’s strategic and digital challenges"
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9ed"
+  },
+  "university": "Esmod French Fashion Institute",
+  "universityCode": "EFEBD",
+  "universityDescription": "ESMOD French Fashion Institute Dubai, established in 2006, is the Middle East’s first higher education institution fully dedicated to fashion. It combines French heritage with international creativity, offering programs in design, pattern making, couture, footwear, and fashion marketing, preparing students for global industry careers."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9ef"
+  },
+  "university": "EUROPEAN UNIVERSITY RAK CAMPUS",
+  "universityCode": "EUEF3",
+  "universityDescription": "European University RAK Campus is a higher education institution in Ras Al Khaimah, United Arab Emirates, established in 2024 through a consortium of advanced European educational organisations to deliver international‑standard degree and diploma programmes across a range of academic disciplines. The campus offers undergraduate and postgraduate courses with opportunities for two‑diploma qualifications in partnership with European institutions, emphasising academic rigor, practical skills, research, mobility and multicultural learning to prepare graduates for the global labour market. The institution holds institutional licensing from the UAE Ministry of Higher Education and participates in European education networks."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f1"
+  },
+  "university": "Fatima College of Health Science",
+  "universityCode": "FCEA6",
+  "universityDescription": "Fatima College of Health Sciences, founded in 2006, aims to lead health education in the UAE, initially offering a BSc in Nursing to train Emirati nurses and upskill diploma holders."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f2"
+  },
+  "university": "Georgetown University",
+  "universityCode": "GUEDA",
+  "universityDescription": "Georgetown University Dubai is the Dubai hub of the globally renowned Georgetown University’s McDonough School of Business, offering top‑tier graduate programs such as the Executive MBA and Master’s in International Business and Policy at the DIFC Academy in Dubai International Financial Centre. The campus delivers the same rigorous, values‑based education and global perspective as its U.S. counterpart, tailored to the Middle East, North Africa and South Asia (MENASA) region, equipping leaders with strategic, ethical, and international business and policy skills and access to Georgetown’s global network of over 220,000 alumni."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f3"
+  },
+  "university": "GLOBAL STUDIES UNIVERSITY",
+  "universityCode": "GSEF5",
+  "universityDescription": "Global Studies University (GSU), established in 2023 by Emiri decree of Sultan bin Muhammad Al-Qasimi, is a postgraduate institution in Sharjah dedicated to interdisciplinary research and education in global studies. Led by President Hoor Al Qasimi and Chancellor Salah M. Hassan, GSU aligns with the UAE’s National Higher Education Strategy 2030 and National Agenda 2021, supporting the country’s vision as a global cultural and knowledge hub. Designed as a network of interconnected institutes—including The Africa Institute and the forthcoming Asia Institute—GSU promotes advanced postgraduate education that bridges humanities and social sciences through interdisciplinary approaches and non-Western language study. By training master’s and Ph.D. students to address local and regional issues within a global context, GSU aims to cultivate critical thinkers who will contribute to knowledge production in the UAE and internationally."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f4"
+  },
+  "university": "Gulf American University",
+  "universityCode": "GAECA",
+  "universityDescription": "Gulf American University is a global higher education institution offering professional and industry-focused programs. With partner campuses in the USA, UK, India, Canada, South America, and the UAE, GAU delivers education through traditional, online, and executive learning, preparing graduates for successful careers worldwide."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f5"
+  },
+  "university": "Gulf Medical University",
+  "universityCode": "GMEB0",
+  "universityDescription": "Founded in 1998 by Dr. Thumbay Moideen, Gulf Medical University (GMU) is a leading medical university integrating education, research, and patient care to train healthcare professionals. It offers undergraduate, postgraduate, and short-term programs across medicine, health sciences, and healthcare business. GMU’s own network of hospitals and clinics provides hands-on learning and workforce development."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f6"
+  },
+  "university": "Hamdan Bin Mohammed Smart University",
+  "universityCode": "HBEBE",
+  "universityDescription": "HBMSU is the UAE’s first accredited e-learning university, leading in smart learning and innovative teaching. It offers flexible, learner-centric programs focused on lifelong learning, quality management, and organizational excellence, supported by strong international academic and professional partnerships."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f7"
+  },
+  "university": "Heriot-Watt University",
+  "universityCode": "HUEBF",
+  "universityDescription": null
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f8"
+  },
+  "university": "Higher Colleges of Technology",
+  "universityCode": "HCEA7",
+  "universityDescription": "At Higher Colleges of Technology, we nurture students’ talent and ambition while creating clear career pathways, empowering them to innovate and contribute to future growth."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9f9"
+  },
+  "university": "Hult International Business School",
+  "universityCode": "HIEC0",
+  "universityDescription": "Hult International Business School offers a hands-on, global learning experience with campuses in Boston, London, and Dubai. Students work in diverse international teams, tackle real-world business challenges, and gain practical experience from day one. With a focus on human skills like communication, collaboration, and creativity—supported by industry-experienced faculty and personal coaching—Hult prepares graduates to succeed in a rapidly evolving, AI-driven world."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9fa"
+  },
+  "university": "Institute of Management Technology",
+  "universityCode": "IOED3",
+  "universityDescription": "Established in 2006, IMT Dubai offers accredited MBA and BBA programs focused on academic rigor, industry engagement, and ethical business education. Licensed by the UAE Ministry of Education and accredited by the Commission for Academic Accreditation (CAA), its state-of-the-art campus in Dubai International Academic City provides academic halls, a learning resource center, and on-campus housing for 600+ students. With diverse faculty, extensive internships, international exchange programs, and strong industry linkages, IMT Dubai prepares graduates to excel as competent, ethical business professionals, contributing globally across corporations, government, and entrepreneurship."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9fb"
+  },
+  "university": "Islamic Azad University (IAU)",
+  "universityCode": "IAEDE",
+  "universityDescription": "Islamic Azad University Dubai Branch is the Dubai campus of Islamic Azad University—one of the world’s largest private university systems—located in Dubai Knowledge Park, offering undergraduate and postgraduate degrees in fields such as architecture engineering, business management, law and related disciplines. Accredited by Iran’s Ministry of Science, Research and Technology and by the Knowledge and Human Development Authority (KHDA) in Dubai, the branch provides quality English‑medium higher education with a multicultural academic environment and internationally recognised qualifications designed to support students in academic, professional and research pursuits."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9fc"
+  },
+  "university": "Istituto Marangoni Dubai",
+  "universityCode": "IMED9",
+  "universityDescription": "Istituto Marangoni Dubai is the Dubai campus of the renowned Italian fashion and design institution Istituto Marangoni, part of a global network of creative education schools with roots dating back to 1935. Located in Dubai International Financial Centre (DIFC), it offers CAA‑accredited undergraduate and postgraduate programs in fashion, design, visual communication, product and interior design, and related creative fields, blending Italian craftsmanship with practical industry‑focused training. The school fosters creativity, innovation, and professional readiness through studio‑style learning, industry collaborations, and international opportunities within a multicultural environment, preparing students for careers in the global fashion and creative industries."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9fd"
+  },
+  "university": "Khalifa University",
+  "universityCode": "KU384",
+  "universityDescription": "The internationally top-ranked Khalifa University of Science and Technology is the one university in the UAE with the research and academic programs that address the entire range of strategic, scientific and industrial challenges facing the UAE’s knowledge economy transformation and our rapidly evolving world."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9fe"
+  },
+  "university": "London Business School",
+  "universityCode": "LBED6",
+  "universityDescription": "Founded in 2007, the London Business School Dubai Centre is part of the globally renowned London Business School, offering world-class business and management programs in one of the Middle East’s key financial hubs. Focused on leadership, innovation, and global thinking, its interactive programs develop strategic, decision-making, and multicultural skills. LBS Dubai’s graduates hold leadership roles worldwide, while collaborations with organizations like McKinsey, PwC, and Emirates Group strengthen its regional and international impact."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55ae9ff"
+  },
+  "university": "LUISS Libera Universita Internazionale degli Studi Sociali Guido Carli (DWTCA Branch)",
+  "universityCode": "LLEE5",
+  "universityDescription": "LUISS Libera Università Internazionale degli Studi Sociali Guido Carli — Dubai Hub is the Dubai branch of Italy’s prestigious LUISS University, offering specialised academic and executive education rooted in international social sciences, business, law and management. Based in the Dubai World Trade Centre (DWTC) Convention Tower, the Dubai Hub for Made in Italy delivers high‑level professional and academic programmes tailored to the MENA region and bridges Italian expertise with global markets, fostering innovation, leadership and international career readiness through collaboration, advanced training and cross‑border opportunities."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea00"
+  },
+  "university": "Manipal University",
+  "universityCode": "MUEC1",
+  "universityDescription": "Manipal Academy of Higher Education Dubai Campus, established in 2000, is a MoHESR-licensed, CAA-accredited, and KHDA 5-star rated university with over 25 years of excellence in the UAE. Part of India’s largest private university, it offers 50+ programs across disciplines including engineering, business, design, and life sciences. With a diverse student body from 50+ countries and modern facilities, it provides a global, innovation-driven learning environment."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea01"
+  },
+  "university": "Middlesex University Dubai",
+  "universityCode": "MUEC2",
+  "universityDescription": "Middlesex University Dubai is a 5-star KHDA-rated institution known for innovation, academic excellence, and research. Since 2005, it has grown into Dubai’s largest UK university, with over 6,400 students from 120+ nationalities. With campuses in Dubai Knowledge Park, Dubai International Academic City, and Dubai Media City (opened 2026), it offers industry-focused, career-driven education in a diverse, global environment."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea02"
+  },
+  "university": "Moscow University for Industry and Finance (Synergy)",
+  "universityCode": "MUEE3",
+  "universityDescription": "Moscow University for Industry and Finance “Synergy” – Dubai is the Dubai branch of Synergy University, one of Russia’s largest private higher education institutions, located in Jumeirah Lake Towers within the DMCC Free Zone. Established in 2013, it offers internationally recognised undergraduate, postgraduate and business programmes in fields such as global economy and sustainability, innovative entrepreneurship, hospitality management, information systems and EMBA leadership courses, combining practical, career‑focused learning with internships and industry engagement. Synergy Dubai holds licensure from the Knowledge and Human Development Authority (KHDA) and delivers degrees with global recognition that prepare graduates for opportunities in business, technology and management worldwide."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea03"
+  },
+  "university": "Murdoch University Dubai",
+  "universityCode": "MUEC3",
+  "universityDescription": "Murdoch University Dubai, established in 2008, is a branch of Murdoch University in Australia. Located in Dubai Knowledge Park, it offers state-of-the-art facilities including cybersecurity and gaming labs, with ongoing campus expansion. Licensed by KHDA and CAA, and regulated by Australia’s TEQSA, it delivers globally recognised degrees with a strong focus on quality, innovation, and industry-relevant education."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea04"
+  },
+  "university": "New York University, Abu Dhabi",
+  "universityCode": "NYEA9",
+  "universityDescription": "New York University Abu Dhabi is a unique Middle East campus combining a top American liberal arts education with leading research. It offers a rigorous, diverse curriculum and a truly global community, with students from over 120 countries bringing varied perspectives and experiences."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea05"
+  },
+  "university": "Plekhanov University of Economics",
+  "universityCode": "PREE1",
+  "universityDescription": "Plekhanov Russian University of Economics (PRUE) was founded in 1907 and stands as Russia's oldest university dedicated to Economics and Business. One of the largest universities, it demonstrates steady growth in the number of students from 13,000 in 2002 to approximately 50,000 in 2023. The University is ranked among Russia’s top 5 universities by RAEX 2022 and holds a position in the top 301-500 bracket in the QS World University Rankings."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea06"
+  },
+  "university": "Rabdan Academy, Abu Dhabi",
+  "universityCode": "RAEAB",
+  "universityDescription": "Rabdan Academy is a government-owned institution focused on safety, security, defence, and crisis management education. Established in 2013 and accredited locally and internationally, it is recognised for its excellence, including a 5-Star QS rating. The Academy uses a dual education model combining academic study with practical training, aligned with workforce needs."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea07"
+  },
+  "university": "Rochester Institute of Technology – Dubai",
+  "universityCode": "RIEC4",
+  "universityDescription": "Rochester Institute of Technology Dubai, part of Rochester Institute of Technology (founded in 1829), offers world-class, career-focused education in the UAE. Located in Dubai Silicon Oasis, it blends technology, arts, and design to foster innovation and creativity. With 11 undergraduate and 8 graduate programs, RIT Dubai serves a diverse global student community and prepares graduates for success in a rapidly evolving world."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea08"
+  },
+  "university": "S P Jain School of Global Management",
+  "universityCode": "SPED1",
+  "universityDescription": "SP Jain School of Global Management’s Dubai campus is a prestigious institution offering undergraduate, postgraduate, and executive programs in business, finance, and management, emphasizing a global perspective and experiential learning. Located in the heart of Dubai, it attracts a diverse international student body and focuses on developing leadership, entrepreneurial skills, and cross-cultural competence. The campus combines modern facilities, industry-linked projects, and real-world exposure, preparing students for careers in multinational corporations, global finance, and international business environments. Its curriculum integrates academic rigor with practical learning, fostering innovation, strategic thinking, and a deep understanding of global markets."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea09"
+  },
+  "university": "SAE Institute",
+  "universityCode": "SIEC5",
+  "universityDescription": "SAE University College Dubai, part of a global network founded in 1976 in Sydney, is a leading institution for creative media education. Established in Dubai in 2005, it offers industry-focused programs in audio, animation, design, film, and games development. With hands-on learning, world-class facilities, and strong industry links, SAE prepares students with practical skills and globally recognised qualifications for careers in the creative industries."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea0a"
+  },
+  "university": "Saint Joseph University Dubai",
+  "universityCode": "SJED4",
+  "universityDescription": "Established in 2008, Saint Joseph University Dubai is the first international branch of Saint Joseph University of Beirut, founded through academic cooperation with the Dubai government to offer a prestigious Bachelor of Law program under the Edaad for Leaders Initiative. Committed to academic excellence and cultural development, the university provides interdisciplinary programs that prepare students for real-world challenges and professional responsibilities. Graduates are multilingual, highly sought-after in the legal and corporate sectors, and pursue advanced studies at leading global universities."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea0b"
+  },
+  "university": "Shaheed Sulfikar Ali Bhutto Institute of Science and Technology",
+  "universityCode": "SSED2",
+  "universityDescription": "The Shaheed Zulfikar Ali Bhutto Institute of Science and Technology (SZABIST) is a leading Pakistani university offering world-class education with accomplished faculty and a motivated student body. SZABIST has four campuses in Pakistan and one in Dubai, where it has served the Pakistani community since 2003 in Dubai International Academic City, offering high-quality education at affordable fees. Established by Sindh Act No. XI of 1995, SZABIST is fully chartered and recognized by the Higher Education Commission of Pakistan."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea0c"
+  },
+  "university": "SKEMA BUSINESS SCHOOL",
+  "universityCode": "SBEDB",
+  "universityDescription": "SKEMA Business School Dubai is the Middle East campus of the globally recognised SKEMA Business School, located in the Dubai International Financial Centre (DIFC), a premier business hub in the United Arab Emirates. Open since 2024, it offers internationally oriented programmes such as Global BBA, Master in Management (Grande École), MSc International Business, and MSc Sustainable Finance & Fintech, with plans to expand its portfolio further. Accredited by the UAE Ministry of Higher Education and recognised by the Knowledge & Human Development Authority (KHDA), the Dubai campus provides a multicultural academic environment and strategic industry connections, preparing students for global careers in business and management."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea0d"
+  },
+  "university": "Sorbonne University, Abu Dhabi",
+  "universityCode": "SUEAA",
+  "universityDescription": "Sorbonne University Abu Dhabi, founded in 2006 through a partnership with Sorbonne University and the Abu Dhabi government, bridges cultures by combining French academic excellence with Emirati ambition. Based on Reem Island, it offers programs from bachelor’s to doctorate level across diverse fields, including sustainability and AI. With 1,800 students from 81 nationalities, it serves as a research hub and develops critical thinkers and future leaders."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea0e"
+  },
+  "university": "Strathclyde Business School UAE",
+  "universityCode": "SBEDF",
+  "universityDescription": "Strathclyde Business School has offered postgraduate programmes internationally since 1988, including its Dubai centre launched in 1995. The MBA is designed for working professionals, with flexible study, global faculty support, and optional summer electives in Glasgow."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea0f"
+  },
+  "university": "Symbiosis International University",
+  "universityCode": "SIEE2",
+  "universityDescription": ""
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea10"
+  },
+  "university": "Umm Al Quwain University",
+  "universityCode": "UAED0",
+  "universityDescription": "Umm Al Quwain University emphasizes high-quality education, applied learning, and scientific research that addresses societal needs and labor market demands. Committed to knowledge creation, innovation, and the knowledge economy, the university strengthens research platforms locally, regionally, and globally. By focusing on practical courses and integrated policies, Umm Al Quwain University prepares graduates for the workforce while maximizing its contribution to society and promoting awareness and application of knowledge."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea11"
+  },
+  "university": "United Arab Emirates University",
+  "universityCode": "UAEAC",
+  "universityDescription": "United Arab Emirates University, founded in 1976 by Sheikh Zayed bin Sultan Al Nahyan, is the UAE’s flagship national university. With over 20,000 students, it offers a wide range of accredited programs across nine colleges, supported by international faculty, modern facilities, and a strong research-focused environment."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea12"
+  },
+  "university": "University of Birmingham Dubai",
+  "universityCode": "UOEC6",
+  "universityDescription": "University of Birmingham Dubai, the UK’s first civic ‘redbrick’ university and a global top-100 institution, offers a state-of-the-art campus in Dubai Academic City. The campus combines UK heritage with Arabic architecture, welcomes up to 3,000 students, and fosters a vibrant, international learning community while serving as a hub for alumni and local business engagement."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea13"
+  },
+  "university": "University of Bradford",
+  "universityCode": "UOEDD",
+  "universityDescription": "University of Bradford Dubai is the regional hub of the UK’s University of Bradford, located in Dubai Knowledge Park, offering world‑class business education with a strong focus on its Triple‑Crown‑accredited Executive MBA and professional development programmes tailored for senior professionals and leaders. Established in Dubai in the late 1990s, the campus delivers UK‑accredited education combining rigorous academic theory with real‑world business application, strategic industry relevance, and extensive student support services, preparing graduates for leadership roles in global business."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea14"
+  },
+  "university": "University of Dubai",
+  "universityCode": "UOEC7",
+  "universityDescription": "University of Dubai offers diverse programs in business, law, engineering, and IT. With a dedicated, research-active faculty, the university emphasizes interactive learning that develops critical thinking, practical skills, and leadership. Alumni achievements across industries reflect UD’s commitment to preparing graduates to excel and make a meaningful impact in a dynamic global environment."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea15"
+  },
+  "university": "University of Europe for Applied Sciences",
+  "universityCode": "UOEE4",
+  "universityDescription": "University of Europe for Applied Sciences Dubai is the first German‑accredited private university campus in the UAE, located at One Central, Dubai World Trade Centre, bringing German applied‑science education to Dubai’s dynamic innovation hub. Licensed by the Knowledge and Human Development Authority (KHDA) and recognised by the Brandenburg Ministry of Science, Research and Culture (Germany), UE Dubai offers industry‑focused undergraduate and postgraduate programmes in business, digital technology, data science, software engineering and design, with strong industry partnerships, practical learning and global perspectives to prepare students for future careers."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea16"
+  },
+  "university": "University Of Fujairah",
+  "universityCode": "UOEC9",
+  "universityDescription": "Fujairah University is a hub of knowledge, innovation, and academic excellence, guided by the motto “Where the Future Rises from Here.” The university offers programs in strategic fields like Artificial Intelligence, Cybersecurity, and Health Sciences, emphasizing research, innovation, and community engagement. Through industry-aligned curricula and applied projects, Fujairah University prepares graduates with professional competence, analytical skills, and leadership abilities to thrive in a rapidly evolving global landscape."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea17"
+  },
+  "university": "University of Sharjah",
+  "universityCode": "UOECF",
+  "universityDescription": "The University of Sharjah is a leading academic institution with a distinctive learning approach and a global vision. As a pioneer in education, scientific research, and the arts within the UAE and the GCC region, we stand at the forefront of innovation. Our 15 colleges offer over 131 diverse academic programs at both undergraduate and graduate levels. Our curriculum is designed to meet global standards, attracting talented students from diverse backgrounds and encouraging them to excel both academically and beyond the classroom."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea18"
+  },
+  "university": "University of Stirling, Ras Al Khaimah",
+  "universityCode": "UOECD",
+  "universityDescription": "The University of Stirling, RAK Campus is a globally recognized institution known for high-quality teaching and research, equipping students with lifelong career and employability skills—91% of undergraduates and 95% of postgraduates were in employment or further study fifteen months after graduation (Graduate Outcomes Survey 2021, HESA). Highly rated for teaching and employability (5 stars, QS Stars 2022) with 96% student satisfaction for lecturer expertise, Stirling ranks among the world’s top universities: top 500 globally, top 60 in the Golden Age Rankings (Times Higher Education 2020), 28th in the UK (The Guardian 2021), with 79.6% student satisfaction (National Student Survey 2021)."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea19"
+  },
+  "university": "University of West London, Ras Al Khaimah",
+  "universityCode": "UOWLRK",
+  "universityDescription": "University of West London is a leading UK public research university recognized for teaching excellence, student experience, and industry engagement. Ranked 41st in the UK and 5th for student experience in 2026, UWL emphasizes employability and global career readiness. An active member of international university associations, UWL established its first overseas campus in Ras Al Khaimah, UAE, in 2017."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea1a"
+  },
+  "university": "University of Wollongong in Dubai",
+  "universityCode": "UOEC8",
+  "universityDescription": "University of Wollongong in Dubai, established in 1993, is the UAE’s first international Australian university and a branch of University of Wollongong. Serving 3,500+ students from 108 nationalities, UOWD offers 40+ internationally recognised bachelor’s and master’s programs across engineering, business, ICT, healthcare, communications, and media. Accredited by KHDA and CAA, with professional recognition from AACSB, ACCA, PMI, and others, UOWD combines world-class faculty, cutting-edge facilities at Dubai Knowledge Park, strong industry ties, and global exchange opportunities to prepare graduates for successful careers worldwide."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea1b"
+  },
+  "university": "University Paris II Panthéon-Assas",
+  "universityCode": "UPED7",
+  "universityDescription": "University Paris II Panthéon‑Assas Dubai Centre is the Dubai campus of Paris‑Panthéon‑Assas University, France’s first and oldest law university, offering world‑class legal education in the heart of Dubai. The campus delivers Bachelor of Laws (LL.B.) and LL.M. in International Business Law programs taught in English by Assas law professors and legal professionals, preparing students for careers in international and comparative law. It combines rigorous academic standards with a dynamic global environment in one of the Middle East’s leading financial and business hubs."
+},
+{
+  "_id": {
+    "$oid": "69a155f59b0f36b1b55aea1c"
+  },
+  "university": "Zayed University",
+  "universityCode": "ZU595",
+  "universityDescription": "Zayed University is a national and regional leader in educational innovation. Founded in 1998 and proudly bearing the name of the Founder of the Nation – the late Sheikh Zayed bin Sultan Al Nahyan, this flagship institution has met the President’s high expectations. Today, Zayed University has two modern campuses in Dubai and Abu Dhabi that welcome both national and international students."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb49"
+  },
+  "university": "Anwar Gargash Diplomatic Academy",
+  "universityCode": "AGDA",
+  "universityDescription": "A world-class diplomatic academic institute that influences and drives the development of the next generation of foreign policy leaders and thinkers, and plays a dynamic role in shaping the global foreign policy landscape."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb4a"
+  },
+  "university": "Batterjee Medical College Dubai",
+  "universityCode": "BMC401",
+  "universityDescription": "We started with a vision in Jeddah back in 2005, to reimagine how healthcare education should feel, look, and live. What began in Jeddah has become a vibrant community across multiple campuses and now in Dubai, UAE. Taking the same values, excellence, and student-first approach to a global stage, proving that meaningful healthcare education knows no limits. Learning should be more than lectures and labs. That’s why we combine academic excellence with real-world training in local and international top-tier hospitals. Our students graduate with knowledge, experience, confidence, and purpose. But education isn’t everything. We’re committed to student well-being, personal growth, and a campus experience that’s supportive, inclusive, and inspiring. From academic advising and mentorship to student clubs and mental health resources, we create a space where students can thrive."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb4b"
+  },
+  "university": "Emirates Institute of Finance",
+  "universityCode": "EIF",
+  "universityDescription": "Enabling the next generation of world-class financial services specialists by building capabilities , setting standards, and fostering innovation in the sector. EIF is a central institution providing targeted training programs focused on key topics and roles. We are positioned as a leading training provider to achieve the goals of the Emiratization agenda, with long-term plans to offer self-certification programs to establish a regional benchmark."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb4c"
+  },
+  "university": "National Defence College",
+  "universityCode": "NDC",
+  "universityDescription": "The National Defence College of the United Arab Emirates (NDC) was created, pursuant to Federal Law Decree No. (1) of 2012, to establish in the nation’s capital a leading graduate institute for Strategic and Security Studies. NDC, through its Strategic Security Studies Program, prepares future leaders of the highest caliber. The program fosters in students the intellectual breadth, global perspective and critical reflection that is needed to prepare them to identify and assess challenges to national, regional and international security and skillfully manage and employ state resources in the national interest. Graduates emerge with an enhanced ability to assess complex situations, challenge assumptions, identify pertinent contextual factors, formulate and consider a variety of strategic approaches, conceptualize the strategic implications of those actions, and calculate the costs, risks, and consequences of such strategic choices."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb4d"
+  },
+  "university": "Neohorizon School of Business",
+  "universityCode": "NHSB",
+  "universityDescription": "NHSB helps companies and business leaders in the Gulf, Africa, South and Central Asian regions to connect to the RCEP region, achieve digital transformation, drive and embrace innovations, foster the development of unicorn companies, and promote social innovation."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb4e"
+  },
+  "university": "Sharjah Maritime Academy",
+  "universityCode": "SMA",
+  "universityDescription": "Sharjah Maritime Academy (SMA), situated in the strategic port city of Khorfakkan, is the UAE’s premier higher education institution for maritime studies, training, and research. As the only academy in the nation offering CAA-accredited baccalaureate degrees in maritime education, SMA symbolises educational excellence in the region."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb4f"
+  },
+  "university": "Sharjah Police Sciences Academy",
+  "universityCode": "PSA",
+  "universityDescription": "the establishment of a solid scientific and research base, as His Highness’ constant and diligent patronage of the Academy enabled it to achieve a huge number of achievements in various fields and disciplines, and to obtain accreditation and final licensing for a bachelor’s degree in police science and a postgraduate program."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb50"
+  },
+  "university": "Sharjah Performing Arts Academy",
+  "universityCode": "SPAA",
+  "universityDescription": "Sharjah Performing Arts Academy (SPAA), established in 2019, is the UAE's premier institution dedicated to nurturing and developing talent in the performing arts and music. With a strong focus on excellence in Acting, Musical Theatre, Production Arts, Dance, and Music Performance, SPAA offers a comprehensive education that integrates rigorous training with academic study. The academy also offers a Master's in Fine Arts, providing advanced opportunities for students to further refine their skills and deepen their artistic knowledge. SPAA’s state-of-the-art facilities, expert faculty, and dynamic curriculum ensure students are well-prepared to succeed in the global performing arts and music industries. Committed to fostering creativity, innovation, and artistic expression, the academy serves as a vibrant hub for aspiring artists in the region."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb51"
+  },
+  "university": "University of Kalba",
+  "universityCode": "UKB",
+  "universityDescription": "The University of Kalba (UKB), established on June 26, 2023, under the patronage of His Highness Sheikh Dr. Sultan Bin Mohammed Al Qassimi, Member of the Supreme Council, Ruler of Sharjah, and President of the University of Kalba, embodies a vision of becoming a comprehensive institution across various domains of education. UKB provides a wide array of accredited, high-quality graduate and undergraduate programs through its four distinct Colleges: Arts, Humanities and Social Sciences; Law; Business Administration; Sport Science; and Computing and Intelligent Systems, which serve as centers of academic excellence offering specialized programs tailored to the demands of today’s dynamic industries and academic landscapes. The university boasts a diverse and distinguished faculty committed to academic excellence and fostering an environment conducive to learning and growth, while its state-of-the-art campus facilities, coupled with comprehensive student support services, create an enriching living and learning environment that promotes holistic development and personal growth among students."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb52"
+  },
+  "university": "University of Khorfakkan",
+  "universityCode": "UKF",
+  "universityDescription": "Established in 2022 under the directives of HH Sheikh Dr. Sultan Al Qasimi, UKF blends academic excellence with the natural advantage of Khorfakkan—pairing marine sciences leadership with applied innovation across five colleges."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb53"
+  },
+  "university": "University of Al Dhaid",
+  "universityCode": "UOD",
+  "universityDescription": "The University of Al Dhaid was established in 2024 by Emiri Decree issued by His Highness Sheikh Dr. Sultan bin Mohammed Al Qasimi, Member of the Supreme Council, Ruler of the Emirate of Sharjah, and President of the University. It is a non-profit educational institution dedicated to providing high-quality academic programmes, supported by the latest technologies and research methodologies, with the aim of making a meaningful contribution to community service and development. Since its founding, the University of Al Dhaid has enjoyed the generous patronage and continuous support of His Highness, enabling the creation of a state-of-the-art academic institution that fulfills national aspirations and expands opportunities for student excellence. The University comprises the Colleges of Agriculture, Veterinary Medicine, Arts, Humanities and Social Sciences, Computing and Intelligent Systems, Law, Business Administration, and Environmental Sciences."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb54"
+  },
+  "university": "Zayed Military University",
+  "universityCode": "ZMU",
+  "universityDescription": ""
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb57"
+  },
+  "university": "Manipal University",
+  "universityCode": "MAHE",
+  "universityDescription": "Manipal Academy of Higher Education Dubai Campus, established in 2000, is a MoHESR-licensed, CAA-accredited, and KHDA 5-star rated university with over 25 years of excellence in the UAE. Part of India’s largest private university, it offers 50+ programs across disciplines including engineering, business, design, and life sciences. With a diverse student body from 50+ countries and modern facilities, it provides a global, innovation-driven learning environment."
+},
+{
+  "_id": {
+    "$oid": "69d4e77f068ee3903457fb5e"
+  },
+  "university": "De Montfort University",
+  "universityCode": "DMU",
+  "universityDescription": "De Montfort University Dubai is the international branch of the UK’s De Montfort University, bringing British higher education to Dubai International Academic City with foundation, undergraduate and postgraduate programmes in areas such as business, law, architecture, psychology, engineering, computing and creative industries, all designed with a strong focus on employability and real‑world skills. The campus features modern facilities, industry connections and career support to prepare graduates for global careers, drawing on DMU’s long heritage and global reputation."
+},
+{
+  "_id": {
+    "$oid": "69e0f7e6068ee3903457fbd7"
+  },
+  "university": "Indian Institute of Technology Delhi",
+  "universityCode": "IITD",
+  "universityDescription": "IIT Delhi–Abu Dhabi (IITD-AD) was established through a visionary collaboration between the Governments of India and the UAE, bringing IIT Delhi's six-decade legacy of excellence in STEM education, engineering, and research to Abu Dhabi. Officially formalized through a Memorandum of Understanding (MoU) in July 2023, the campus combines world-class academic programs, advanced research capabilities, and high academic standards to develop future-ready leaders and innovators."
+},
+{
+  "_id": {
+    "$oid": "69e23981068ee3903457fbe2"
+  },
+  "university": "INSEAD- The Business School for the World",
+  "universityCode": "INSEAD",
+  "universityDescription": "As one of the world's leading and largest graduate business schools, INSEAD offers participants a truly global educational experience. With locations in Europe (France), Asia (Singapore), the Middle East (Abu Dhabi) and North America (San Francisco) and alliances with top institutions, INSEAD's business education and research spans the globe."
+},
+{
+  "_id": {
+    "$oid": "69e23981068ee3903457fbe3"
+  },
+  "university": "Liwa University",
+  "universityCode": "LIWA",
+  "universityDescription": "Liwa University (LU) strives to empower all students to succeed academically and personally by providing them with the best resources, support, and guidance. To achieve this, the University offers targeted programs and services designed to enhance academic progress and well-being. We offer 30 Graduate & Undergraduate programs across our College of Business, College of Engineering and Computing, College of Media and Public Relations, and College of Medical and Health Sciences.\n\nAll Liwa University programs are accredited by the Commission for Academic Accreditation (CAA) of the UAE Ministry of Higher Education and Scientific Research. Our business programs are internationally accredited by the ACBSP (Accreditation Council for Business Schools and Programs), USA."
+},
+{
+  "_id": {
+    "$oid": "69e23981068ee3903457fbe4"
+  },
+  "university": "Mohamed Bin Zayed University of Artificial Intelligence",
+  "universityCode": "MBZUAI",
+  "universityDescription": "The university aims to support development, advancement, and scientific research by offering academic programs in the humanities, social sciences, and philosophy leading to bachelor's, master's, and doctoral degrees. Its goal is to become a prestigious global academic center in these fields. In particular, it strives to offer distinguished academic programs in Arabic language and literature, and in Islamic studies and its various branches, with the aim of presenting Islam and Arab culture in a civilized and humane manner. This approach is based on promoting the virtues of tolerance, love, and respect for human rights, and upholding the values of moderation, centrism, and openness to the diverse cultures and peoples of the world"
+},
+{
+  "_id": {
+    "$oid": "69e23981068ee3903457fbe5"
+  },
+  "university": "Ras Al Khaimah Medical and Health Sciences University",
+  "universityCode": "RAKMHSU",
+  "universityDescription": "RAK Medical & Health Sciences University (RAKMHSU) has been set up under the visionary leadership of His Highness Sheikh Saud bin Saqr Al Qasimi, UAE Supreme Council Member and Ruler of Ras Al Khaimah. It is the first comprehensive Health Science University in the UAE that is fully managed by the Government of Ras Al Khaimah. RAKMHSU offers higher education degrees in the fields of medicine, dentistry, pharmacy and nursing through its four Colleges: RAK College of Medical Sciences, RAK College of Pharmaceutical Sciences, RAK College of Nursing and RAK College of Dental Sciences."
+},
+{
+  "_id": {
+    "$oid": "69e23981068ee3903457fbe6"
+  },
+  "university": "The University of Manchester, Dubai",
+  "universityCode": "UOMD",
+  "universityDescription": "The University of Manchester is a member of the prestigious Russell Group and is one of the UK's largest single-site universities with more than 44,000 students on campus – including more than 10,000 international students."
+}]

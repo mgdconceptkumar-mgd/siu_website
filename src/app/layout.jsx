@@ -20,10 +20,10 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning={true}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link 
-          rel="preload" 
-          href="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" 
-          as="image" 
+        <link
+          rel="preload"
+          href="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg"
+          as="image"
           fetchPriority="high"
         />
       </head>

@@ -48,7 +48,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="app-footer" style={{ ...styles.footer, direction: lang === "ar" ? "rtl" : "ltr" }}>
+    <footer id="footer" className="app-footer" style={{ ...styles.footer, direction: lang === "ar" ? "rtl" : "ltr" }}>
 
       <div style={styles.overlay} />
 

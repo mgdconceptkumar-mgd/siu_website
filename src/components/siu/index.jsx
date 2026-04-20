@@ -13,23 +13,28 @@ import FAQ from "./faq";
 import Closing from "./closing";
 import { Footer } from "../../layout";
 import { LanguageProvider } from "../../contexts/LanguageContext";
+import { VoiceAssistantProvider } from "./voice-assistant/VoiceAssistantProvider";
+import VoiceAssistantWidget from "./voice-assistant/VoiceAssistantWidget";
 
 const StudyInUAEMain = () => {
   return (
     <div className="siu-redesign">
       <HeaderSIU />
-      <main>
-        <Hero />
-        <Ecosystem />
-        <Process />
-        <ForParents />
-        <DownloadApp />
-        <Universities />
-        <Testimonials />
-        <FAQ />
-        <Closing />
-      </main>
-      <Footer />
+|      <VoiceAssistantProvider>
+        <main>
+          <Hero />
+          <Ecosystem />
+          <Process />
+          <ForParents />
+          <DownloadApp />
+          <Universities />
+          <Testimonials />
+          <FAQ />
+          <Closing />
+        </main>
+        <Footer />
+        <VoiceAssistantWidget />
+      </VoiceAssistantProvider>
       
       <style jsx global>{`
         body {

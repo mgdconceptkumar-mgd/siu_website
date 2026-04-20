@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useMemo } from "react";
+import UNIVERSITY_DATA from "../../../uni_desc.json";
 import { motion, AnimatePresence } from "framer-motion";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -9,177 +10,30 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import "./universities.css";
 
 /* ============================================================
-   UNIVERSITY SEARCH LIST — autocomplete suggestions
+   UNIVERSITY SEARCH LIST — autocomplete suggestions derived from JSON
    ============================================================ */
-const UNIVERSITY_LIST = [
-  "ABU DHABI HOSPITALITY ACADEMY – LES ROCHES", "ABU DHABI POLYTECHNIC", "ABU DHABI SCHOOL OF MANAGEMENT",
-  "Abu Dhabi University", "Ajman University", "AL AIN UNIVERSITY", "Al Qasimia University", "AL WASL UNIVERSITY",
-  "ALEXANDRIA UNIVERSITY", "American University in Dubai", "American University In The Emirates",
-  "AMERICAN UNIVERSITY OF RAS AL KHAIMAH", "Amity University Dubai", "BATTERJEE MEDICAL COLLEGE",
-  "Birla Institute of Technology and Science, Pilani – Dubai Campus", "Birla Institute of Technology, Ras Al Khaimah",
-  "British University in Dubai", "CANADIAN UNIVERSITY DUBAI", "City University Ajman", "City University of London",
-  "Curtin University", "De Montfort University", "Dubai Institute of Design and Innovation", "Dubai Medical University",
-  "DUBAI POLICE ACADEMY", "EM Normandie Business School", "EMIRATES ACADEMY FOR IDENTITY & CITIZENSHIP",
-  "Emirates Aviation Academy", "EMIRATES COLLEGE FOR ADVANCED EDUCATION", "Emirates Diplomatic Academy",
-  "ESCP BUSINESS SCHOOL", "Esmod French Fashion Institute", "EUROPEAN UNIVERSITY RAK CAMPUS",
-  "Fatima College of Health Science", "Georgetown University", "GLOBAL STUDIES UNIVERSITY", "Gulf American University",
-  "Gulf Medical University", "Hamdan Bin Mohammed Smart University", "Heriot-Watt University",
-  "Higher Colleges of Technology", "Hult International Business School", "Institute of Management Technology",
-  "Islamic Azad University (IAU)", "Istituto Marangoni Dubai", "Khalifa University", "London Business School",
-  "LUISS Libera Universita Internazionale degli Studi Sociali Guido Carli (DWTCA Branch)", "Manipal University",
-  "Middlesex University Dubai", "Moscow University for Industry and Finance (Synergy)", "Murdoch University Dubai",
-  "New York University, Abu Dhabi", "Plekhanov University of Economics", "Rabdan Academy, Abu Dhabi",
-  "Rochester Institute of Technology – Dubai", "S P Jain School of Global Management", "SAE Institute",
-  "Saint Joseph University Dubai", "Shaheed Sulfikar Ali Bhutto Institute of Science and Technology",
-  "SKEMA BUSINESS SCHOOL", "Sorbonne University, Abu Dhabi", "Strathclyde Business School UAE",
-  "Symbiosis International University", "Umm Al Quwain University", "United Arab Emirates University",
-  "University of Birmingham Dubai", "University of Bradford", "University of Dubai",
-  "University of Europe for Applied Sciences", "University Of Fujairah", "University of Sharjah",
-  "University of Stirling, Ras Al Khaimah", "University of West London, Ras Al Khaimah",
-  "University of Wollongong in Dubai", "University Paris II Panthéon-Assas", "Zayed University",
-  "Anwar Gargash Diplomatic Academy", "Batterjee Medical College Dubai", "Emirates Institute of Finance",
-  "National Defence College", "Neohorizon School of Business", "Sharjah Maritime Academy",
-  "Sharjah Police Sciences Academy", "Sharjah Performing Arts Academy", "University of Kalba",
-  "University of Khorfakkan", "University of Al Dhaid", "Zayed Military University"
-];
-
-/* ============================================================
-   DUMMY UNIVERSITY DETAIL DATA
-   Keyed by name (lowercase). Will be replaced with .json / API.
-   Falls back to a generic record if university is not mapped.
-   ============================================================ */
-const UNIVERSITY_DETAILS = {
-  "university of dubai": {
-    name: "University of Dubai",
-    logo: "/siu-assets/udubai_logo.png",
-    location: "Dubai, UAE",
-    description:
-      "The University of Dubai is a premier institution offering internationally accredited programs in Business, Law, Engineering, and Information Technology. Rooted in innovation and entrepreneurship, it empowers students with real-world skills, industry partnerships, and a truly global learning environment in the heart of Dubai.",
-    stats: { programs: "45+", students: "3,500+", ranking: "Top 10", established: "1997" },
-  },
-  "american university in dubai": {
-    name: "American University in Dubai",
-    logo: "/assets/images/about/American_University_in_Dubai.png",
-    location: "Dubai, UAE",
-    description:
-      "The American University in Dubai (AUD) offers a comprehensive American-style education with programs accredited by top US agencies. With over 40 undergraduate and graduate majors, AUD prepares students for global careers in business, architecture, design, communication, and more.",
-    stats: { programs: "40+", students: "2,800+", ranking: "QS #610", established: "1995" },
-  },
-  "khalifa university": {
-    name: "Khalifa University",
-    logo: "/assets/images/about/siu logo.jpeg",
-    location: "Abu Dhabi, UAE",
-    description:
-      "Khalifa University is the UAE's top-ranked research-intensive university focusing on engineering, science, and technology. It offers cutting-edge facilities, world-class faculty, and robust research programs that drive innovation and knowledge creation for the nation's future.",
-    stats: { programs: "55+", students: "4,200+", ranking: "Top 5", established: "2007" },
-  },
-  "university of sharjah": {
-    name: "University of Sharjah",
-    logo: "/assets/images/about/siu logo.jpeg",
-    location: "Sharjah, UAE",
-    description:
-      "The University of Sharjah is one of the largest and most comprehensive universities in the UAE, offering over 100 programs across 16 colleges. Known for its academic excellence, diverse campus life, and strong community engagement, it is a hub for quality education.",
-    stats: { programs: "100+", students: "14,000+", ranking: "Top 8", established: "1997" },
-  },
-  "heriot-watt university": {
-    name: "Heriot-Watt University Dubai",
-    logo: "/assets/images/about/siu logo.jpeg",
-    location: "Dubai, UAE",
-    description:
-      "Heriot-Watt University Dubai is a branch campus of the prestigious UK institution, providing internationally recognized degrees in engineering, business, computing, and design. Students benefit from UK-quality education in the vibrant setting of Dubai.",
-    stats: { programs: "35+", students: "5,000+", ranking: "Top 20", established: "2005" },
-  },
-  "middlesex university dubai": {
-    name: "Middlesex University Dubai",
-    logo: "/assets/images/about/Middlesex_University_Dubai.png",
-    location: "Dubai, UAE",
-    description:
-      "Middlesex University Dubai is a globally recognized UK university campus offering a wide range of programs in business, IT, law, psychology, media, and education. With a focus on career readiness and international exposure, it shapes future-ready graduates.",
-    stats: { programs: "30+", students: "3,800+", ranking: "QS Top 700", established: "2005" },
-  },
-  "ajman university": {
-    name: "Ajman University",
-    logo: "/assets/images/about/siu logo.jpeg",
-    location: "Ajman, UAE",
-    description:
-      "Ajman University is a leading private university offering diverse programs across multiple disciplines including engineering, pharmacy, dentistry, business, and humanities. It emphasizes research-driven learning and community impact within a supportive environment.",
-    stats: { programs: "60+", students: "7,500+", ranking: "Top 12", established: "1988" },
-  },
-  "abu dhabi university": {
-    name: "Abu Dhabi University",
-    logo: "/assets/images/about/siu logo.jpeg",
-    location: "Abu Dhabi, UAE",
-    description:
-      "Abu Dhabi University delivers quality education through its colleges of arts & sciences, business, engineering, health sciences, and law. Committed to innovation and student success, it fosters a dynamic and inclusive academic community.",
-    stats: { programs: "50+", students: "8,000+", ranking: "Top 15", established: "2003" },
-  },
-  "amity university dubai": {
-    name: "Amity University Dubai",
-    logo: "/assets/images/about/Amity_University_Dubai.png",
-    location: "Dubai, UAE",
-    description:
-      "Amity University Dubai provides quality education with a focus on innovation, research, and holistic student development. With a diverse student body and industry-aligned programs, it is a preferred choice for international students in the UAE.",
-    stats: { programs: "38+", students: "4,000+", ranking: "Premier", established: "2011" },
-  },
-  "university of wollongong in dubai": {
-    name: "University of Wollongong in Dubai",
-    logo: "/assets/images/about/University_of_Wollongong_in_Dubai.png",
-    location: "Dubai, UAE",
-    description:
-      "The University of Wollongong in Dubai delivers globally recognized Australian education in the heart of Dubai. It offers a wide range of accredited undergraduate and postgraduate programs in business, engineering, IT, and media across a modern campus.",
-    stats: { programs: "40+", students: "4,500+", ranking: "#185 Global", established: "1993" },
-  },
-  "rochester institute of technology – dubai": {
-    name: "Rochester Institute of Technology – Dubai",
-    logo: "/assets/images/about/Rochester_Institute_of_Technology_Dubai.png",
-    location: "Dubai, UAE",
-    description:
-      "RIT Dubai offers American-quality education in technology, engineering, business, and computing. Students earn the same degree as the New York campus and benefit from strong industry connections, internship opportunities, and a focus on experiential learning.",
-    stats: { programs: "20+", students: "1,500+", ranking: "US Top Tier", established: "2008" },
-  },
-  "university of birmingham dubai": {
-    name: "University of Birmingham Dubai",
-    logo: "/assets/images/about/University_of_Birmingham_Dubai.png",
-    location: "Dubai, UAE",
-    description:
-      "The University of Birmingham Dubai brings the prestige of a UK Russell Group university to the UAE. Students benefit from identical degree standards, world-class research, and a vibrant campus in Dubai's Academic City.",
-    stats: { programs: "25+", students: "1,800+", ranking: "#80 Global", established: "2018" },
-  },
-  "s p jain school of global management": {
-    name: "SP Jain School of Global Management",
-    logo: "/assets/images/about/sp_jain.png",
-    location: "Dubai, UAE",
-    description:
-      "SP Jain School of Global Management is a top-ranked business school with campuses in Dubai, Mumbai, Singapore, and Sydney. Its tri-city model provides students unmatched global exposure, preparing them for leadership in the international business world.",
-    stats: { programs: "12+", students: "3,000+", ranking: "Forbes Top 10", established: "2004" },
-  },
-  "symbiosis international university": {
-    name: "Symbiosis International University",
-    logo: "/assets/images/about/symboisis.png",
-    location: "Dubai, UAE",
-    description:
-      "Symbiosis International University Dubai offers quality management and business programs with Indian academic heritage. The university focuses on practical learning, global outlook, and industry-relevant curriculum in a multicultural campus setting.",
-    stats: { programs: "10+", students: "1,200+", ranking: "QS 5-Star", established: "2010" },
-  },
-  "university of europe for applied sciences": {
-    name: "University of Europe for Applied Sciences",
-    logo: "/assets/images/about/university od europe.png",
-    location: "Dubai, UAE",
-    description:
-      "The University of Europe for Applied Sciences (UE) Dubai campus offers innovative, practice-oriented degree programs in business, design, technology, and sports. Its German educational standards combined with Dubai's dynamic environment create a unique learning experience.",
-    stats: { programs: "15+", students: "2,000+", ranking: "QS Europe #1", established: "2020" },
-  },
-};
+const UNIVERSITY_LIST = UNIVERSITY_DATA.map(item => item.university);
 
 /**
- * Looks up a university detail record by name (case-insensitive).
- * Falls back to a generic placeholder if not found in the map.
+ * Looks up a university detail record from the JSON data.
+ * Constructs dynamic logo URL using universityCode.
  */
 const getUniversityDetail = (name) => {
-  const key = name.toLowerCase();
-  if (UNIVERSITY_DETAILS[key]) return UNIVERSITY_DETAILS[key];
+  const item = UNIVERSITY_DATA.find(u => u.university.toLowerCase() === name.toLowerCase());
+  
+  if (item) {
+    return {
+      name: item.university,
+      logo: item.universityCode 
+        ? `https://siu-university-assets.s3.ap-south-1.amazonaws.com/universities/${item.universityCode}.jpg`
+        : "/assets/images/about/siu logo.jpeg",
+      location: "UAE", 
+      description: item.universityDescription || `${item.university} is a recognized institution in the UAE offering world-class education and diverse opportunities. Discover its programs and campus life by applying through SIU.`,
+      stats: { programs: "40+", students: "3,000+", ranking: "Top Tier", established: "—" }
+    };
+  }
 
-  // Generic fallback for unmapped universities
+  // Fallback for unmapped universities
   return {
     name: name,
     logo: "/assets/images/about/siu logo.jpeg",
