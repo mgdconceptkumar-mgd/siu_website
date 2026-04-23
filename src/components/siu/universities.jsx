@@ -14,6 +14,8 @@ import "./universities.css";
    ============================================================ */
 const UNIVERSITY_LIST = UNIVERSITY_DATA.map(item => item.university);
 
+const UNIVERSAL_LOGO = "https://img.icons8.com/fluency/100/university.png";
+
 /**
  * Looks up a university detail record from the JSON data.
  * Constructs dynamic logo URL using universityCode.
@@ -29,7 +31,7 @@ const getUniversityDetail = (name) => {
       name: item.university,
       logo: item.universityCode 
         ? `https://siu-university-assets.s3.ap-south-1.amazonaws.com/universities/${item.universityCode}.jpg`
-        : "/assets/images/about/siu logo.jpeg",
+        : UNIVERSAL_LOGO,
       location: item.location || "United Arab Emirates", 
       description: item.universityDescription || `${item.university} is a recognized institution in the UAE offering world-class education and diverse opportunities. Discover its programs and campus life by applying through SIU.`,
       stats: { programs: "40+", students: "3,000+", ranking: "Top Tier", established: "—" }
@@ -39,7 +41,7 @@ const getUniversityDetail = (name) => {
   // Fallback for unmapped universities
   return {
     name: name,
-    logo: "/assets/images/about/siu logo.jpeg",
+    logo: UNIVERSAL_LOGO,
     location: "UAE",
     description: `${name} is a recognized institution in the UAE offering a wide range of academic programs. Discover world-class education, diverse campus life, and strong career opportunities by applying through SIU.`,
     stats: { programs: "30+", students: "2,000+", ranking: "Accredited", established: "—" },
@@ -72,8 +74,8 @@ const Universities = () => {
       name: item.university,
       img: item.universityCode 
         ? `https://siu-university-assets.s3.ap-south-1.amazonaws.com/universities/${item.universityCode}.jpg`
-        : "/assets/images/about/siu logo.jpeg"
-    })).filter(u => u.img !== "/assets/images/about/siu logo.jpeg" || u.name.length < 40); // Simple filter to keep it clean
+        : UNIVERSAL_LOGO
+    })).filter(u => u.img !== UNIVERSAL_LOGO || u.name.length < 40); // Simple filter to keep it clean
   }, []);
 
   // ── Filtered autocomplete results ──
@@ -360,6 +362,10 @@ const Universities = () => {
                       <img
                         src={uni.img}
                         alt={uni.name}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = UNIVERSAL_LOGO;
+                        }}
                         style={{
                           maxWidth: "100%",
                           maxHeight: "100%",
@@ -423,6 +429,10 @@ const Universities = () => {
                       <img
                         src={uni.img}
                         alt={uni.name}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = UNIVERSAL_LOGO;
+                        }}
                         style={{
                           maxWidth: "100%",
                           maxHeight: "100%",
@@ -505,7 +515,15 @@ const Universities = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.25, type: "spring", stiffness: 200, damping: 15 }}
                 >
-                  <img src={selectedUni.logo} alt={selectedUni.name} className="uni-detail__logo-img" />
+                  <img 
+                    src={selectedUni.logo} 
+                    alt={selectedUni.name} 
+                    className="uni-detail__logo-img" 
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = UNIVERSAL_LOGO;
+                    }}
+                  />
                 </motion.div>
                 <div className="uni-detail__info">
                   <h2 className="uni-detail__name">{selectedUni.name}</h2>
