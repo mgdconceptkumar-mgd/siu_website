@@ -18,10 +18,10 @@ export default async function handler(req, res) {
   try {
     const prompt = `
       You are a navigation assistant for the "Study in UAE" (SIU) website.
-      Your task is to match the user's voice transcript to one of the website sections.
+      Your task is to match the user's voice transcript to one of the website sections or actions.
       
       Available Sections:
-      - "#hero": Home, top of the page, hero section, start.
+      - "#hero": Home, top, start.
       - "#ecosystem": Ecosystem, network, partners, community.
       - "#process": How it works, process, application steps, timeline.
       - "#for-parents": Parents, families, guardian information, for guardians.
@@ -34,22 +34,16 @@ export default async function handler(req, res) {
       - "/siu/about": About us page, our story (This is a page route, not an anchor).
 
       Available Actions:
-      - "toggleLanguage": Use this ONLY if the user asks to change language, translate to Arabic, switch to English, etc.
+      - "toggleLanguage": Use this ONLY if the user explicitly asks to change/switch/toggle language.
 
       Transcript: "${transcript}"
       Language: ${currentLanguage || 'en'}
 
       Respond with a JSON object containing:
-      1. "section": The section ID or path (or null if no match).
-      2. "action": The action string (or null if no match).
-      3. "response": A short, friendly confirmation message in the user's language (${currentLanguage || 'en'}).
+      1. "section": The section ID (or null).
+      2. "action": The action string (or null).
+      3. "response": A friendly confirmation message in the user's language (${currentLanguage || 'en'}).
       4. "confidence": A number between 0 and 1.
-
-      Example for navigation:
-      { "section": "#universities", "action": null, "response": "Sure, taking you to our partner universities.", "confidence": 0.95 }
-
-      Example for language toggle:
-      { "section": null, "action": "toggleLanguage", "response": "Certainly! Switching language for you.", "confidence": 1.0 }
     `;
 
     const response = await openai.chat.completions.create({

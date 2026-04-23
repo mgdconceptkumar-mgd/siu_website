@@ -273,7 +273,12 @@ const Hero = () => {
                 >
                   {slides.map((slide, i) => (
                     <div key={i} style={{ width: `${slideW}px`, height: `${phoneH - borderW * 2}px`, flexShrink: 0, position: "relative" }}>
-                      <img src={slide.src} alt={`Screen ${i}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <img 
+                        src={slide.src} 
+                        alt={`Screen ${i}`} 
+                        loading={i === 0 ? "eager" : "lazy"}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                      />
                       {slide.badge && (
                         <>
                           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.4) 40%, transparent 100%)", zIndex: 1 }} />

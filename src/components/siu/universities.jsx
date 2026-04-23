@@ -19,7 +19,10 @@ const UNIVERSITY_LIST = UNIVERSITY_DATA.map(item => item.university);
  * Constructs dynamic logo URL using universityCode.
  */
 const getUniversityDetail = (name) => {
-  const item = UNIVERSITY_DATA.find(u => u.university.toLowerCase() === name.toLowerCase());
+  const item = UNIVERSITY_DATA.find(u => 
+    u.university.toLowerCase().includes(name.toLowerCase()) || 
+    name.toLowerCase().includes(u.university.toLowerCase())
+  );
   
   if (item) {
     return {
@@ -27,7 +30,7 @@ const getUniversityDetail = (name) => {
       logo: item.universityCode 
         ? `https://siu-university-assets.s3.ap-south-1.amazonaws.com/universities/${item.universityCode}.jpg`
         : "/assets/images/about/siu logo.jpeg",
-      location: "UAE", 
+      location: item.location || "United Arab Emirates", 
       description: item.universityDescription || `${item.university} is a recognized institution in the UAE offering world-class education and diverse opportunities. Discover its programs and campus life by applying through SIU.`,
       stats: { programs: "40+", students: "3,000+", ranking: "Top Tier", established: "—" }
     };
@@ -63,19 +66,15 @@ const Universities = () => {
   const [showApplyModal, setShowApplyModal] = useState(false); // apply now 2-option modal
   const [showQRModal, setShowQRModal] = useState(false);       // QR download modal
 
-  // ── Marquee logos (original) ──
-  const dubaiUnis = [
-    { name: "University of Europe", img: "/assets/images/about/university od europe.png", isIndividual: true, ranking: "QS Europe #1" },
-    { name: "American Univ. in Dubai", img: "/assets/images/about/American_University_in_Dubai.png", isIndividual: true, ranking: "QS #610 Global" },
-    { name: "Rochester Institute of Tech", img: "/assets/images/about/Rochester_Institute_of_Technology_Dubai.png", isIndividual: true, ranking: "US Top Tier" },
-    { name: "Amity University Dubai", img: "/assets/images/about/Amity_University_Dubai.png", isIndividual: true, ranking: "Premier Global" },
-    { name: "SP Jain School of Mgmt", img: "/assets/images/about/sp_jain.png", isIndividual: true, ranking: "Forbes Top 10" },
-    { name: "Middlesex University", img: "/assets/images/about/Middlesex_University_Dubai.png", isIndividual: true, ranking: "QS Top 700" },
-    { name: "Symbiosis International", img: "/assets/images/about/symboisis.png", isIndividual: true, ranking: "QS 5-Star" },
-    { name: "University of Dubai", img: "/siu-assets/udubai_logo.png", isIndividual: true, ranking: "QS 601 Global" },
-    { name: "University of Birmingham", img: "/assets/images/about/University_of_Birmingham_Dubai.png", isIndividual: true, ranking: "80 Global Rank" },
-    { name: "University of Wollongong", img: "/assets/images/about/University_of_Wollongong_in_Dubai.png", isIndividual: true, ranking: "185 Global Rank" },
-  ];
+  // ── Marquee logos (Dynamic from JSON) ──
+  const marqueeUnis = useMemo(() => {
+    return UNIVERSITY_DATA.map(item => ({
+      name: item.university,
+      img: item.universityCode 
+        ? `https://siu-university-assets.s3.ap-south-1.amazonaws.com/universities/${item.universityCode}.jpg`
+        : "/assets/images/about/siu logo.jpeg"
+    })).filter(u => u.img !== "/assets/images/about/siu logo.jpeg" || u.name.length < 40); // Simple filter to keep it clean
+  }, []);
 
   // ── Filtered autocomplete results ──
   const filteredUnis = useMemo(() => {
@@ -323,19 +322,23 @@ const Universities = () => {
             {/* Logo Marquee Section - Compact Premium Cards */}
             <div style={{ position: "relative", width: "100%", overflow: "hidden", padding: "30px 0" }}>
               {/* Row 1: Left to Right */}
-              <motion.div
-                animate={{ x: lang === "ar" ? [-2000, 0] : [0, -2000] }}
+                <motion.div
+                animate={{ x: lang === "ar" ? [-5000, 0] : [0, -5000] }}
                 transition={{
-                  duration: 45,
+                  duration: 80,
                   repeat: Infinity,
                   ease: "linear"
                 }}
                 style={{ display: "flex", gap: "20px", width: "max-content", marginBottom: "20px", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
               >
-                {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].map((uni, i) => (
+                {[...marqueeUnis, ...marqueeUnis].map((uni, i) => (
                   <motion.div
                     key={i}
                     whileHover={{ scale: 1.05, y: -5 }}
+                    onClick={() => {
+                      const detail = getUniversityDetail(uni.name);
+                      setSelectedUni(detail);
+                    }}
                     style={{
                       width: "180px",
                       height: "115px",
@@ -383,18 +386,22 @@ const Universities = () => {
 
               {/* Row 2: Right to Left */}
               <motion.div
-                animate={{ x: lang === "ar" ? [0, -2000] : [-2000, 0] }}
+                animate={{ x: lang === "ar" ? [0, -5000] : [-5000, 0] }}
                 transition={{
-                  duration: 55,
+                  duration: 90,
                   repeat: Infinity,
                   ease: "linear"
                 }}
                 style={{ display: "flex", gap: "20px", width: "max-content", flexDirection: lang === "ar" ? "row-reverse" : "row" }}
               >
-                {[...dubaiUnis, ...dubaiUnis, ...dubaiUnis, ...dubaiUnis].reverse().map((uni, i) => (
+                {[...marqueeUnis, ...marqueeUnis].reverse().map((uni, i) => (
                   <motion.div
                     key={`rev-${i}`}
                     whileHover={{ scale: 1.05, y: -5 }}
+                    onClick={() => {
+                      const detail = getUniversityDetail(uni.name);
+                      setSelectedUni(detail);
+                    }}
                     style={{
                       width: "180px",
                       height: "115px",
@@ -510,7 +517,7 @@ const Universities = () => {
               </div>
 
               {/* Divider */}
-              <div className="uni-detail__divider" />
+            <div className="uni-detail__divider" />
 
               {/* Description */}
               <motion.p

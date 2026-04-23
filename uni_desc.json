@@ -4,6 +4,7 @@
   },
   "university": "ABU DHABI HOSPITALITY ACADEMY – LES ROCHES",
   "universityCode": "ADEE6",
+  "location": "Abu Dhabi, UAE",
   "universityDescription": "Abu Dhabi Hospitality Academy – Les Roches is a pioneering hospitality education institution in Abu Dhabi, established in partnership between Les Roches Global Hospitality Education and the Department of Culture and Tourism – Abu Dhabi to deliver world‑class programmes that blend international expertise with Emirati hospitality traditions. Located in Zayed Sports City, the academy offers practical, industry‑focused Bachelor’s and Master’s degrees in hospitality management and related fields with state‑of‑the‑art facilities and strong industry links for internships and career development, preparing future leaders for the global hospitality sector."
 },
 {
@@ -500,7 +501,8 @@
   },
   "university": "Symbiosis International University",
   "universityCode": "SIEE2",
-  "universityDescription": ""
+  "location": "Dubai, UAE",
+  "universityDescription": "Symbiosis International University (Dubai Campus) brings the prestigious Symbiosis legacy to the heart of the UAE. Offering world-class programs in management, technology, and humanities, the campus is designed to foster global perspective, innovation, and leadership among its diverse student body."
 },
 {
   "_id": {

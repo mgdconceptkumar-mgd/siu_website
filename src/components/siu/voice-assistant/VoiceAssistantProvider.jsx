@@ -43,72 +43,110 @@ export const VoiceAssistantProvider = ({ children }) => {
     }
   }, []);
 
+  // Lazy-initialize Speech Recognition
+  const getRecognition = () => {
+    if (typeof window === 'undefined') return null;
+    if (recognitionRef.current) return recognitionRef.current;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setIsSupported(false);
+      return null;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
+
+    recognition.onstart = () => setIsListening(true);
+    recognition.onend = () => setIsListening(false);
+    recognition.onerror = (event) => {
+      console.error('Speech Recognition Error:', event.error);
+      setIsListening(false);
+    };
+
+    recognition.onresult = (event) => {
+      const text = event.results[0][0].transcript;
+      setTranscript(text);
+      handleVoiceCommand(text);
+    };
+
+    recognitionRef.current = recognition;
+    return recognition;
+  };
+
+  // Sync language with recognition ONLY if it exists
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        setIsSupported(false);
-        return;
-      }
-
-      const recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = false;
-      recognition.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
-
-      recognition.onstart = () => setIsListening(true);
-      recognition.onend = () => setIsListening(false);
-      recognition.onerror = (event) => {
-        console.error('Speech Recognition Error:', event.error);
-        setIsListening(false);
-      };
-
-      recognition.onresult = (event) => {
-        const text = event.results[0][0].transcript;
-        setTranscript(text);
-        handleVoiceCommand(text);
-      };
-
-      recognitionRef.current = recognition;
+    if (recognitionRef.current) {
+      recognitionRef.current.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
     }
   }, [lang]);
 
-  // Auto-greeting logic with interaction bypass
-  useEffect(() => {
-    const hasGreeted = sessionStorage.getItem('siu_voice_greeted');
-    if (hasGreeted) return;
+    // Auto-greeting logic with invisible interaction capture
+    useEffect(() => {
+      const hasGreeted = sessionStorage.getItem('siu_voice_greeted');
+      if (hasGreeted) return;
 
-    let greetingTriggered = false;
+      let greetingTriggered = false;
 
-    const attemptGreeting = () => {
+    const attemptGreeting = (event) => {
       if (greetingTriggered) return;
       
-      // Attempt to speak
+      console.log(`[Voice AI] Interaction Detected (${event?.type || 'timer'}) - Checking voices...`);
+
+      if (synthRef.current) {
+        // Essential: Wake up the engine
+        synthRef.current.resume();
+        
+        // If voices aren't ready, let's try to prime them and wait a bit
+        const voices = synthRef.current.getVoices();
+        if (voices.length === 0) {
+          console.log("[Voice AI] Voices not ready yet, retrying in 200ms...");
+          setTimeout(() => attemptGreeting(event), 200);
+          return;
+        }
+
+        // Silent Prime to decisively unlock audio context
+        const silentUtterance = new SpeechSynthesisUtterance(' ');
+        silentUtterance.volume = 0;
+        synthRef.current.speak(silentUtterance);
+      }
+
+      // 4. Actual greeting
       const success = speakGreeting();
       if (success) {
         greetingTriggered = true;
         sessionStorage.setItem('siu_voice_greeted', 'true');
-        // Clean up listeners
-        document.removeEventListener('click', attemptGreeting);
-        document.removeEventListener('touchstart', attemptGreeting);
+        // Cleanup listeners
+        unlockEvents.forEach(evt => {
+          document.removeEventListener(evt, attemptGreeting, { capture: true });
+        });
       }
     };
 
-    // Browsers block auto-audio until first interaction
-    document.addEventListener('click', attemptGreeting);
-    document.addEventListener('touchstart', attemptGreeting);
-    document.addEventListener('mousedown', attemptGreeting);
+      // We attach with capture: true to ensure we get the event before other UI components
+      const unlockEvents = ['click', 'touchstart', 'mousedown', 'pointerdown', 'keydown', 'pointerup', 'touchend', 'wheel'];
+      unlockEvents.forEach(evt => {
+        document.addEventListener(evt, attemptGreeting, { once: true, passive: true, capture: true });
+      });
 
-    // Initial attempt (instant per user request)
-    const timer = setTimeout(attemptGreeting, 100);
+      // Heartbeat to keep Chrome's synth engine from freezing
+      const heartbeat = setInterval(() => {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+          window.speechSynthesis.resume();
+        }
+      }, 10000);
 
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener('click', attemptGreeting);
-      document.removeEventListener('touchstart', attemptGreeting);
-      document.removeEventListener('mousedown', attemptGreeting);
-    };
-  }, []);
+      // REMOVED: initial_timer attempt to avoid "not-allowed" error in Chrome
+
+      return () => {
+        clearInterval(heartbeat);
+        unlockEvents.forEach(evt => {
+          document.removeEventListener(evt, attemptGreeting, { capture: true });
+        });
+      };
+    }, []);
 
   const speakGreeting = () => {
     const messages = {
@@ -159,24 +197,40 @@ export const VoiceAssistantProvider = ({ children }) => {
     // Try to find a good voice
     const voices = synthRef.current.getVoices();
     if (voices.length > 0) {
-      // Priority 1: Exact match (e.g., ar-SA)
-      let targetVoice = voices.find(v => v.lang === langCode);
-      
-      // Priority 2: Language-only match (e.g., ar)
-      if (!targetVoice) {
-        targetVoice = voices.find(v => v.lang.startsWith(langCode.split('-')[0]));
-      }
+      // Preferred Male voices for consistency
+      const preferredNames = {
+        en: ['david', 'male', 'james', 'mark', 'google us english male'],
+        ar: ['hoda', 'naayf', 'hamed', 'arabic']
+      };
 
-      // Priority 3: Fallback for Arabic specifically if no Arabic voice found
-      if (!targetVoice && langCode.startsWith('ar')) {
-        targetVoice = voices.find(v => v.lang.includes('ar') || v.name.toLowerCase().includes('arabic'));
+      const langType = langCode.startsWith('ar') ? 'ar' : 'en';
+      const prefs = preferredNames[langType];
+
+      // Priority 1: Preferred Male voices (Strict filtering)
+      let targetVoice = voices.find(v => 
+        v.lang.startsWith(langType) && 
+        prefs.some(p => v.name.toLowerCase().includes(p)) &&
+        !v.name.toLowerCase().includes('female') // Explicitly avoid female voices if preferred is male
+      );
+
+      // Priority 2: Exact match (e.g., ar-SA) but still avoid female if English
+      if (!targetVoice) {
+        targetVoice = voices.find(v => 
+          v.lang === langCode && 
+          (langType === 'ar' || !v.name.toLowerCase().includes('female'))
+        );
+      }
+      
+      // Priority 3: Any voice for the language
+      if (!targetVoice) {
+        targetVoice = voices.find(v => v.lang.startsWith(langType));
       }
 
       if (targetVoice) {
         console.log(`[Voice AI] Speaking (${langCode}) using voice: ${targetVoice.name}`);
         utterance.voice = targetVoice;
-      } else {
-        console.warn(`[Voice AI] No specific voice found for ${langCode}, using system default.`);
+      } else if (langType === 'ar') {
+        console.warn('[Voice AI] GOOGLE CHROME TIP: If Arabic is silent, please install "Arabic (Saudi Arabia)" in your Windows/Mac Language Settings.');
       }
     } else {
       console.warn(`[Voice AI] No voices available yet for ${langCode}. Voices may still be loading.`);
@@ -209,11 +263,12 @@ export const VoiceAssistantProvider = ({ children }) => {
   };
 
   const startListening = () => {
-    if (recognitionRef.current && !isListening) {
+    const recognition = getRecognition();
+    if (recognition && !isListening) {
       setTranscript('');
       setResponse('');
       try {
-        recognitionRef.current.start();
+        recognition.start();
       } catch (err) {
         console.error('Start listening error:', err);
       }
@@ -248,7 +303,7 @@ export const VoiceAssistantProvider = ({ children }) => {
         setTimeout(() => {
           const nextLang = lang === 'en' ? 'ar' : 'en';
           setLang(nextLang);
-        }, 1000); // Small delay to let speech finish
+        }, 1000); 
         return;
       }
 
