@@ -8,7 +8,7 @@ export const metadata = {
   title: "SIU Web",
   description: "Study in UAE",
   icons: {
-    icon: "/assets/images/about/siu_favicon_circle.png",
+    icon: "/favicon-siu.svg",
   },
 };
 
@@ -22,10 +22,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head>
-        <link rel="icon" href="/assets/images/about/siu_favicon_circle.png" sizes="any" />
+        <link rel="icon" href="/favicon-siu.svg" type="image/svg+xml" sizes="any" />
         <link
           rel="preload"
-          href="/assets/images/about/siu_favicon_circle.png"
+          href="/favicon-siu.svg"
           as="image"
           fetchPriority="high"
         />
