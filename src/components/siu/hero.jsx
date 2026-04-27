@@ -21,51 +21,51 @@ const Hero = () => {
   const slideW = phoneW - borderW * 2; // inner content width
 
   const slides = [
-    { 
-      src: "/assets/images/about/SIU%20(3).jpeg", 
-      badge: t("hero.slides.0.badge"), 
-      title: t("hero.slides.0.title"), 
-      desc: t("hero.slides.0.desc") 
+    {
+      src: "/assets/images/about/SIU%20(3).jpeg",
+      badge: t("hero.slides.0.badge"),
+      title: t("hero.slides.0.title"),
+      desc: t("hero.slides.0.desc")
     },
-    { 
-      src: "/assets/images/about/SIU%20(2).jpeg", 
-      badge: t("hero.slides.1.badge"), 
-      title: t("hero.slides.1.title"), 
-      desc: t("hero.slides.1.desc") 
+    {
+      src: "/assets/images/about/SIU%20(2).jpeg",
+      badge: t("hero.slides.1.badge"),
+      title: t("hero.slides.1.title"),
+      desc: t("hero.slides.1.desc")
     },
-    { 
-      src: "/assets/images/about/SIU%20(1).jpeg", 
-      badge: t("hero.slides.2.badge"), 
-      title: t("hero.slides.2.title"), 
-      desc: t("hero.slides.2.desc") 
+    {
+      src: "/assets/images/about/SIU%20(1).jpeg",
+      badge: t("hero.slides.2.badge"),
+      title: t("hero.slides.2.title"),
+      desc: t("hero.slides.2.desc")
     },
     // Dynamically include screens based on language
-    ...(lang === "ar" 
+    ...(lang === "ar"
       ? [
-          { src: "/assets/images/about/screen1_ar.jpeg" },
-          { src: "/assets/images/about/screen2_ar.jpeg" },
-          { src: "/assets/images/about/screen3_ar.jpeg" },
-          { src: "/assets/images/about/screen4_ar.jpeg" },
-          { src: "/assets/images/about/screen5_ar.jpeg" },
-          { src: "/assets/images/about/screen6_ar.jpeg" },
-        ]
+        { src: "/assets/images/about/screen1_ar.jpeg" },
+        { src: "/assets/images/about/screen2_ar.jpeg" },
+        { src: "/assets/images/about/screen3_ar.jpeg" },
+        { src: "/assets/images/about/screen4_ar.jpeg" },
+        { src: "/assets/images/about/screen5_ar.jpeg" },
+        { src: "/assets/images/about/screen6_ar.jpeg" },
+      ]
       : [
-          { src: "/assets/images/about/screen1.jpeg" },
-          { src: "/assets/images/about/screen2.jpeg" },
-          { src: "/assets/images/about/screen3.jpeg" },
-          { src: "/assets/images/about/screen4.jpeg" },
-          { src: "/assets/images/about/screen5.jpeg" },
-          { src: "/assets/images/about/screen6.jpeg" },
-          { src: "/assets/images/about/screen7.jpeg" },
-          { src: "/assets/images/about/screen8.jpeg" },
-          { src: "/assets/images/about/screen9.jpeg" },
-        ]
+        { src: "/assets/images/about/screen1.jpeg" },
+        { src: "/assets/images/about/screen2.jpeg" },
+        { src: "/assets/images/about/screen3.jpeg" },
+        { src: "/assets/images/about/screen4.jpeg" },
+        { src: "/assets/images/about/screen5.jpeg" },
+        { src: "/assets/images/about/screen6.jpeg" },
+        { src: "/assets/images/about/screen7.jpeg" },
+        { src: "/assets/images/about/screen8.jpeg" },
+        { src: "/assets/images/about/screen9.jpeg" },
+      ]
     ),
-    { 
-      src: "/assets/images/about/SIU%20(3).jpeg", 
-      badge: t("hero.slides.0.badge"), 
-      title: t("hero.slides.0.title"), 
-      desc: t("hero.slides.0.desc") 
+    {
+      src: "/assets/images/about/SIU%20(3).jpeg",
+      badge: t("hero.slides.0.badge"),
+      title: t("hero.slides.0.title"),
+      desc: t("hero.slides.0.desc")
     }
   ];
 
@@ -88,7 +88,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="siu-hero-section pt-150 pb-100 p-relative overflow-hidden"
+      className="siu-hero-section pt-120 pb-100 p-relative overflow-hidden"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -114,7 +114,7 @@ const Hero = () => {
               transition={{ duration: 0.8 }}
             >
               {/* BRANDING BADGE */}
-              <div className="hero-badge-wrapper" style={{ marginBottom: "12px", display: "flex", justifyContent: lang === "ar" ? "right" : "left", paddingTop: "130px" }}>
+              <div className="hero-badge-wrapper" style={{ marginBottom: "12px", display: "flex", justifyContent: lang === "ar" ? "right" : "left", paddingTop: "90px" }}>
                 <span className="hero-badge" style={{
                   fontFamily: "var(--font-primary), sans-serif",
                   fontWeight: 950,
@@ -273,7 +273,12 @@ const Hero = () => {
                 >
                   {slides.map((slide, i) => (
                     <div key={i} style={{ width: `${slideW}px`, height: `${phoneH - borderW * 2}px`, flexShrink: 0, position: "relative" }}>
-                      <img src={slide.src} alt={`Screen ${i}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <img
+                        src={slide.src}
+                        alt={`Screen ${i}`}
+                        loading={i === 0 ? "eager" : "lazy"}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
                       {slide.badge && (
                         <>
                           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.4) 40%, transparent 100%)", zIndex: 1 }} />
@@ -318,7 +323,7 @@ const Hero = () => {
           /* Badge — sits below header with comfortable gap */
           .hero-badge-wrapper {
             justify-content: center !important;
-            padding-top: 100px !important;
+            padding-top: 70px !important;
             margin-bottom: 28px !important;
           }
           .hero-badge {

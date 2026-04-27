@@ -7,6 +7,9 @@ import CopyProtection from "@/components/CopyProtection";
 export const metadata = {
   title: "SIU Web",
   description: "Study in UAE",
+  icons: {
+    icon: "/favicon-siu.svg",
+  },
 };
 
 const dmSans = DM_Sans({
@@ -19,11 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link 
-          rel="preload" 
-          href="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" 
-          as="image" 
+        <link rel="icon" href="/favicon-siu.svg" type="image/svg+xml" sizes="any" />
+        <link
+          rel="preload"
+          href="/favicon-siu.svg"
+          as="image"
           fetchPriority="high"
         />
       </head>

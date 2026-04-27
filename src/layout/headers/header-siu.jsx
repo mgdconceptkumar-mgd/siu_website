@@ -69,7 +69,7 @@ const HeaderSIU = () => {
             padding: "8px"
           }}>
             <img
-              src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg"
+              src="/assets/images/about/siu_new_logo.png"
               alt="SIU Logo"
               loading="eager"
               fetchPriority="high"
