@@ -35,7 +35,7 @@ const FAQ = () => {
     <section
       id="faq"
       style={{
-        padding: "120px 0",
+        padding: "80px 0",
         background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)",
         fontFamily: "var(--font-primary), sans-serif",
         position: "relative",
@@ -148,7 +148,7 @@ const FAQ = () => {
       <style jsx>{`
         @media (max-width: 991px) {
           #faq {
-            padding: 80px 0 !important;
+            padding: 40px 0 !important;
           }
           #faq h2 {
             font-size: 2.5rem !important;

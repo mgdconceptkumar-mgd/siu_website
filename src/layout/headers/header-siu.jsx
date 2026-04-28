@@ -228,7 +228,7 @@ const HeaderSIU = () => {
           {/* Mobile hamburger + Quick Toggle */}
           <div className="d-lg-none" style={{ display: "flex", alignItems: "center", gap: "15px" }}>
             {/* Quick Toggle for Mobile */}
-            <div 
+            <div
               onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
               style={{
                 display: "flex",

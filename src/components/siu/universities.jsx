@@ -140,7 +140,7 @@ const Universities = () => {
   };
 
   return (
-    <section id="universities" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
+    <section id="universities" style={{ padding: "80px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
       <div className="container">
 
         {/* ============================================================
@@ -870,7 +870,7 @@ const Universities = () => {
 
         @media (max-width: 991px) {
           #universities {
-            padding: 80px 0 !important;
+            padding: 40px 0 !important;
           }
           
           #universities h2 {

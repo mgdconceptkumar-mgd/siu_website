@@ -127,3 +127,52 @@
 .ar .voice-status-bubble {
   border-radius: 20px 20px 20px 0;
 }
+
+/* Mobile — small mic just above scroll-to-top */
+@media (max-width: 768px) {
+  .voice-assistant-widget {
+    bottom: 68px;
+    right: 20px;
+    gap: 8px;
+  }
+
+  .voice-mic-button {
+    width: 42px;
+    height: 42px;
+    border-width: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .voice-mic-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .voice-mic-button:hover {
+    transform: scale(1.05);
+  }
+
+  .voice-status-bubble {
+    max-width: 200px;
+    padding: 8px 14px;
+    font-size: 12px;
+    border-radius: 14px 14px 0 14px;
+  }
+
+  .transcript-text {
+    font-size: 11px;
+  }
+
+  .assistant-response {
+    font-size: 11px;
+  }
+
+  .waveform-container span {
+    font-size: 10px !important;
+  }
+
+  .ar .voice-assistant-widget {
+    right: auto;
+    left: 20px;
+  }
+}

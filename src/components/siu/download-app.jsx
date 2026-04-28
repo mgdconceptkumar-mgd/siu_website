@@ -7,7 +7,7 @@ const DownloadApp = () => {
   const { lang, t } = useLanguage();
 
   return (
-    <section id="download-app" className="download-app-section" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", position: "relative", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
+    <section id="download-app" className="download-app-section" style={{ padding: "80px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", position: "relative", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
       {/* Decorative Blur */}
       <div style={{ position: "absolute", bottom: "-10%", left: lang === "ar" ? "auto" : "10%", right: lang === "ar" ? "10%" : "auto", width: "400px", height: "400px", background: "rgba(255, 255, 255, 0.05)", borderRadius: "50%", filter: "blur(100px)", zIndex: 0 }} />
 
@@ -198,7 +198,7 @@ const DownloadApp = () => {
       <style jsx>{`
         @media (max-width: 991px) {
           #download-app {
-            padding: 60px 0 !important;
+            padding: 40px 0 !important;
           }
           
           .download-app-inner {

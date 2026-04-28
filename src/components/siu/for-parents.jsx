@@ -49,7 +49,7 @@ const ForParents = () => {
     <section
       id="for-parents"
       style={{
-        padding: "100px 0",
+        padding: "80px 0",
         background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)",
         fontFamily: "var(--font-primary), sans-serif",
         direction: lang === "ar" ? "rtl" : "ltr"
@@ -209,7 +209,7 @@ const ForParents = () => {
       <style jsx>{`
         @media (max-width: 991px) {
           #for-parents {
-            padding: 60px 0 !important;
+            padding: 40px 0 !important;
           }
 
           #for-parents h2 {

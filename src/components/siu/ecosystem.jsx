@@ -43,7 +43,7 @@ const Ecosystem = () => {
     <section
       id="ecosystem"
       style={{
-        padding: "100px 0",
+        padding: "80px 0",
         background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)",
         fontFamily: "var(--font-primary), sans-serif",
         direction: lang === "ar" ? "rtl" : "ltr"
@@ -191,7 +191,7 @@ const Ecosystem = () => {
       <style jsx>{`
         @media (max-width: 991px) {
           #ecosystem {
-            padding: 60px 0 !important;
+            padding: 40px 0 !important;
           }
           
           #ecosystem h2 {

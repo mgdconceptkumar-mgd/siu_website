@@ -34,7 +34,7 @@ const Testimonials = () => {
     <section 
       id="testimonials" 
       style={{ 
-        padding: "120px 0", 
+        padding: "80px 0", 
         background: "linear-gradient(180deg, #3b82f6 0%, #1e3a8a 50%, #0f172a 100%)", 
         fontFamily: "var(--font-primary), sans-serif",
         position: "relative",
@@ -137,35 +137,13 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* BETA CTA */}
-        <div style={{ textAlign: "center", marginTop: "80px" }}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{ 
-              display: "inline-block",
-              padding: "20px 40px",
-              background: "rgba(255, 255, 255, 0.03)",
-              borderRadius: "100px",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              color: "#cbd5e1",
-              fontSize: "1.2rem",
-              direction: lang === "ar" ? "rtl" : "ltr"
-            }}
-          >
-            {t("testimonials.cta_text")} 
-            <a href="#how-it-works" style={{ color: "#3b82f6", [lang === "ar" ? "marginRight" : "marginLeft"]: "10px", fontWeight: 700, textDecoration: "none" }}>
-              {t("testimonials.cta_link")} {lang === "ar" ? "←" : "→"}
-            </a>
-          </motion.div>
-        </div>
+
       </div>
 
       <style jsx>{`
         @media (max-width: 991px) {
           #testimonials {
-            padding: 80px 0 !important;
+            padding: 40px 0 !important;
           }
           #testimonials h2 {
             font-size: 2.5rem !important;

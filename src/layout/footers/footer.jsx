@@ -62,12 +62,12 @@ export default function Footer() {
             <div style={styles.topSection}>
               <div style={styles.brandContainer}>
                 <div style={{ position: "relative", width: "120px", height: "120px", margin: "0 auto 15px auto" }}>
-                   <Image 
-                    src="/assets/images/about/SIU%20LOGO%20Icon-05.jpg%20(1).jpeg" 
-                    alt="SIU Logo" 
+                  <Image
+                    src="/assets/images/about/siu_new_logo.png"
+                    alt="SIU Logo"
                     fill
                     sizes="120px"
-                    style={{ objectFit: "cover", borderRadius: "50%", mixBlendMode: "multiply" }} 
+                    style={{ objectFit: "cover", borderRadius: "50%", filter: "brightness(1.05) drop-shadow(0 0 10px rgba(255,255,255,0.1))" }}
                     priority
                   />
                 </div>

@@ -2,7 +2,7 @@ import { Wrapper } from "@/layout";
 import StudyInUAEMain from "@/components/siu";
 
 export const metadata = {
-  title: 'StudyInUAE'
+  title: 'SIU-Study in UAE'
 }
 
 const StudyInUAEPage = () => {

@@ -37,7 +37,7 @@ const Process = () => {
     <section
       id="how-it-works"
       style={{
-        padding: "120px 0",
+        padding: "80px 0",
         background: "linear-gradient(180deg, #3b82f6 0%, #1e3a8a 50%, #0f172a 100%)",
         fontFamily: "var(--font-primary), sans-serif",
         position: "relative",
@@ -178,7 +178,7 @@ const Process = () => {
       <style jsx>{`
         @media (max-width: 991px) {
           #how-it-works {
-            padding: 80px 0 !important;
+            padding: 40px 0 !important;
           }
           #how-it-works h2 {
             font-size: 3rem !important;

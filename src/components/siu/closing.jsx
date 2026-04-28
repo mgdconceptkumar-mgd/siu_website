@@ -7,7 +7,7 @@ const Closing = () => {
   const { lang, t } = useLanguage();
 
   return (
-    <section id="cta" className="closing-section" style={{ padding: "120px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", textAlign: "center", position: "relative", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
+    <section id="cta" className="closing-section" style={{ padding: "80px 0", background: "linear-gradient(180deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)", textAlign: "center", position: "relative", overflow: "hidden", direction: lang === "ar" ? "rtl" : "ltr" }}>
       {/* Decorative Blur */}
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "600px", height: "600px", background: "rgba(59, 130, 246, 0.05)", borderRadius: "50%", filter: "blur(120px)", zIndex: 0 }} />
 
@@ -103,7 +103,7 @@ const Closing = () => {
       <style jsx>{`
 @media (max-width: 991px) {
   #cta {
-    padding: 70px 0 !important;
+    padding: 40px 0 !important;
   }
   
   .closing-sub-title {
